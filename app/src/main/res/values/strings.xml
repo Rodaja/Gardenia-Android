@@ -3,4 +3,8 @@
     <!--strings detalles -->
     <string name="nombre_maceta_detalle">Maceta del salón</string>
     <string name="detalles">Detalles</string>
+    <string name="humedad_tierra">Humedad de la tierra</string>
+    <string name="temperatura_ambiental">Temperatura ambiental</string>
+    <string name="humedad_ambiental">Humedad ambiental</string>
+    <!-- /strings detalles -->
 </resources>
