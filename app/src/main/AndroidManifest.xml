@@ -10,11 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.Splash">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".view.AddFlowerPotWebView" />
         <activity android:name=".view.AddFlowerPot" />
@@ -29,7 +24,17 @@
         <activity android:name=".view.ForgotPassword" />
         <activity android:name=".view.Home" />
         <activity android:name=".view.Signup" />
-        <activity android:name=".view.Login" />
+        <activity android:name=".view.Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Gardenia-Android</string>
+    <string name="app_name">Gardenia</string>
+    <string name="signup">¿No tienes una cuenta? Registrate aquí</string>
+    <string name="forgot_password">¿Olvidaste la contraseña?</string>
+    <string name="remind_me">Recuerdame</string>
+    <string name="login">Login</string>
+    <string name="password">Contraseña</string>
+    <string name="email">Email</string>
 </resources>
