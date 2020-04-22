@@ -5,5 +5,5 @@
     <color name="colorBackground">#EEEEEE</color>
     <color name="colorFont">#000000</color>
     <color name="colorFontSoft">#7E7E7E</color>
-
+    <color name="colorError">#B3190B</color>
 </resources>
