@@ -135,6 +135,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="24dp"
+        android:buttonTint="@color/colorAccent"
         android:layout_marginBottom="24dp"
         android:text="@string/remind_me"
         android:textColor="@color/colorFont"
