@@ -6,4 +6,5 @@
     <string name="login">Login</string>
     <string name="password">Contraseña</string>
     <string name="email">Email</string>
+    <string name="login_error">Error, usuario o contraseña incorrectos</string>
 </resources>
