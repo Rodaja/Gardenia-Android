@@ -30,6 +30,10 @@
         <activity android:name=".view.Home" />
         <activity android:name=".view.Signup" />
         <activity android:name=".view.Login" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
