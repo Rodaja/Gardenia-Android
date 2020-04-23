@@ -13,4 +13,5 @@
     <string name="perfil_configuracion">Configuración</string>
     <string name="perfil_cerrar_sesion">Cerrar Sesion</string>
     <string name="perfil_borrar_cuenta">Borrar Cuenta</string>
+    <string name="perfil_pais_ejemplo">Spain</string>
 </resources>
