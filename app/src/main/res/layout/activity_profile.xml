@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/imagenPerfil"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
@@ -253,8 +253,8 @@
 
         <ImageView
             android:id="@+id/ivCambiarContrasena"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -275,8 +275,8 @@
 
         <ImageView
             android:id="@+id/ivPais"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -323,8 +323,8 @@
 
         <ImageView
             android:id="@+id/ivConfiguracion"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -358,8 +358,8 @@
 
         <ImageView
             android:id="@+id/ivCerrarSesion"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -375,7 +375,7 @@
             android:layout_marginLeft="24dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/perfil_cerrar_sesion"
-            android:textColor="@color/colorFont"
+            android:textColor="@color/colorError"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -393,8 +393,8 @@
 
         <ImageView
             android:id="@+id/ivBorrarCuenta"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -410,7 +410,7 @@
             android:layout_marginLeft="24dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/perfil_borrar_cuenta"
-            android:textColor="@color/colorFont"
+            android:textColor="@color/colorError"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
