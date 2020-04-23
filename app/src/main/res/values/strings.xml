@@ -15,4 +15,6 @@
     <string name="perfil_borrar_cuenta">Borrar Cuenta</string>
     <string name="perfil_pais_ejemplo">Spain</string>
     <string name="country_buscador_editable">País</string>
+    <string name="settings_unidad_temperatura">Unidad de Temperatura</string>
+    <string name="setting_UnidadesTemperaturaEjemplo">ºC</string>
 </resources>
