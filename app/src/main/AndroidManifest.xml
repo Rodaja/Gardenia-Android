@@ -23,7 +23,12 @@
         <activity android:name=".view.ResetPassword" />
         <activity android:name=".view.ForgotPassword" />
         <activity android:name=".view.Home" />
-        <activity android:name=".view.Signup" />
+        <activity android:name=".view.Signup">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter></activity>
         <activity android:name=".view.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
