@@ -152,6 +152,8 @@
             android:layout_height="32dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivIconEmail">
@@ -199,9 +201,12 @@
             android:layout_height="35dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivIconPasswordRepeat">
+            app:layout_constraintStart_toEndOf="@+id/ivIconPasswordRepeat"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassword"
