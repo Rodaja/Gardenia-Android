@@ -7,6 +7,14 @@
     <string name="password">Contraseña</string>
     <string name="email">Email</string>
     <string name="login_error">Error, usuario o contraseña incorrectos</string>
+    <string name="repeat_password">Repetir contraseña</string>
+    <string name="singup">Sign up</string>
+    <string name="code_verify">Código de verificación</string>
+    <string name="reset_password">Resetear contraseña</string>
+    <string name="understand">¡Entendido!</string>
+    <string name="email_send">Email enviado</string>
+    <string name="email_message">Se ha enviado un email a tu dirección de correo electrónico. Recuerda revisar tu bandeja de spam. Si surge algún problema no dudes en ponerte en contacto con nosotros a traves del siguiente correo electrónico:</string>
+    <string name="gardenia_email">gardenia@gmail.com</string>
     <string name="perfil_email">Email</string>
     <string name="perfil_email_editable">johndoemurphy@email.com</string>
     <string name="perfil_nombre_usuario">Nombre Usuario</string>

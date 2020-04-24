@@ -36,7 +36,7 @@
         android:id="@+id/ivLogo"
         android:layout_width="128dp"
         android:layout_height="128dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="72dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -183,7 +183,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:id="@+id/ivIconPassword"
+            android:id="@+id/ivIconPasswordRepeat"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="24dp"
@@ -201,7 +201,7 @@
             android:layout_marginLeft="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivIconPassword">
+            app:layout_constraintStart_toEndOf="@+id/ivIconPasswordRepeat">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassword"
