@@ -23,4 +23,10 @@
     <string name="settings_preguntas_frecuentes">Preguntas Frecuentes</string>
     <string name="settings_reportar_fallo">Reportar un fallo</string>
     <string name="settings_ajustes_por_defecto">Ajustes por defecto</string>
+    <string name="faq_preguntas_frecuentes">Preguntas Frecuentes</string>
+    <string name="faq_pregunta1">1) ¿Como conecto una maceta? Para conectar una maceta deberás pulsar el  botón "+" situado arriba a la derecha en la  ventana inicial</string>
+    <string name="faq_pregunta2">2)¿Cómo puedo borrar mi cuenta? Para borrar tu cuenta deberas pulsar el botón del perfil y luego pulsar en borrar cuenta y confirmar</string>
+    <string name="faq_pregunta3">3) ¿Cómo puedo cambiar de contraseña? Para cambiar la contraseña entra en tu perfil  y pulsa la opción cambiar contraseña</string>
+    <string name="faq_pregunta4">4) ¿Cómo puedo cerrar mi sesión? Para cerrar la sesión deberás pulsar en el  botón de perfil y luego pulsar en la opción  cerrar sesión</string>
+    <string name="faq_pregunta5">5) ¿Cómo puedo cambiar mi correo  electrónico? Se puede cambiar el correo electrónico y los  datos personales del usuario en el perfil</string>
 </resources>
