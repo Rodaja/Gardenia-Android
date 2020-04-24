@@ -7,4 +7,21 @@
     <string name="password">Contraseña</string>
     <string name="email">Email</string>
     <string name="login_error">Error, usuario o contraseña incorrectos</string>
+    <string name="perfil_email">Email</string>
+    <string name="perfil_email_editable">johndoemurphy@email.com</string>
+    <string name="perfil_nombre_usuario">Nombre Usuario</string>
+    <string name="perfil_nombre_usuario_editable">JohnDoeMur</string>
+    <string name="perfil_nombre">Nombre</string>
+    <string name="perfil_nombre_editable">John</string>
+    <string name="perfil_apellidos">Apellidos</string>
+    <string name="perfil_apellidos_edtable">Doe Murphy</string>
+    <string name="perfil_cambiar_contrasena">Cambiar Contraseña</string>
+    <string name="perfil_pais">País</string>
+    <string name="perfil_configuracion">Configuración</string>
+    <string name="perfil_cerrar_sesion">Cerrar Sesion</string>
+    <string name="perfil_borrar_cuenta">Borrar Cuenta</string>
+    <string name="perfil_pais_ejemplo">Spain</string>
+    <string name="country_buscador_editable">País</string>
+    <string name="settings_unidad_temperatura">Unidad de Temperatura</string>
+    <string name="setting_UnidadesTemperaturaEjemplo">ºC</string>
 </resources>
