@@ -7,6 +7,8 @@
     <string name="password">Contraseña</string>
     <string name="email">Email</string>
     <string name="login_error">Error, usuario o contraseña incorrectos</string>
-    <string name="sign_up_repeat_password">Repetir contraseña</string>
+    <string name="repeat_password">Repetir contraseña</string>
     <string name="singup">Sign up</string>
+    <string name="code_verify">Código de verificación</string>
+    <string name="reset_password">Resetear contraseña</string>
 </resources>

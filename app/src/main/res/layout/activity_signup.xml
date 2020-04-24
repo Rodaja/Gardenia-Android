@@ -219,7 +219,7 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:fontFamily="@font/montserrat"
-                android:hint="@string/sign_up_repeat_password"
+                android:hint="@string/repeat_password"
                 android:singleLine="true"
                 android:textColor="@color/colorFont"
                 android:textColorHighlight="@color/colorAccent"
