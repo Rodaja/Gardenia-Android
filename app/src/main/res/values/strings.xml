@@ -18,4 +18,9 @@
     <string name="settings_unidad_temperatura">Unidad de Temperatura</string>
     <string name="setting_UnidadesTemperaturaEjemplo">ºC</string>
     <string name="settings_notificaciones">Notificaciones</string>
+    <string name="settings_tema">Tema</string>
+    <string name="settings_tema_editable">Claro</string>
+    <string name="settings_preguntas_frecuentes">Preguntas Frecuentes</string>
+    <string name="settings_reportar_fallo">Reportar un fallo</string>
+    <string name="settings_ajustes_por_defecto">Ajustes por defecto</string>
 </resources>
