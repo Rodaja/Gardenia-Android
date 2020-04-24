@@ -24,4 +24,5 @@
     <string name="country_buscador_editable">País</string>
     <string name="settings_unidad_temperatura">Unidad de Temperatura</string>
     <string name="setting_UnidadesTemperaturaEjemplo">ºC</string>
+    <string name="settings_notificaciones">Notificaciones</string>
 </resources>
