@@ -49,4 +49,14 @@
     <string name="faq_respuesta4">Para cerrar la sesión deberás pulsar en el  botón de perfil y luego pulsar en la opción  cerrar sesión</string>
     <string name="faq_pregunta5">5) ¿Cómo puedo cambiar mi correo  electrónico?</string>
     <string name="faq_respuesta5">Se puede cambiar el correo electrónico y los  datos personales del usuario en el perfil</string>
+    <!--strings detalles -->
+    <string name="nombre_maceta_detalle">Maceta del salón</string>
+    <string name="detalles">Detalles</string>
+    <string name="humedad_tierra">Humedad de la tierra</string>
+    <string name="temperatura_ambiental">Temperatura ambiental</string>
+    <string name="humedad_ambiental">Humedad ambiental</string>
+    <!-- /strings detalles -->
+    <!--strings elegir imagenes -->
+    <string name="elige_imagen">Elige una imagen</string>
+    <!-- /strings elegir imagenes -->
 </resources>
