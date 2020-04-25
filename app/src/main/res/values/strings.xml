@@ -34,4 +34,13 @@
     <string name="faq_respuesta4">Para cerrar la sesión deberás pulsar en el  botón de perfil y luego pulsar en la opción  cerrar sesión</string>
     <string name="faq_pregunta5">5) ¿Cómo puedo cambiar mi correo  electrónico?</string>
     <string name="faq_respuesta5">Se puede cambiar el correo electrónico y los  datos personales del usuario en el perfil</string>
+    <string name="fail_report_titulo">Reportar un Fallo</string>
+    <string name="fail_report_dar_gracias">Gracias por colaborar en el desarrollo de  Gardenia, valoramos mucho tu esfuerzo,  tiempo y ganas de que la aplicación mejore!</string>
+    <string name="fail_report_preguntas">A continuación comentanos el error que te  ha ocurrido con una breve explicación de lo  que estabas haciendo antes de que  surgiese, si estas falto de ideas te recomendamos responder a las siguientes preguntas:</string>
+    <string name="fail_report_pregunta1">¿En que ventana surgió el error?</string>
+    <string name="fail_report_pregunta2">¿Qué seleccionaste?</string>
+    <string name="fail_report_pregunta3">¿Qué hiciste antes de que surgiese el error?</string>
+    <string name="fail_report_descripcion_fallo">Escriba su fallo</string>
+    <string name="fail_report_boton">Enviar Reporte</string>
+
 </resources>
