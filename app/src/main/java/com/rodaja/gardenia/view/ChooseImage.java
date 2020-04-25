@@ -12,7 +12,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.rodaja.gardenia.R;
 
 public class ChooseImage extends AppCompatActivity {
-    ImageView ivArrow_back_detaills,iv_plant_one;
+    ImageView ivArrow_back_detaills, iv_plant_1, iv_plant_2, iv_plant_3, iv_plant_4, iv_plant_5, iv_plant_6, iv_plant_7, iv_plant_8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,14 @@ public class ChooseImage extends AppCompatActivity {
         getSupportActionBar().hide();
         inicializar();
         setImage(R.drawable.arrow_back,ivArrow_back_detaills);
-        setImage(R.drawable.main_plant,iv_plant_one);
+        setImage(R.drawable.main_plant, iv_plant_1);
+        setImage(R.drawable.main_plant, iv_plant_2);
+        setImage(R.drawable.main_plant, iv_plant_3);
+        setImage(R.drawable.main_plant, iv_plant_4);
+        setImage(R.drawable.main_plant, iv_plant_5);
+        setImage(R.drawable.main_plant, iv_plant_6);
+        setImage(R.drawable.main_plant, iv_plant_7);
+        setImage(R.drawable.main_plant, iv_plant_8);
 
         ivArrow_back_detaills.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +44,14 @@ public class ChooseImage extends AppCompatActivity {
 
     private void inicializar() {
         ivArrow_back_detaills = findViewById(R.id.img_Flecha_volver);
-        iv_plant_one = findViewById(R.id.img_planta_uno);
+        iv_plant_1 = findViewById(R.id.img_planta_1);
+        iv_plant_2 = findViewById(R.id.img_planta_2);
+        iv_plant_3 = findViewById(R.id.img_planta_3);
+        iv_plant_4 = findViewById(R.id.img_planta_4);
+        iv_plant_5 = findViewById(R.id.img_planta_5);
+        iv_plant_6 = findViewById(R.id.img_planta_6);
+        iv_plant_7 = findViewById(R.id.img_planta_7);
+        iv_plant_8 = findViewById(R.id.img_planta_8);
 
     }
 

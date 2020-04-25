@@ -31,7 +31,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_temperatura_ambiental_medida2" />
 
         <ImageView
-            android:id="@+id/img_planta_uno"
+            android:id="@+id/img_planta_1"
             android:layout_width="317dp"
             android:layout_height="340dp"
             android:layout_marginTop="48dp"
@@ -49,7 +49,7 @@
             android:layout_marginEnd="28dp"
             android:layout_marginRight="28dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/img_planta_uno"
+            app:layout_constraintTop_toTopOf="@+id/img_planta_1"
             tools:srcCompat="@drawable/choose_photo_plot" />
 
         <ImageView
@@ -59,7 +59,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginBottom="24dp"
-            app:layout_constraintBottom_toBottomOf="@+id/img_planta_uno"
+            app:layout_constraintBottom_toBottomOf="@+id/img_planta_1"
             app:layout_constraintEnd_toEndOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
@@ -74,7 +74,7 @@
             android:text="@string/nombre_maceta_detalle"
             android:textColor="@color/colorFont"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/img_planta_uno"
+            app:layout_constraintBottom_toBottomOf="@+id/img_planta_1"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -88,7 +88,7 @@
             android:text="@string/detalles"
             android:textColor="@color/colorFont"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_planta_uno" />
+            app:layout_constraintTop_toBottomOf="@+id/img_planta_1" />
 
         <ImageView
             android:id="@+id/img_gota_agua"
