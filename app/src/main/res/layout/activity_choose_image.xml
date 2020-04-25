@@ -9,29 +9,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="334dp"
         android:layout_height="633dp"
-        android:layout_marginBottom="16dp"
         android:background="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
-            android:id="@+id/img_planta_uno"
-            android:layout_width="101dp"
-            android:layout_height="103dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_titulo_detalle_maceta"
-            tools:srcCompat="@drawable/main_plant" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tv_titulo_detalle_maceta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="76dp"
+            android:layout_marginTop="28dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/elige_imagen"
             android:textColor="@color/colorFont"
@@ -45,7 +34,7 @@
             android:id="@+id/img_Flecha_volver"
             android:layout_width="27dp"
             android:layout_height="28dp"
-            android:layout_marginTop="76dp"
+            android:layout_marginTop="28dp"
             android:layout_marginEnd="27dp"
             android:layout_marginRight="27dp"
             app:layout_constraintEnd_toStartOf="@+id/tv_titulo_detalle_maceta"
@@ -53,6 +42,94 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@drawable/arrow_back" />
+
+        <ImageView
+            android:id="@+id/img_planta_7"
+            android:layout_width="112dp"
+            android:layout_height="112dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_planta_5"
+            tools:srcCompat="@drawable/main_plant" />
+
+        <ImageView
+            android:id="@+id/img_planta_8"
+            android:layout_width="112dp"
+            android:layout_height="112dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_planta_6"
+            tools:srcCompat="@drawable/main_plant" />
+
+        <ImageView
+            android:id="@+id/img_planta_5"
+            android:layout_width="112dp"
+            android:layout_height="112dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_planta_3"
+            tools:srcCompat="@drawable/main_plant" />
+
+        <ImageView
+            android:id="@+id/img_planta_6"
+            android:layout_width="112dp"
+            android:layout_height="112dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_planta_4"
+            tools:srcCompat="@drawable/main_plant" />
+
+        <ImageView
+            android:id="@+id/img_planta_3"
+            android:layout_width="112dp"
+            android:layout_height="112dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_planta_1"
+            tools:srcCompat="@drawable/main_plant" />
+
+        <ImageView
+            android:id="@+id/img_planta_4"
+            android:layout_width="112dp"
+            android:layout_height="112dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_planta_2"
+            tools:srcCompat="@drawable/main_plant" />
+
+        <ImageView
+            android:id="@+id/img_planta_2"
+            android:layout_width="112dp"
+            android:layout_height="112dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_titulo_detalle_maceta"
+            tools:srcCompat="@drawable/main_plant" />
+
+        <ImageView
+            android:id="@+id/img_planta_1"
+            android:layout_width="112dp"
+            android:layout_height="112dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_titulo_detalle_maceta"
+            tools:srcCompat="@drawable/main_plant" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
