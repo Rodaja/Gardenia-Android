@@ -126,11 +126,11 @@
                 android:id="@+id/scrollView2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvPregunta3">
@@ -138,14 +138,15 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:hintTextColor="@color/colorAccent"
                     app:startIconDrawable="@drawable/buscar"
-                    app:startIconTint="@color/colorFont"
-                    android:background="@null"
-                    app:hintTextColor="@color/colorAccent">
+
+                    app:startIconTint="@color/colorFont">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@null"
                         android:hint="@string/fail_report_descripcion_fallo" />
                 </com.google.android.material.textfield.TextInputLayout>
             </ScrollView>
@@ -161,11 +162,11 @@
                 android:layout_marginRight="24dp"
                 android:layout_marginBottom="24dp"
                 android:fontFamily="@font/montserrat"
+                android:text="@string/fail_report_boton"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-                tools:text="@string/fail_report_boton" />
+                app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
