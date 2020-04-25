@@ -14,15 +14,14 @@
         </activity>
         <activity android:name=".view.AddFlowerPotWebView" />
         <activity android:name=".view.AddFlowerPot" />
-        <activity android:name=".view.FailReport" />
-        <activity android:name=".view.Faq">
+        <activity android:name=".view.FailReport">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.Country" />
+        <activity android:name=".view.Country"></activity>
         <activity android:name=".view.Settings" />
         <activity android:name=".view.ChooseImage" >
             <intent-filter>
