@@ -129,36 +129,28 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvPregunta2" />
 
-                <ScrollView
-                    android:id="@+id/scrollView2"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+
                     android:layout_marginTop="24dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:background="@drawable/forma_preguntas_frecuentes"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    app:hintTextColor="@color/colorAccent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvPregunta3">
+                    app:layout_constraintTop_toBottomOf="@+id/tvPregunta3"
+                    app:startIconDrawable="@drawable/buscar"
+                    app:startIconTint="@color/colorFont">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:hintTextColor="@color/colorAccent"
-                        app:startIconDrawable="@drawable/buscar"
-
-                        app:startIconTint="@color/colorFont">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:hint="@string/fail_report_descripcion_fallo" />
-                    </com.google.android.material.textfield.TextInputLayout>
-                </ScrollView>
+                        android:background="@null"
+                        android:hint="@string/fail_report_descripcion_fallo" />
+                </com.google.android.material.textfield.TextInputLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
