@@ -24,7 +24,13 @@
         </activity>
         <activity android:name=".view.Country" />
         <activity android:name=".view.Settings" />
-        <activity android:name=".view.ChooseImage" />
+        <activity android:name=".view.ChooseImage" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".view.ResetPassword" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
