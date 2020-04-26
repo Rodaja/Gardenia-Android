@@ -12,8 +12,20 @@
         <activity android:name=".view.Splash">
 
         </activity>
-        <activity android:name=".view.AddFlowerPotWebView" />
-        <activity android:name=".view.AddFlowerPot" />
+        <activity android:name=".view.AddFlowerPotWebView" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".view.AddFlowerPot">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".view.FailReport">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +34,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.Country"></activity>
-        <activity android:name=".view.Settings" />
+        <activity android:name=".view.Settings" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".view.ChooseImage" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
