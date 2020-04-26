@@ -8,33 +8,27 @@
     tools:context=".view.Details">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="334dp"
-        android:layout_height="633dp"
-        android:layout_marginBottom="16dp"
-        android:background="@color/colorPrimary"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/border_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/tv_temperatura_ambiental_medida"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            android:fontFamily="@font/montserrat"
-            android:text="25%"
-            android:textColor="@color/colorFont"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_temperatura_ambiental_medida2" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/img_planta_1"
-            android:layout_width="317dp"
-            android:layout_height="340dp"
-            android:layout_marginTop="48dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_detalles"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.529"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,9 +39,9 @@
             android:id="@+id/img_Flecha_volver"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="28dp"
-            android:layout_marginRight="28dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/img_planta_1"
             tools:srcCompat="@drawable/choose_photo_plot" />
@@ -63,12 +57,58 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
+        <ImageView
+            android:id="@+id/img_gota_agua"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/img_termometro"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/img_termometro"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/img_humedad"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/img_humedad"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_temperatura_ambiental_medida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="@font/montserrat"
+            android:text="25%"
+            android:textColor="@color/colorFontSoft"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <TextView
             android:id="@+id/tv_titulo_detalle_maceta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
             android:layout_marginBottom="24dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/nombre_maceta_detalle"
@@ -81,112 +121,79 @@
             android:id="@+id/tv_detalles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="32dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/detalles"
             android:textColor="@color/colorFont"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_planta_1" />
-
-        <ImageView
-            android:id="@+id/img_gota_agua"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detalles"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <ImageView
-            android:id="@+id/img_termometro"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_gota_agua"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <ImageView
-            android:id="@+id/img_humedad"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_termometro"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:layout_constraintBottom_toTopOf="@+id/img_gota_agua"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tv_humedad_tierrra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="38dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/humedad_tierra"
             android:textColor="@color/colorFont"
-            app:layout_constraintStart_toEndOf="@+id/img_gota_agua"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detalles" />
+            app:layout_constraintBottom_toTopOf="@+id/tv_temperatura"
+            app:layout_constraintStart_toEndOf="@+id/img_gota_agua" />
 
         <TextView
             android:id="@+id/tv_temperatura"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="38dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/temperatura_ambiental"
             android:textColor="@color/colorFont"
-            app:layout_constraintStart_toEndOf="@+id/img_termometro"
-            app:layout_constraintTop_toBottomOf="@+id/tv_humedad_tierrra" />
+            app:layout_constraintBottom_toTopOf="@+id/tv_humedad_ambiental"
+            app:layout_constraintStart_toEndOf="@+id/img_termometro" />
 
         <TextView
             android:id="@+id/tv_humedad_ambiental"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="32dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/humedad_ambiental"
             android:textColor="@color/colorFont"
-            app:layout_constraintStart_toEndOf="@+id/img_humedad"
-            app:layout_constraintTop_toBottomOf="@+id/tv_temperatura" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_humedad" />
 
         <TextView
             android:id="@+id/tv_humedad_tierra_medida"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
+            android:layout_marginBottom="38dp"
             android:fontFamily="@font/montserrat"
-            android:text="%75"
-            android:textColor="@color/colorFont"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detalles" />
+            android:text="75%"
+            android:textColor="@color/colorFontSoft"
+            app:layout_constraintBottom_toTopOf="@+id/tv_temperatura_ambiental_medida2"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/tv_temperatura_ambiental_medida2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
+            android:layout_marginBottom="38dp"
             android:fontFamily="@font/montserrat"
             android:text="32cº"
-            android:textColor="@color/colorFont"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_humedad_tierra_medida" />
+            android:textColor="@color/colorFontSoft"
+            app:layout_constraintBottom_toTopOf="@+id/tv_temperatura_ambiental_medida"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
