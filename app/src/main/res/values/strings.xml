@@ -80,5 +80,6 @@ dispositivo con el nombre ESPXXXX (la red Wi-Fi
 puede tardar hasta 1 o 2 minutos
 en aparecer)</string>
     <string name="confirmar">Confirmar</string>
+    <string name="home">Home</string>
     <!-- /strings agregar maceta -->
 </resources>
