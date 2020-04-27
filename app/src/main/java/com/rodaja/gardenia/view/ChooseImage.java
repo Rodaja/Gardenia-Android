@@ -43,7 +43,7 @@ public class ChooseImage extends AppCompatActivity {
 
 
     private void inicializar() {
-        ivArrow_back_detaills = findViewById(R.id.img_Flecha_volver);
+        ivArrow_back_detaills = findViewById(R.id.img_elegir_imagen);
         iv_plant_1 = findViewById(R.id.img_planta_1);
         iv_plant_2 = findViewById(R.id.img_planta_2);
         iv_plant_3 = findViewById(R.id.img_planta_3);

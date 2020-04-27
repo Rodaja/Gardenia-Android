@@ -36,7 +36,7 @@ public class Details extends AppCompatActivity {
 
     private void inicializar() {
         ivDetails = findViewById(R.id.img_planta_1);
-        ivChoose_plant = findViewById(R.id.img_Flecha_volver);
+        ivChoose_plant = findViewById(R.id.img_elegir_imagen);
     }
 
     /**
