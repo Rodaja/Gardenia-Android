@@ -190,7 +190,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/ivMenuIconRight"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="24dp"

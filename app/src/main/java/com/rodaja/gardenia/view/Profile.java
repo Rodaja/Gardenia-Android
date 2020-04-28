@@ -6,15 +6,23 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.rodaja.gardenia.R;
+import com.rodaja.gardenia.view.multimedia.Image;
 
 public class Profile extends AppCompatActivity {
+
+    //Atributos Menu
+    private TextView tvTitulo;
+    private ImageView ivMenuIconLeft;
+    private ImageView ivMenuIconRight;
 
     private ConstraintLayout constLCerrarSesionEditable;
     private Context context;
@@ -67,7 +75,11 @@ public class Profile extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.menu);
 
-        TextView t = findViewById(R.id.mytext);
-        t.setText("Polla");
+        tvTitulo  = findViewById(R.id.tvMenuTitulo);
+        ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
+        ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
+
+        tvTitulo.setText(R.string.perfil);
+        ivMenuIconRight.setImageResource(R.drawable.icon_save);
     }
 }
