@@ -1,12 +1,13 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="Theme.App" parent="Theme.MaterialComponents">
+    <style name="Theme.App" parent="Theme.MaterialComponents.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="materialAlertDialogTheme">@style/Theme.App.MaterialDialog</item>
+
     </style>
 
     <!-- Dialog Alert Style -->

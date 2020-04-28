@@ -1,5 +1,6 @@
 package com.rodaja.gardenia.view;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -23,6 +24,7 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         inicializar();
+        inicializarMenu();
 
         context = this;
 
@@ -59,5 +61,13 @@ public class Profile extends AppCompatActivity {
 
     private void inicializar() {
         constLCerrarSesionEditable = findViewById(R.id.constLCerrarSesionEditable);
+    }
+
+    private void inicializarMenu() {
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.menu);
+
+        TextView t = findViewById(R.id.mytext);
+        t.setText("Polla");
     }
 }
