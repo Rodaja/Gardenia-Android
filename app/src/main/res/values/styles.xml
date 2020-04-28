@@ -1,10 +1,63 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.App" parent="Theme.MaterialComponents">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="materialAlertDialogTheme">@style/Theme.App.MaterialDialog</item>
+    </style>
+
+    <!-- Dialog Alert Style -->
+    <style name="Theme.App.MaterialDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="colorSurface">#FFFFFF</item> <!--Background color-->
+        <item name="colorOnSurface">#000000</item> <!--Letter color-->
+        <item name="alertDialogStyle">@style/ThemeOverlay.App.MaterialAlertDialog</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.MaterialComponents.Title.Text</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Theme.App.Button.Positive</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Theme.App.Button.Neutral</item>
+    </style>
+
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="MaterialAlertDialog.MaterialComponents">
+        <item name="shapeAppearance">@style/ShapeAppearance.App.MediumComponent</item>
+    </style>
+
+    <style name="MaterialAlertDialog.App.Title.Text" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="Widget.AppCompat.Button" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="materialThemeOverlay">@style/Widget.MaterialComponents.Button.TextButton</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.MediumComponent</item>
+    </style>
+
+    <style name="Theme.App.Button.Positive" parent="">
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="backgroundTint">@color/colorAccent</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+
+    <style name="Theme.App.Button.Neutral" parent="">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorError</item>
+        <item name="backgroundTint">@color/colorPrimary</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+
+    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">4dp</item>
     </style>
 
 </resources>
