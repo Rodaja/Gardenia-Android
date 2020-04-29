@@ -31,6 +31,13 @@ public class Faq extends AppCompatActivity {
                 goToNewView(v,Settings.class);
             }
         });
+
+        ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNewView(v,AddFlowerPot.class);
+            }
+        });
     }
 
     private void inicializarMenu() {
