@@ -27,7 +27,7 @@
         android:id="@+id/tvMenuTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="13dp"
         android:fontFamily="@font/montserrat"
         android:text="TextView"
         android:textColor="@color/colorFont"

@@ -87,5 +87,7 @@
     <string name="configuracion">Configuración</string>
     <string name="conectar_maceta">Conectar maceta</string>
     <string name="paises">Paises</string>
+    <string name="preguntas">Preguntas</string>
+    <string name="reportar_fallo">Reportar fallo</string>
     <!-- /Menu -->
 </resources>

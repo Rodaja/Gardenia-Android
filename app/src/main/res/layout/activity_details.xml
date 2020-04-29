@@ -32,8 +32,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.529"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/main_plant" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/img_elegir_imagen"
@@ -44,18 +43,8 @@
             android:layout_marginRight="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/img_planta_1"
-            tools:srcCompat="@drawable/choose_photo_plot" />
-
-        <ImageView
-            android:id="@+id/img_Tarjeta_elegir_nombre"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            android:layout_marginBottom="24dp"
-            app:layout_constraintBottom_toBottomOf="@+id/img_planta_1"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:srcCompat="@drawable/icon_select_image"
+            tools:srcCompat="@drawable/icon_select_image" />
 
         <ImageView
             android:id="@+id/img_gota_agua"
@@ -194,6 +183,18 @@
             android:textColor="@color/colorFontSoft"
             app:layout_constraintBottom_toTopOf="@+id/tv_temperatura_ambiental_medida"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_Tarjeta_elegir_nombre"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/img_planta_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/icon_boligrafo"
+            tools:srcCompat="@drawable/icon_boligrafo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
