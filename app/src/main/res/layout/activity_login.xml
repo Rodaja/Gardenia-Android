@@ -8,14 +8,15 @@
     <Button
         android:id="@+id/btnReset"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/colorAccent"
         android:fontFamily="@font/montserrat"
+        android:gravity="center_horizontal|center_vertical"
         android:text="@string/login"
-        android:textColor="@color/colorFont"
-        android:textColorHint="@color/colorFont"
+        android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toTopOf="@+id/tvSignUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -151,12 +152,13 @@
             android:background="@null"
             android:fontFamily="@font/montserrat"
             android:hint="@string/email"
+            android:backgroundTint="@color/colorTransparent"
             android:singleLine="true"
             android:textColor="@color/colorFont"
             android:textColorHighlight="@color/colorAccent"
             android:textColorHint="@color/colorFont"
             android:textColorLink="@color/colorAccent"
-            android:textCursorDrawable="@color/colorPrimary" />
+            android:textCursorDrawable="@color/colorPrimary"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -169,6 +171,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/colorTransparent"
         app:endIconTint="@color/colorAccent"
         app:hintTextColor="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/chboxRecordar"
@@ -186,12 +189,13 @@
             android:background="@null"
             android:fontFamily="@font/montserrat"
             android:hint="@string/password"
+            android:backgroundTint="@color/colorTransparent"
             android:singleLine="true"
             android:textColor="@color/colorFont"
             android:textColorHighlight="@color/colorAccent"
             android:textColorHint="@color/colorFont"
             android:textColorLink="@color/colorAccent"
-            android:textCursorDrawable="@color/colorPrimary"
+            android:textCursorDrawable="@color/colorAccent"
             android:password="true"/>
     </com.google.android.material.textfield.TextInputLayout>
 
