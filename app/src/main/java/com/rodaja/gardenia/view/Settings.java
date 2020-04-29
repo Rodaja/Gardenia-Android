@@ -2,8 +2,11 @@ package com.rodaja.gardenia.view;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +18,7 @@ public class Settings extends AppCompatActivity {
     private TextView tvTitulo;
     private ImageView ivMenuIconLeft;
     private ImageView ivMenuIconRight;
+    private ConstraintLayout constLPreguntasFrecuentes,contLReportarFallos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,33 @@ public class Settings extends AppCompatActivity {
 
         inicializarMenu();
 
+        ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNewView(v,Profile.class);
+            }
+        });
+
+        ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNewView(v,AddFlowerPot.class);
+            }
+        });
+
+        constLPreguntasFrecuentes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNewView(v,Faq.class);
+            }
+        });
+
+        contLReportarFallos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNewView(v,FailReport.class);
+            }
+        });
     }
 
     private void inicializarMenu() {
@@ -35,6 +66,14 @@ public class Settings extends AppCompatActivity {
 
         tvTitulo.setText(R.string.configuracion);
         ivMenuIconRight.setImageResource(R.drawable.icon_add);
+
+        constLPreguntasFrecuentes = findViewById(R.id.constLPreguntasFrecuentesEditable);
+        contLReportarFallos = findViewById(R.id.constLReportarFalloEditable);
+    }
+
+    private void goToNewView(View view , Class goToView){
+        Intent in = new Intent(this, goToView);
+        startActivity(in);
     }
 
 }

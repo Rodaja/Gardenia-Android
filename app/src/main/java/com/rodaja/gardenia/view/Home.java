@@ -3,7 +3,9 @@ package com.rodaja.gardenia.view;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,8 +22,26 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         inicializarMenu();
+
+        ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNewView(v,Profile.class);
+            }
+        });
+
+        ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNewView(v,AddFlowerPot.class);
+            }
+        });
+
+
+
+
+
     }
 
     private void inicializarMenu() {
@@ -36,4 +56,11 @@ public class Home extends AppCompatActivity {
         ivMenuIconLeft.setImageResource(R.drawable.perfil);
         ivMenuIconRight.setImageResource(R.drawable.icon_add);
     }
+
+
+    private void goToNewView(View view , Class goToView){
+        Intent in = new Intent(this, goToView);
+        startActivity(in);
+    }
+
 }
