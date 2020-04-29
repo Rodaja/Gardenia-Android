@@ -3,7 +3,9 @@ package com.rodaja.gardenia.view;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +23,21 @@ public class Country extends AppCompatActivity {
         setContentView(R.layout.activity_country);
 
         inicializarMenu();
+
+        ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNewView(v,Profile.class);
+            }
+        });
+
+        ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNewView(v,Profile.class);
+            }
+        });
+
     }
 
     private void inicializarMenu() {
@@ -33,5 +50,10 @@ public class Country extends AppCompatActivity {
 
         tvTitulo.setText(R.string.paises);
         ivMenuIconRight.setImageResource(R.drawable.icon_save);
+    }
+
+    private void goToNewView(View view , Class goToView){
+        Intent in = new Intent(this, goToView);
+        startActivity(in);
     }
 }

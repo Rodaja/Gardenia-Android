@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,7 +25,7 @@ public class Profile extends AppCompatActivity {
     private ImageView ivMenuIconLeft;
     private ImageView ivMenuIconRight;
 
-    private ConstraintLayout constLCerrarSesionEditable;
+    private ConstraintLayout constLCerrarSesionEditable,constLPaises,constLConfiuracion;
     private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,31 @@ public class Profile extends AppCompatActivity {
         inicializarMenu();
 
         context = this;
+
+        ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNewView(v,Home.class);
+            }
+        });
+
+        constLPaises.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNewView(v,Country.class);
+            }
+        });
+
+        constLConfiuracion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNewView(v,Settings.class);
+            }
+        });
+
+
+
+
 
         constLCerrarSesionEditable.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +86,6 @@ public class Profile extends AppCompatActivity {
                         Log.d("Aceptar", "Has seleccionado aceptar");
                     }
                 });
-
                 //Mostramos el cuadro de dialogo
                 dialog.show();
             }
@@ -69,6 +94,8 @@ public class Profile extends AppCompatActivity {
 
     private void inicializar() {
         constLCerrarSesionEditable = findViewById(R.id.constLCerrarSesionEditable);
+        constLPaises = findViewById(R.id.constLPaisEditable);
+        constLConfiuracion = findViewById(R.id.constLConfiguracionEditable);
     }
 
     private void inicializarMenu() {
@@ -81,5 +108,10 @@ public class Profile extends AppCompatActivity {
 
         tvTitulo.setText(R.string.perfil);
         ivMenuIconRight.setImageResource(R.drawable.icon_save);
+    }
+
+    private void goToNewView(View view , Class goToView){
+        Intent in = new Intent(this, goToView);
+        startActivity(in);
     }
 }

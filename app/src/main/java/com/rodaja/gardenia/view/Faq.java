@@ -3,7 +3,9 @@ package com.rodaja.gardenia.view;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +24,13 @@ public class Faq extends AppCompatActivity {
         setContentView(R.layout.activity_faq);
 
         inicializarMenu();
+
+        ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNewView(v,Settings.class);
+            }
+        });
     }
 
     private void inicializarMenu() {
@@ -36,4 +45,9 @@ public class Faq extends AppCompatActivity {
         ivMenuIconLeft.setImageResource(R.drawable.back);
         ivMenuIconRight.setImageResource(R.drawable.icon_add);
     }
+    private void goToNewView(View view , Class goToView){
+        Intent in = new Intent(this, goToView);
+        startActivity(in);
+    }
+
 }
