@@ -47,4 +47,12 @@ dependencies {
 
     //JSON
     implementation 'com.google.code.gson:gson:2.8.5'
+
+    //JUnit 4
+    testImplementation 'junit:junit:4.12'
+
+    //Instrumented tests
+    androidTestImplementation 'com.android.support:support-annotations:24.0.0'
+    androidTestImplementation 'com.android.support.test:runner:0.5'
+
 }
