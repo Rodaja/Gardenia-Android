@@ -1,29 +1,37 @@
 package com.rodaja.gardenia.view;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.rodaja.gardenia.R;
+import com.rodaja.gardenia.view.multimedia.Image;
 
 public class Details extends AppCompatActivity {
-    ImageView ivDetails,ivChoose_plant;
+
+    //Atributos Menu
+    private TextView tvTitulo;
+    private ImageView ivMenuIconLeft;
+    private ImageView ivMenuIconRight;
+
+    private ImageView ivDetails,ivChoose_plant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        getSupportActionBar().hide();
 
         inicializar();
+        inicializarMenu();
 
-        setImage(R.drawable.main_plant,ivDetails);
-        setImage(R.drawable.choose_photo_plot,ivChoose_plant);
+        Image.setImage(this, R.drawable.detalles_principal,ivDetails);
 
         ivChoose_plant.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,18 +47,22 @@ public class Details extends AppCompatActivity {
         ivChoose_plant = findViewById(R.id.img_elegir_imagen);
     }
 
-    /**
-     * Este metodo añade una imagen (R.drawable.*) a una vista
-     * @param resourceId El recurso de la imagen
-     * @param imageView La vista donde se va a incluir la imagen
-     */
-    private void setImage(Integer resourceId, ImageView imageView) {
-        Glide.with(this).load(resourceId).apply(new RequestOptions().centerCrop()).into(imageView);
-    }
-
     private void goToChooseImage(View view){
         Intent in = new Intent(this, ChooseImage.class);
         startActivity(in);
+    }
+
+    private void inicializarMenu() {
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.menu);
+
+        tvTitulo  = findViewById(R.id.tvMenuTitulo);
+        ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
+        ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
+
+        tvTitulo.setText(R.string.detalles);
+        ivMenuIconLeft.setImageResource(R.drawable.back);
+        ivMenuIconRight.setImageResource(R.drawable.icon_add);
     }
 
 }

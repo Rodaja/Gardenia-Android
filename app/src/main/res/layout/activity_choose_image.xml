@@ -32,6 +32,7 @@
             android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/back"
             tools:srcCompat="@drawable/back" />
 
         <ImageView
@@ -44,8 +45,7 @@
             android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_planta_5"
-            tools:srcCompat="@drawable/main_plant" />
+            app:layout_constraintTop_toBottomOf="@+id/img_planta_5" />
 
         <ImageView
             android:id="@+id/img_planta_8"
@@ -57,8 +57,7 @@
             android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_planta_6"
-            tools:srcCompat="@drawable/main_plant" />
+            app:layout_constraintTop_toBottomOf="@+id/img_planta_6" />
 
         <ImageView
             android:id="@+id/img_planta_5"
@@ -68,8 +67,7 @@
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_planta_3"
-            tools:srcCompat="@drawable/main_plant" />
+            app:layout_constraintTop_toBottomOf="@+id/img_planta_3" />
 
         <ImageView
             android:id="@+id/img_planta_6"
@@ -79,8 +77,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_planta_4"
-            tools:srcCompat="@drawable/main_plant" />
+            app:layout_constraintTop_toBottomOf="@+id/img_planta_4" />
 
         <ImageView
             android:id="@+id/img_planta_3"
@@ -90,8 +87,7 @@
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_planta_1"
-            tools:srcCompat="@drawable/main_plant" />
+            app:layout_constraintTop_toBottomOf="@+id/img_planta_1" />
 
         <ImageView
             android:id="@+id/img_planta_4"
@@ -101,8 +97,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_planta_2"
-            tools:srcCompat="@drawable/main_plant" />
+            app:layout_constraintTop_toBottomOf="@+id/img_planta_2" />
 
         <ImageView
             android:id="@+id/img_planta_2"
@@ -112,8 +107,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_titulo_detalle_maceta"
-            tools:srcCompat="@drawable/main_plant" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_titulo_detalle_maceta" />
 
         <ImageView
             android:id="@+id/img_planta_1"
@@ -123,8 +117,7 @@
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_titulo_detalle_maceta"
-            tools:srcCompat="@drawable/main_plant" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_titulo_detalle_maceta" />
 
         <TextView
             android:id="@+id/tv_titulo_detalle_maceta"

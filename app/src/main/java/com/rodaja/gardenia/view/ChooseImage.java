@@ -12,7 +12,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.rodaja.gardenia.R;
 
 public class ChooseImage extends AppCompatActivity {
-    ImageView ivArrow_back_detaills, iv_plant_1, iv_plant_2, iv_plant_3, iv_plant_4, iv_plant_5, iv_plant_6, iv_plant_7, iv_plant_8;
+    ImageView ivArrow_back_details, iv_plant_1, iv_plant_2, iv_plant_3, iv_plant_4, iv_plant_5, iv_plant_6, iv_plant_7, iv_plant_8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,17 +20,16 @@ public class ChooseImage extends AppCompatActivity {
         setContentView(R.layout.activity_choose_image);
         getSupportActionBar().hide();
         inicializar();
-        setImage(R.drawable.arrow_back,ivArrow_back_detaills);
-        setImage(R.drawable.main_plant, iv_plant_1);
-        setImage(R.drawable.main_plant, iv_plant_2);
-        setImage(R.drawable.main_plant, iv_plant_3);
-        setImage(R.drawable.main_plant, iv_plant_4);
-        setImage(R.drawable.main_plant, iv_plant_5);
-        setImage(R.drawable.main_plant, iv_plant_6);
-        setImage(R.drawable.main_plant, iv_plant_7);
-        setImage(R.drawable.main_plant, iv_plant_8);
+        setImage(R.drawable.detalles_principal, iv_plant_1);
+        setImage(R.drawable.detalles_principal, iv_plant_2);
+        setImage(R.drawable.detalles_principal, iv_plant_3);
+        setImage(R.drawable.detalles_principal, iv_plant_4);
+        setImage(R.drawable.detalles_principal, iv_plant_5);
+        setImage(R.drawable.detalles_principal, iv_plant_6);
+        setImage(R.drawable.detalles_principal, iv_plant_7);
+        setImage(R.drawable.detalles_principal, iv_plant_8);
 
-        ivArrow_back_detaills.setOnClickListener(new View.OnClickListener() {
+        ivArrow_back_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToDetails(v);
@@ -43,7 +42,7 @@ public class ChooseImage extends AppCompatActivity {
 
 
     private void inicializar() {
-        ivArrow_back_detaills = findViewById(R.id.img_elegir_imagen);
+        ivArrow_back_details = findViewById(R.id.img_back);
         iv_plant_1 = findViewById(R.id.img_planta_1);
         iv_plant_2 = findViewById(R.id.img_planta_2);
         iv_plant_3 = findViewById(R.id.img_planta_3);
