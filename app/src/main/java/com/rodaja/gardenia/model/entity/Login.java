@@ -1,6 +1,8 @@
 package com.rodaja.gardenia.model.entity;
 
-public class Login {
+import java.io.Serializable;
+
+public class Login implements Serializable {
 
     private String email;
     private String password;

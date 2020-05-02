@@ -6,7 +6,7 @@
     tools:context=".view.Login">
 
     <Button
-        android:id="@+id/btnReset"
+        android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
@@ -66,11 +66,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="36dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/forgot_password"
         android:textColor="@color/colorFont"
-        app:layout_constraintBottom_toTopOf="@+id/btnReset"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
@@ -126,7 +126,7 @@
         android:fontFamily="@font/montserrat"
         android:text="@string/remind_me"
         android:textColor="@color/colorFont"
-        app:layout_constraintBottom_toTopOf="@+id/btnReset"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintStart_toStartOf="parent" />
 
 
