@@ -3,6 +3,7 @@ package com.rodaja.gardenia.view;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.configuration.Constants;
@@ -39,8 +41,8 @@ public class Login extends AppCompatActivity {
 
     private ImageView ivBackground;
     private Button btnLogin;
-    private EditText etEmail;
-    private EditText etPassword;
+    private TextInputEditText etEmail;
+    private TextInputEditText etPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class Login extends AppCompatActivity {
         getSupportActionBar().hide();
 
         inicializar();
+        contexto = this;
 
         Image.setImage(this, R.drawable.login_background, ivBackground);
 
@@ -56,24 +59,23 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String email = etEmail.getText().toString();
-                String password = etPassword.getText().toString();
+                //Obligatorio usar el trim ya que el texto aparece con un espacio al principio
+                String email = String.valueOf(etEmail.getText()).trim();
+                String password = String.valueOf(etPassword.getText()).trim();
 
-                loginRequest(contexto, Constants.URL_LOGIN, email, password);
+                loginRequest(Constants.URL_LOGIN, email, password);
             }
         });
 }
 
     private void inicializar() {
-        contexto = this;
-
         ivBackground = findViewById(R.id.ivBackground);
         btnLogin = findViewById(R.id.btnLogin);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
     }
 
-    private void loginRequest(final Context contexto, String url, String email, String password){
+    private void loginRequest(String url, String email, String password){
 
         final Map<String,String> body = new HashMap<String, String>();
 
@@ -92,9 +94,12 @@ public class Login extends AppCompatActivity {
                         Gson gson = new Gson();
                         Log.d("Success", response.toString());
                         User user = gson.fromJson(response.toString(), User.class);
+
                         Toast toast = Toast.makeText(contexto,
-                                "Hola " + user.getName(), Toast.LENGTH_LONG);
+                                "Bienvenido " + user.getName(), Toast.LENGTH_LONG);
                         toast.show();
+
+                        goToHome(Home.class, user);
                     }
                 }, new Response.ErrorListener() {
 
@@ -119,6 +124,12 @@ public class Login extends AppCompatActivity {
         };
         queue.add(request);
 
+    }
+
+    private void goToHome(Class goToView, User user){
+        Intent in = new Intent(this, goToView);
+        in.putExtra("user", user);
+        startActivity(in);
     }
 
 }
