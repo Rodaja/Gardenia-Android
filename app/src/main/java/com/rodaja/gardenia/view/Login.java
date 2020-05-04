@@ -2,6 +2,7 @@ package com.rodaja.gardenia.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -49,6 +51,7 @@ public class Login extends AppCompatActivity {
         getSupportActionBar().hide();
 
         inicializar();
+        contexto = this;
 
         Image.setImage(this, R.drawable.login_background, ivBackground);
 
