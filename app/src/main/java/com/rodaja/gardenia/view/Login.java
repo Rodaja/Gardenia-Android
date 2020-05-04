@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -43,6 +44,7 @@ public class Login extends AppCompatActivity {
     private Button btnLogin;
     private TextInputEditText etEmail;
     private TextInputEditText etPassword;
+    private TextView tvSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,13 @@ public class Login extends AppCompatActivity {
                 loginRequest(Constants.URL_LOGIN, email, password);
             }
         });
+
+        tvSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToNewView(null, Signup.class);
+            }
+        });
 }
 
     private void inicializar() {
@@ -73,6 +82,7 @@ public class Login extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
+        tvSignUp = findViewById(R.id.tvSignUp);
     }
 
     private void loginRequest(String url, String email, String password){
@@ -96,7 +106,7 @@ public class Login extends AppCompatActivity {
                         User user = gson.fromJson(response.toString(), User.class);
 
                         Toast toast = Toast.makeText(contexto,
-                                "Bienvenido " + user.getName(), Toast.LENGTH_LONG);
+                                "Bienvenido " + user.getEmail(), Toast.LENGTH_LONG);
                         toast.show();
 
                         goToHome(Home.class, user);
