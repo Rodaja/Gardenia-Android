@@ -1,6 +1,8 @@
 package com.rodaja.gardenia.model.entity;
 
-public class FlowerPot {
+import java.io.Serializable;
+
+public class FlowerPot implements Serializable {
 
     private String macAddress;
     private String name;

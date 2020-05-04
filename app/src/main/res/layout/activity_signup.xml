@@ -7,7 +7,7 @@
     tools:context=".view.Signup">
 
     <Button
-        android:id="@+id/btnReset"
+        android:id="@+id/btnSignUp"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
@@ -172,7 +172,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="24dp"
         android:backgroundTint="@color/colorTransparent"
-        app:layout_constraintBottom_toTopOf="@+id/btnReset"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:passwordToggleEnabled="true"
@@ -185,20 +185,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
+            android:backgroundTint="@color/colorTransparent"
             android:fontFamily="@font/montserrat"
             android:hint="@string/repeat_password"
-            android:backgroundTint="@color/colorTransparent"
+            android:password="true"
             android:singleLine="true"
             android:textColor="@color/colorFont"
             android:textColorHighlight="@color/colorAccent"
             android:textColorHint="@color/colorFont"
             android:textColorLink="@color/colorAccent"
-            android:textCursorDrawable="@color/colorPrimary"
-            android:password="true"/>
+            android:textCursorDrawable="@color/colorPrimary" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
-        android:id="@+id/ivMenuIconRight"
+        android:id="@+id/ivBack"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="24dp"

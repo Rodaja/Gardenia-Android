@@ -32,7 +32,7 @@ public class Json {
         Object objeto = null;
 
         switch (clase.toLowerCase()) {
-            case "usuario":
+            case "user":
                 objeto = gson.fromJson(json, User.class);
                 break;
                 case "login":
