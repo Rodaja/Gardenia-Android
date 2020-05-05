@@ -194,6 +194,7 @@ public class AddFlowerPot extends AppCompatActivity {
         Log.d("connect wifi", "ha entrado en connect wifi");
         WifiConfiguration wifiConfig = new WifiConfiguration();
         wifiConfig.SSID = "\"" + ssid + "\"";
+        wifiConfig.preSharedKey = "";
 
         Log.d("SSID", wifiConfig.SSID);
 
