@@ -90,6 +90,9 @@
     <string name="paso3">3) Asegurese de que el Wi-Fi en su dispositivo móvil se encuentra encendidon</string>
     <string name="paso4">4) Seleccione la red Wi-Fi generada por el dispositivo con el nombre ESPXXXX (la red Wi-Fi puede tardar hasta 1 o 2 minutos en aparecer)</string>
     <string name="confirmar">Confirmar</string>
+    <string name="escaneo_wifi">Escaneando WIFI</string>
+    <string name="wifi_desactivada">La WIFI esta desactivada, por favor activala</string>
+    <string name="wifi_actualizada">Lista de WIFI actualizada</string>
     <!-- /strings agregar maceta -->
 
     <!-- Menu -->
