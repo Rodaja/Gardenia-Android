@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.wifi.ScanResult;
+import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ import java.util.List;
 public class AddFlowerPot extends AppCompatActivity {
 
     private Context contexto;
+
     //Atributos Menu
     private TextView tvTitulo;
     private ImageView ivMenuIconLeft;
@@ -58,7 +60,7 @@ public class AddFlowerPot extends AppCompatActivity {
 
             for (ScanResult scanResult : results){
                 listWifi.add(scanResult.SSID);
-
+                adapter.notifyDataSetChanged();
             }
         }
     };
@@ -69,6 +71,18 @@ public class AddFlowerPot extends AppCompatActivity {
         setContentView(R.layout.activity_add_flower_pot);
 
         inicializarMenu();
+        contexto = this;
+
+        wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+
+        checkWifiEnabled();
+
+        setAdapter();
+
+        scanWifi();
+
+        swipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
+
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,33 +97,34 @@ public class AddFlowerPot extends AppCompatActivity {
             }
         });
 
-        swipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
-
-
-
-        wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-
-        if (!wifi.isWifiEnabled()){
-            Toast.makeText(this, R.string.wifi_desactivada, Toast.LENGTH_LONG).show();
-            wifi.setWifiEnabled(true);
-        }
-
-        scanWifi();
-        adapter = new AddMacetaAdapter(listWifi, this);
-        listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View elemento, int i, long l) {
 
-                Toast.makeText(contexto, i , Toast.LENGTH_LONG);
                 TextView texto = elemento.findViewById(R.id.tvWifi);
                 String ssid = texto.getText().toString();
 
                 Toast.makeText(contexto, "Has seleccionado la wifi " + ssid , Toast.LENGTH_LONG);
+                Log.d("List", "Se ha hecho click");
+                Log.d("SSID", ssid);
+
+                connectToWifi(ssid);
             }
         });
 
+    }
+
+    private void setAdapter() {
+        adapter = new AddMacetaAdapter(listWifi, contexto);
+        listView.setAdapter(adapter);
+    }
+
+    private void checkWifiEnabled() {
+        if (!wifi.isWifiEnabled()){
+            Toast.makeText(this, R.string.wifi_desactivada, Toast.LENGTH_LONG).show();
+            wifi.setWifiEnabled(true);
+        }
     }
 
     private void inicializarMenu() {
@@ -143,7 +158,7 @@ public class AddFlowerPot extends AppCompatActivity {
 
         for (ScanResult scanResult : results){
             listWifi.add(scanResult.SSID);
-
+            adapter.notifyDataSetChanged();
         }
 
         Toast.makeText(this, R.string.escaneo_wifi, Toast.LENGTH_LONG).show();
@@ -175,4 +190,60 @@ public class AddFlowerPot extends AppCompatActivity {
         snackbar.show();
     }
 
+    private void connectToWifi(String ssid) {
+        Log.d("connect wifi", "ha entrado en connect wifi");
+        WifiConfiguration wifiConfig = new WifiConfiguration();
+        wifiConfig.SSID = "\"" + ssid + "\"";
+
+        Log.d("SSID", wifiConfig.SSID);
+
+        wifiConfig.status = WifiConfiguration.Status.DISABLED;
+
+        wifiConfig.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
+        wifiConfig.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
+        wifiConfig.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
+        wifiConfig.allowedAuthAlgorithms.clear();
+        wifiConfig.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
+        wifiConfig.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
+        wifiConfig.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP40);
+        wifiConfig.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP104);
+        wifiConfig.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);
+        wifiConfig.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
+
+        int netId = wifi.addNetwork(wifiConfig);
+        if (netId == -1) {
+            netId = getExistingNetworkId(wifiConfig.SSID);
+        }
+        wifi.disconnect();
+        wifi.enableNetwork(netId, true);
+        wifi.reconnect();
+
+
+        /*
+        List<WifiConfiguration> list = wifi.getConfiguredNetworks();
+        Log.d("List size", String.valueOf(list.size()));
+
+        for (WifiConfiguration i : list) {
+            Log.d("listado wifi", i.SSID);
+            if (i.SSID != null && i.SSID.equals("\"" + ssid + "\"")) {
+                Log.d("wifi javo", "ha entrado");
+
+                break;
+            }
+        }
+
+         */
+    }
+
+    private int getExistingNetworkId(String SSID) {
+        List<WifiConfiguration> configuredNetworks = wifi.getConfiguredNetworks();
+        if (configuredNetworks != null) {
+            for (WifiConfiguration existingConfig : configuredNetworks) {
+                if (existingConfig.SSID.equals(SSID)) {
+                    return existingConfig.networkId;
+                }
+            }
+        }
+        return -1;
+    }
 }

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -13,33 +14,13 @@ import com.rodaja.gardenia.R;
 
 import java.util.List;
 
-public class AddMacetaAdapter implements ListAdapter {
+public class AddMacetaAdapter extends BaseAdapter {
     private List<String> listWifi;
     private Context contexto;
 
     public AddMacetaAdapter(List<String> listWifi, Context contexto) {
         this.listWifi = listWifi;
         this.contexto = contexto;
-    }
-
-    @Override
-    public boolean areAllItemsEnabled() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled(int i) {
-        return true;
-    }
-
-    @Override
-    public void registerDataSetObserver(DataSetObserver dataSetObserver) {
-
-    }
-
-    @Override
-    public void unregisterDataSetObserver(DataSetObserver dataSetObserver) {
-
     }
 
     @Override
@@ -54,12 +35,7 @@ public class AddMacetaAdapter implements ListAdapter {
 
     @Override
     public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public boolean hasStableIds() {
-        return false;
+        return 0;
     }
 
     @Override
@@ -72,20 +48,6 @@ public class AddMacetaAdapter implements ListAdapter {
         tvWifi.setText(listWifi.get(i));
 
         return vista;
-    }
 
-    @Override
-    public int getItemViewType(int i) {
-        return 0;
-    }
-
-    @Override
-    public int getViewTypeCount() {
-        return 1;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return false;
     }
 }
