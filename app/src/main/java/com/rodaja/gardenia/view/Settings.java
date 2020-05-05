@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.rodaja.gardenia.R;
+import com.rodaja.gardenia.model.configuration.Configuration;
 
 public class Settings extends AppCompatActivity {
 
@@ -24,6 +25,7 @@ public class Settings extends AppCompatActivity {
     private ImageView ivMenuIconRight;
     private ConstraintLayout constLPreguntasFrecuentes, constLAjustesPorDefectoEditable, constLTemaEditable, contLReportarFallos, constLUnidadTemperaturaEditable;
     private Context context;
+    private int cambiaOpcion = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,28 +38,28 @@ public class Settings extends AppCompatActivity {
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v,Profile.class);
+                goToNewView(v, Profile.class);
             }
         });
 
         ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v,AddFlowerPot.class);
+                goToNewView(v, AddFlowerPot.class);
             }
         });
 
         constLPreguntasFrecuentes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v,Faq.class);
+                goToNewView(v, Faq.class);
             }
         });
 
         contLReportarFallos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v,FailReport.class);
+                goToNewView(v, FailReport.class);
             }
         });
 
@@ -69,6 +71,8 @@ public class Settings extends AppCompatActivity {
                 String[] unidadesTemperatura = getResources().getStringArray(R.array.settings_dialog_unidades_temperatura);
                 //Por defecto para que solo se pueda seleccionar una opcion
                 final int itemSelected = 0;
+                //Variable para cambiar de opcion al seleccionar en aceptar
+
                 //Creamos un objeto
                 MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(context);
                 //Seteamos el titulo
@@ -78,7 +82,7 @@ public class Settings extends AppCompatActivity {
                     @Override
                     //selectedIndex selecciona la posicion seleccionada del array
                     public void onClick(DialogInterface dialogInterface, int selectedIndex) {
-                        Log.d(String.valueOf(selectedIndex), "opcion");
+                        cambiaOpcion = selectedIndex;
                     }
                 });
 
@@ -94,7 +98,8 @@ public class Settings extends AppCompatActivity {
                 dialog.setPositiveButton(R.string.perfil_dialog_confirmar, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Log.d("Confirmar", "Has seleccionado aceptar");
+                        Configuration.temperature = cambiaOpcion;
+                        System.out.println(Configuration.temperature);
                     }
                 });
                 //Mostramos el cuadro de dialogo
@@ -175,12 +180,13 @@ public class Settings extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.menu);
 
-        tvTitulo  = findViewById(R.id.tvMenuTitulo);
+        tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
         ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
 
         tvTitulo.setText(R.string.configuracion);
         ivMenuIconRight.setImageResource(R.drawable.icon_add);
+
 
         constLAjustesPorDefectoEditable = findViewById(R.id.constLAjustesPorDefectoEditable);
         constLTemaEditable = findViewById(R.id.constLTemaEditable);
@@ -189,7 +195,7 @@ public class Settings extends AppCompatActivity {
         contLReportarFallos = findViewById(R.id.constLReportarFalloEditable);
     }
 
-    private void goToNewView(View view , Class goToView){
+    private void goToNewView(View view, Class goToView) {
         Intent in = new Intent(this, goToView);
         startActivity(in);
     }
