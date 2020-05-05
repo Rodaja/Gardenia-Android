@@ -22,7 +22,7 @@ public class Settings extends AppCompatActivity {
     private TextView tvTitulo;
     private ImageView ivMenuIconLeft;
     private ImageView ivMenuIconRight;
-    private ConstraintLayout constLPreguntasFrecuentes, constLTemaEditable, contLReportarFallos, constLUnidadTemperaturaEditable;
+    private ConstraintLayout constLPreguntasFrecuentes, constLAjustesPorDefectoEditable, constLTemaEditable, contLReportarFallos, constLUnidadTemperaturaEditable;
     private Context context;
 
     @Override
@@ -139,6 +139,34 @@ public class Settings extends AppCompatActivity {
                 dialog.show();
             }
         });
+        constLAjustesPorDefectoEditable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Creamos un objeto
+                MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(context);
+                //Seteamos el titulo
+                dialog.setTitle(R.string.settings_dialog_titulo_ajustes_por_defecto);
+                //Establecemos el mensaje que se mostrara
+                dialog.setMessage(R.string.settings_dialog_mensaje_ajustes_por_defecto);
+                //Damos funcionalidad al boton neutral (el de la izquierda)
+                dialog.setNeutralButton(R.string.perfil_dialog_cancelar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Log.d("Cancelar", "Has seleccionado cancelar");
+                    }
+                });
+
+                //Damos funcionalidad al boton positivo (el de la derecha)
+                dialog.setPositiveButton(R.string.perfil_dialog_confirmar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Log.d("Confirmar", "Has seleccionado aceptar");
+                    }
+                });
+                //Mostramos el cuadro de dialogo
+                dialog.show();
+            }
+        });
 
     }
 
@@ -153,6 +181,7 @@ public class Settings extends AppCompatActivity {
         tvTitulo.setText(R.string.configuracion);
         ivMenuIconRight.setImageResource(R.drawable.icon_add);
 
+        constLAjustesPorDefectoEditable = findViewById(R.id.constLAjustesPorDefectoEditable);
         constLTemaEditable = findViewById(R.id.constLTemaEditable);
         constLUnidadTemperaturaEditable = findViewById(R.id.constLUnidadTemperaturaEditable);
         constLPreguntasFrecuentes = findViewById(R.id.constLPreguntasFrecuentesEditable);

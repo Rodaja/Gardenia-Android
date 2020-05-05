@@ -1,8 +1,10 @@
 <resources>
     <string name="settings_dialog_unidad_temperatura">Unidad de Temperatura</string>
+    <string name="settings_dialog_titulo_ajustes_por_defecto">¿Resetear los Ajustes?</string>
+    <string name="settings_dialog_mensaje_ajustes_por_defecto">Se pondran todos los ajustes por defecto de fabrica\n</string>
     <string name="settings_dialog_tema">Tema de la Aplicación</string>
     <string name="perfil_dialog_titulo_cerrar_sesion">¿Cerrar Sesión?</string>
-    <string name="perfil_dialog_mensaje_cerrar_sesion">Esto cerrara su sesión y le llevara al login</string>
+    <string name="perfil_dialog_mensaje_cerrar_sesion">Esto cerrara su sesión y le llevara al login\n</string>
     <string name="perfil_dialog_cancelar">Cancelar</string>
     <string name="settings_dialog_confirmar">Confirmar</string>
     <string name="perfil_dialog_titulo_borrar_cuenta">¿Borrar cuenta?</string>
