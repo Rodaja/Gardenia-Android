@@ -25,8 +25,9 @@ public class Profile extends AppCompatActivity {
     private ImageView ivMenuIconLeft;
     private ImageView ivMenuIconRight;
 
-    private ConstraintLayout constLCerrarSesionEditable,constLPaises,constLConfiuracion;
+    private ConstraintLayout constLCerrarSesionEditable, constLBorrarCuentaEditable, constLPaises, constLConfiuracion;
     private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,26 +41,23 @@ public class Profile extends AppCompatActivity {
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v,Home.class);
+                goToNewView(v, Home.class);
             }
         });
 
         constLPaises.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v,Country.class);
+                goToNewView(v, Country.class);
             }
         });
 
         constLConfiuracion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v,Settings.class);
+                goToNewView(v, Settings.class);
             }
         });
-
-
-
 
 
         constLCerrarSesionEditable.setOnClickListener(new View.OnClickListener() {
@@ -68,11 +66,11 @@ public class Profile extends AppCompatActivity {
                 //Creamos un objeto
                 MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(context);
                 //Seteamos el titulo
-                dialog.setTitle("Hola");
+                dialog.setTitle(R.string.perfil_dialog_titulo_cerrar_sesion);
                 //Establecemos el mensaje que se mostrara
-                dialog.setMessage("Esto es una prueba de funcionamiento");
+                dialog.setMessage(R.string.perfil_dialog_mensaje_cerrar_sesion);
                 //Damos funcionalidad al boton neutral (el de la izquierda)
-                dialog.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+                dialog.setNeutralButton(R.string.perfil_dialog_cancelar, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("Cancelar", "Has seleccionado cancelar");
@@ -80,10 +78,38 @@ public class Profile extends AppCompatActivity {
                 });
 
                 //Damos funcionalidad al boton positivo (el de la derecha)
-                dialog.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                dialog.setPositiveButton(R.string.perfil_dialog_confirmar, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Log.d("Aceptar", "Has seleccionado aceptar");
+                        Log.d("Confirmar", "Has seleccionado aceptar");
+                    }
+                });
+                //Mostramos el cuadro de dialogo
+                dialog.show();
+            }
+        });
+        constLBorrarCuentaEditable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Creamos un objeto
+                MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(context);
+                //Seteamos el titulo
+                dialog.setTitle(R.string.perfil_dialog_titulo_borrar_cuenta);
+                //Establecemos el mensaje que se mostrara
+                dialog.setMessage(R.string.perfil_dialog_mensaje_borrar_cuenta);
+                //Damos funcionalidad al boton neutral (el de la izquierda)
+                dialog.setNeutralButton(R.string.perfil_dialog_cancelar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Log.d("Cancelar", "Has seleccionado cancelar");
+                    }
+                });
+
+                //Damos funcionalidad al boton positivo (el de la derecha)
+                dialog.setPositiveButton(R.string.perfil_dialog_borrar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Log.d("Borrar", "Has seleccionado aceptar");
                     }
                 });
                 //Mostramos el cuadro de dialogo
@@ -94,6 +120,7 @@ public class Profile extends AppCompatActivity {
 
     private void inicializar() {
         constLCerrarSesionEditable = findViewById(R.id.constLCerrarSesionEditable);
+        constLBorrarCuentaEditable = findViewById(R.id.constLBorrarCuentaEditable);
         constLPaises = findViewById(R.id.constLPaisEditable);
         constLConfiuracion = findViewById(R.id.constLConfiguracionEditable);
     }
@@ -102,7 +129,7 @@ public class Profile extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.menu);
 
-        tvTitulo  = findViewById(R.id.tvMenuTitulo);
+        tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
         ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
 
@@ -110,7 +137,7 @@ public class Profile extends AppCompatActivity {
         ivMenuIconRight.setImageResource(R.drawable.icon_save);
     }
 
-    private void goToNewView(View view , Class goToView){
+    private void goToNewView(View view, Class goToView) {
         Intent in = new Intent(this, goToView);
         startActivity(in);
     }

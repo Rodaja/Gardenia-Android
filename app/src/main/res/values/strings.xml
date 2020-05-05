@@ -1,5 +1,15 @@
 <resources>
+    <string name="settings_dialog_unidad_temperatura">Unidad de Temperatura</string>
+    <string name="settings_dialog_tema">Tema de la Aplicación</string>
+    <string name="perfil_dialog_titulo_cerrar_sesion">¿Cerrar Sesión?</string>
+    <string name="perfil_dialog_mensaje_cerrar_sesion">Esto cerrara su sesión y le llevara al login</string>
+    <string name="perfil_dialog_cancelar">Cancelar</string>
+    <string name="settings_dialog_confirmar">Confirmar</string>
+    <string name="perfil_dialog_titulo_borrar_cuenta">¿Borrar cuenta?</string>
+    <string name="perfil_dialog_mensaje_borrar_cuenta">Aviso:\nAl borrar tu cuenta se borrarán todos los datos de forma permanente y no se podrán recuperar.\n</string>
     <string name="app_name">Gardenia</string>
+    <string name="perfil_dialog_confirmar">Aceptar</string>
+    <string name="perfil_dialog_borrar">Borrar</string>
     <string name="signup">¿No tienes una cuenta? Registrate aquí</string>
     <string name="forgot_password">¿Olvidaste la contraseña?</string>
     <string name="remind_me">Recuerdame</string>
