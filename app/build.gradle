@@ -60,5 +60,12 @@ dependencies {
     // Mockito framework (Test)
     testImplementation 'org.mockito:mockito-core:1.10.19'
 
+    // Recycler View
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    // For control over item selection of both touch and mouse driven selection
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc01"
+
+
+
 
 }
