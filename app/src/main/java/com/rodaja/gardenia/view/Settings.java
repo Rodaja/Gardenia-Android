@@ -20,7 +20,7 @@ import com.rodaja.gardenia.model.configuration.Configuration;
 public class Settings extends AppCompatActivity {
 
     //Atributos Menu
-    private TextView tvTitulo;
+    private TextView tvTitulo, tvUnidadTemperaturaSimbolo;
     private ImageView ivMenuIconLeft;
     private ImageView ivMenuIconRight;
     private ConstraintLayout constLPreguntasFrecuentes, constLAjustesPorDefectoEditable, constLTemaEditable, contLReportarFallos, constLUnidadTemperaturaEditable;
@@ -98,8 +98,12 @@ public class Settings extends AppCompatActivity {
                 dialog.setPositiveButton(R.string.perfil_dialog_confirmar, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        //Cambiamos la variable temperatura de la configuration por la seleccionada
                         Configuration.temperature = cambiaOpcion;
-                        System.out.println(Configuration.temperature);
+                        //Cambiamos el simbolo de la temperatura en Configuration
+                        Configuration.cambioSimboloTemperatura(cambiaOpcion);
+                        //cambiamos el simbolo en el textView llamando a la variable Configuration.temperaturaSimbolo
+                        tvUnidadTemperaturaSimbolo.setText(Configuration.temperaturaSimbolo);
                     }
                 });
                 //Mostramos el cuadro de dialogo
@@ -188,6 +192,7 @@ public class Settings extends AppCompatActivity {
         ivMenuIconRight.setImageResource(R.drawable.icon_add);
 
 
+        tvUnidadTemperaturaSimbolo = findViewById(R.id.tvUnidadTemperaturaSimbolo);
         constLAjustesPorDefectoEditable = findViewById(R.id.constLAjustesPorDefectoEditable);
         constLTemaEditable = findViewById(R.id.constLTemaEditable);
         constLUnidadTemperaturaEditable = findViewById(R.id.constLUnidadTemperaturaEditable);
