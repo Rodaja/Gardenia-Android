@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="Theme.App" parent="Theme.MaterialComponents.Light">
@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/colorBackground</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/background_dark</item>
         <item name="materialAlertDialogTheme">@style/Theme.App.MaterialDialog</item>
 
     </style>
