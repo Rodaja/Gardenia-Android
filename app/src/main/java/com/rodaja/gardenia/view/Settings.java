@@ -31,32 +31,32 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         inicializarMenu();
-        context = this;
+
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, Profile.class);
+                goToNewView(v,Profile.class);
             }
         });
 
         ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, AddFlowerPot.class);
+                goToNewView(v,AddFlowerPot.class);
             }
         });
 
         constLPreguntasFrecuentes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, Faq.class);
+                goToNewView(v,Faq.class);
             }
         });
 
         contLReportarFallos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, FailReport.class);
+                goToNewView(v,FailReport.class);
             }
         });
 
@@ -174,7 +174,7 @@ public class Settings extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.menu);
 
-        tvTitulo = findViewById(R.id.tvMenuTitulo);
+        tvTitulo  = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
         ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
 
@@ -188,7 +188,7 @@ public class Settings extends AppCompatActivity {
         contLReportarFallos = findViewById(R.id.constLReportarFalloEditable);
     }
 
-    private void goToNewView(View view, Class goToView) {
+    private void goToNewView(View view , Class goToView){
         Intent in = new Intent(this, goToView);
         startActivity(in);
     }
