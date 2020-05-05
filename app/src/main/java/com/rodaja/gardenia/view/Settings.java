@@ -19,6 +19,8 @@ public class Settings extends AppCompatActivity {
     private ImageView ivMenuIconLeft;
     private ImageView ivMenuIconRight;
     private ConstraintLayout constLPreguntasFrecuentes,contLReportarFallos;
+    //
+    private com.rodaja.gardenia.model.configuration.Settings settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,27 +35,26 @@ public class Settings extends AppCompatActivity {
                 goToNewView(v,Profile.class);
             }
         });
-
         ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToNewView(v,AddFlowerPot.class);
             }
         });
-
         constLPreguntasFrecuentes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToNewView(v,Faq.class);
             }
         });
-
         contLReportarFallos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToNewView(v,FailReport.class);
             }
         });
+
+
     }
 
     private void inicializarMenu() {
