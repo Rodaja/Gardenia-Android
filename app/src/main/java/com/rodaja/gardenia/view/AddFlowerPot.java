@@ -16,6 +16,7 @@ import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiNetworkSpecifier;
 import android.net.wifi.WifiNetworkSuggestion;
@@ -207,6 +208,8 @@ public class AddFlowerPot extends AppCompatActivity {
         Log.d("connect wifi", "ha entrado en connect wifi");
         WifiConfiguration wifiConfig = new WifiConfiguration();
 
+        WifiInfo wifiInfo = wifi.getConnectionInfo();
+
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
 
             WifiNetworkSuggestion.Builder builder = new WifiNetworkSuggestion.Builder()
@@ -232,50 +235,21 @@ public class AddFlowerPot extends AppCompatActivity {
             }
 
 
+        } else {
 
+            wifiConfig.SSID = "\"" + ssid + "\"";
 
+            Log.d("SSID", wifiConfig.SSID);
 
-        /*wifiConfig.SSID = "\"" + ssid + "\"";
+            wifiConfig.status = WifiConfiguration.Status.DISABLED;
+            wifiConfig.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
 
-        List<WifiConfiguration> networks = wifi.getConfiguredNetworks();
-        for(WifiConfiguration c : networks) {
-            Log.d("Wifi configured", c.SSID);
-        }
+            wifi.getConfiguredNetworks().clear();
+            int netId = wifi.addNetwork(wifiConfig);
 
-        Log.d("SSID", wifiConfig.SSID);
-
-        wifiConfig.status = WifiConfiguration.Status.DISABLED;
-
-        wifiConfig.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
-        wifiConfig.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
-        wifiConfig.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
-        wifiConfig.allowedAuthAlgorithms.clear();
-        wifiConfig.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
-        wifiConfig.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
-        wifiConfig.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP40);
-        wifiConfig.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP104);
-        wifiConfig.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);
-        wifiConfig.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
-
-        int netId = wifi.addNetwork(wifiConfig);
-        wifi.enableNetwork(netId, true);
-
-
-        /*
-        List<WifiConfiguration> list = wifi.getConfiguredNetworks();
-        Log.d("List size", String.valueOf(list.size()));
-
-        for (WifiConfiguration i : list) {
-            Log.d("listado wifi", i.SSID);
-            if (i.SSID != null && i.SSID.equals("\"" + ssid + "\"")) {
-                Log.d("wifi javo", "ha entrado");
-
-                break;
-            }
-        }
-
-         */
-
+            wifi.disconnect();
+            wifi.enableNetwork(netId, true);
+            wifi.reconnect();
         }
     }
 }
