@@ -10,9 +10,15 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkRequest;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
+import android.net.wifi.WifiNetworkSpecifier;
+import android.net.wifi.WifiNetworkSuggestion;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +39,11 @@ import com.rodaja.gardenia.model.adapter.AddMacetaAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.net.wifi.WifiManager.STATUS_NETWORK_SUGGESTIONS_ERROR_ADD_DUPLICATE;
+import static android.net.wifi.WifiManager.STATUS_NETWORK_SUGGESTIONS_ERROR_APP_DISALLOWED;
+import static android.net.wifi.WifiManager.STATUS_NETWORK_SUGGESTIONS_ERROR_INTERNAL;
+import static android.net.wifi.WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS;
 
 public class AddFlowerPot extends AppCompatActivity {
 
@@ -57,7 +68,7 @@ public class AddFlowerPot extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             results = wifi.getScanResults();
             unregisterReceiver(this);
-
+            listWifi.clear();
             for (ScanResult scanResult : results){
                 listWifi.add(scanResult.SSID);
                 adapter.notifyDataSetChanged();
@@ -105,7 +116,6 @@ public class AddFlowerPot extends AppCompatActivity {
                 TextView texto = elemento.findViewById(R.id.tvWifi);
                 String ssid = texto.getText().toString();
 
-                Toast.makeText(contexto, "Has seleccionado la wifi " + ssid , Toast.LENGTH_LONG);
                 Log.d("List", "Se ha hecho click");
                 Log.d("SSID", ssid);
 
@@ -154,12 +164,15 @@ public class AddFlowerPot extends AppCompatActivity {
         registerReceiver(wifiReciver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
         wifi.startScan();
 
+        /*
         results = wifi.getScanResults();
 
         for (ScanResult scanResult : results){
             listWifi.add(scanResult.SSID);
             adapter.notifyDataSetChanged();
         }
+
+         */
 
         Toast.makeText(this, R.string.escaneo_wifi, Toast.LENGTH_LONG).show();
     }
@@ -193,8 +206,41 @@ public class AddFlowerPot extends AppCompatActivity {
     private void connectToWifi(String ssid) {
         Log.d("connect wifi", "ha entrado en connect wifi");
         WifiConfiguration wifiConfig = new WifiConfiguration();
-        wifiConfig.SSID = "\"" + ssid + "\"";
-        wifiConfig.preSharedKey = "";
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+
+            WifiNetworkSuggestion.Builder builder = new WifiNetworkSuggestion.Builder()
+                    .setSsid(ssid)
+                    .setWpa2Passphrase("9B1A406D362D963500AF");
+            WifiNetworkSuggestion suggestion = builder.build();
+
+            ArrayList<WifiNetworkSuggestion> list = new ArrayList<>();
+            list.add(suggestion);
+
+
+            wifi.removeNetworkSuggestions(list);
+            int status = wifi.addNetworkSuggestions(list);
+
+            if (status == STATUS_NETWORK_SUGGESTIONS_SUCCESS) {
+                Log.d("ESTATUS", "Conectado");
+            } else if (status == STATUS_NETWORK_SUGGESTIONS_ERROR_INTERNAL) {
+                Log.d("ESTATUS", "Error interno");
+            } else if (status == STATUS_NETWORK_SUGGESTIONS_ERROR_APP_DISALLOWED) {
+                Log.d("ESTATUS", "No Permisos");
+            } else if (status == STATUS_NETWORK_SUGGESTIONS_ERROR_ADD_DUPLICATE) {
+                Log.d("ESTATUS", "Duplicado");
+            }
+
+
+
+
+
+        /*wifiConfig.SSID = "\"" + ssid + "\"";
+
+        List<WifiConfiguration> networks = wifi.getConfiguredNetworks();
+        for(WifiConfiguration c : networks) {
+            Log.d("Wifi configured", c.SSID);
+        }
 
         Log.d("SSID", wifiConfig.SSID);
 
@@ -212,12 +258,7 @@ public class AddFlowerPot extends AppCompatActivity {
         wifiConfig.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
 
         int netId = wifi.addNetwork(wifiConfig);
-        if (netId == -1) {
-            netId = getExistingNetworkId(wifiConfig.SSID);
-        }
-        wifi.disconnect();
         wifi.enableNetwork(netId, true);
-        wifi.reconnect();
 
 
         /*
@@ -234,17 +275,7 @@ public class AddFlowerPot extends AppCompatActivity {
         }
 
          */
-    }
 
-    private int getExistingNetworkId(String SSID) {
-        List<WifiConfiguration> configuredNetworks = wifi.getConfiguredNetworks();
-        if (configuredNetworks != null) {
-            for (WifiConfiguration existingConfig : configuredNetworks) {
-                if (existingConfig.SSID.equals(SSID)) {
-                    return existingConfig.networkId;
-                }
-            }
         }
-        return -1;
     }
 }
