@@ -6,10 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rodaja.gardenia.R;
+import com.rodaja.gardenia.model.configuration.Constants;
 
 public class AddFlowerPotWebView extends AppCompatActivity {
 
@@ -17,6 +21,8 @@ public class AddFlowerPotWebView extends AppCompatActivity {
     private TextView tvTitulo;
     private ImageView ivMenuIconLeft;
     private ImageView ivMenuIconRight;
+
+    private WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,16 @@ public class AddFlowerPotWebView extends AppCompatActivity {
             }
         });
 
+        WebView webView = new WebView(this);
+        setContentView(webView);
+
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+
+        webView.setWebViewClient(new WebViewClient());
+
+        webView.loadUrl(Constants.URL_ADD_POT);
+
 
     }
 
@@ -50,6 +66,9 @@ public class AddFlowerPotWebView extends AppCompatActivity {
 
         tvTitulo.setText(R.string.conectar_maceta);
         ivMenuIconRight.setImageResource(R.drawable.icon_save);
+
+        webView = findViewById(R.id.wvAddFlowerpot);
+
     }
 
     private void goToNewView(View view , Class goToView){
