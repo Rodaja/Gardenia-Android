@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rodaja.gardenia.R;
+import com.rodaja.gardenia.model.entity.User;
 
 public class Home extends AppCompatActivity {
 
@@ -23,23 +25,23 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         inicializarMenu();
+        Intent in = getIntent();
+        User user = (User) in.getSerializableExtra("user");
+        Log.d("user: ", user.getEmail());
 
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v,Profile.class);
+                goToNewView(v, Profile.class);
             }
         });
 
         ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v,AddFlowerPot.class);
+                goToNewView(v, AddFlowerPot.class);
             }
         });
-
-
-
 
 
     }
@@ -48,7 +50,7 @@ public class Home extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.menu);
 
-        tvTitulo  = findViewById(R.id.tvMenuTitulo);
+        tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
         ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
 
@@ -58,7 +60,7 @@ public class Home extends AppCompatActivity {
     }
 
 
-    private void goToNewView(View view , Class goToView){
+    private void goToNewView(View view, Class goToView) {
         Intent in = new Intent(this, goToView);
         startActivity(in);
     }

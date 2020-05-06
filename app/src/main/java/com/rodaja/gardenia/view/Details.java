@@ -21,7 +21,7 @@ public class Details extends AppCompatActivity {
     private ImageView ivMenuIconLeft;
     private ImageView ivMenuIconRight;
 
-    private ImageView ivDetails,ivChoose_plant;
+    private ImageView ivDetails, ivChoose_plant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +30,9 @@ public class Details extends AppCompatActivity {
 
         inicializar();
         inicializarMenu();
+        datosMaceta();
 
-        Image.setImage(this, R.drawable.detalles_principal,ivDetails);
+        Image.setImage(this, R.drawable.detalles_principal, ivDetails);
 
         ivChoose_plant.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +48,11 @@ public class Details extends AppCompatActivity {
         ivChoose_plant = findViewById(R.id.img_elegir_imagen);
     }
 
-    private void goToChooseImage(View view){
+    private void datosMaceta() {
+
+    }
+
+    private void goToChooseImage(View view) {
         Intent in = new Intent(this, ChooseImage.class);
         startActivity(in);
     }
@@ -56,7 +61,7 @@ public class Details extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.menu);
 
-        tvTitulo  = findViewById(R.id.tvMenuTitulo);
+        tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
         ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
 
