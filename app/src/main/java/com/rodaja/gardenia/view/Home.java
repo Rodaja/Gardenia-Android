@@ -2,16 +2,22 @@ package com.rodaja.gardenia.view;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rodaja.gardenia.R;
+import com.rodaja.gardenia.model.adapter.HomeAdapter;
+import com.rodaja.gardenia.model.entity.FlowerPot;
 import com.rodaja.gardenia.model.entity.User;
+
+import java.util.List;
 
 public class Home extends AppCompatActivity {
 
@@ -19,15 +25,25 @@ public class Home extends AppCompatActivity {
     private TextView tvTitulo;
     private ImageView ivMenuIconLeft;
     private ImageView ivMenuIconRight;
+    private RecyclerView recyclerView;
+    private LinearLayoutManager linearLayout;
+    private Context context;
+    private HomeAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         inicializarMenu();
+        context = this;
+
         Intent in = getIntent();
         User user = (User) in.getSerializableExtra("user");
-        Log.d("user: ", user.getEmail());
+        List<FlowerPot> listaMacetas = user.getListFlowerPots();
+        recyclerView.setLayoutManager(linearLayout);
+        adapter = new HomeAdapter(context, listaMacetas);
+        recyclerView.setAdapter(adapter);
+
 
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +73,10 @@ public class Home extends AppCompatActivity {
         tvTitulo.setText(R.string.home);
         ivMenuIconLeft.setImageResource(R.drawable.perfil);
         ivMenuIconRight.setImageResource(R.drawable.icon_add);
+
+        recyclerView = (RecyclerView) findViewById(R.id.rvHome);
+        linearLayout = new LinearLayoutManager(context);
+        recyclerView.setLayoutManager(linearLayout);
     }
 
 
