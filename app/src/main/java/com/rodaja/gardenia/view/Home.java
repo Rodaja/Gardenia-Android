@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.adapter.HomeAdapter;
@@ -39,11 +40,17 @@ public class Home extends AppCompatActivity {
 
         Intent in = getIntent();
         User user = (User) in.getSerializableExtra("user");
-        List<FlowerPot> listaMacetas = user.getListFlowerPots();
+        final List<FlowerPot> listaMacetas = user.getListFlowerPots();
         recyclerView.setLayoutManager(linearLayout);
         adapter = new HomeAdapter(context, listaMacetas);
         recyclerView.setAdapter(adapter);
 
+        adapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Seleccion: " + listaMacetas.get(recyclerView.getChildAdapterPosition(v)).getName(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override

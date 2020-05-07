@@ -18,11 +18,11 @@ import com.rodaja.gardenia.view.multimedia.Image;
 
 import java.util.List;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> implements View.OnClickListener {
     Context context;
     List<FlowerPot> macetas;
     private LayoutInflater mInflater;
-//  private ItemClickListener mClickListener;
+    private View.OnClickListener listener;
 
 
     public HomeAdapter(Context context, List<FlowerPot> macetas) {
@@ -40,6 +40,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         boolean attachToParentRapido = false;
         View view = mInflater.inflate(layiytIdParaListItem, parent, attachToParentRapido);
         ViewHolder vh = new ViewHolder(view);
+        //el listener se pone a escuchar
+        view.setOnClickListener(this);
         return vh;
     }
 
@@ -52,6 +54,17 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return macetas.size();
+    }
+
+    public void setOnClickListener(View.OnClickListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (listener != null) {
+            listener.onClick(v);
+        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
