@@ -17,4 +17,14 @@ public class Image {
     public static void setImage(Context context, Integer resourceId, ImageView imageView) {
         Glide.with(context).load(resourceId).apply(new RequestOptions().centerCrop()).into(imageView);
     }
+
+    /**
+     * Este metodo añade un GIF a una vista
+     * @param context El contexto de la aplicación
+     * @param resourceId El recurso del GIF
+     * @param imageView La vista donde se va a incluir la imagen
+     */
+    public static void setGif(Context context, Integer resourceId, ImageView imageView){
+        Glide.with(context).asGif().load(resourceId).apply(new RequestOptions().centerCrop()).into(imageView);
+    }
 }

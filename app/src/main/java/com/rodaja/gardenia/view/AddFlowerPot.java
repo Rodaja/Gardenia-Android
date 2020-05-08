@@ -37,6 +37,7 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.adapter.AddMacetaAdapter;
+import com.rodaja.gardenia.view.multimedia.Image;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +63,8 @@ public class AddFlowerPot extends AppCompatActivity {
     private ListView listView;
     private List<ScanResult> results;
 
+    private ImageView ivGifAddFlowerpot;
+
     private SwipeRefreshLayout swipeRefreshLayout;
 
     BroadcastReceiver wifiReciver = new BroadcastReceiver() {
@@ -80,47 +83,59 @@ public class AddFlowerPot extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_flower_pot);
 
-        inicializarMenu();
-        contexto = this;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q){
 
-        wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+            setContentView(R.layout.activity_add_flower_pot_q_version);
+            inicializarMenu();
+            contexto = this;
 
-        checkWifiEnabled();
+            Image.setGif(contexto, R.drawable.gif_add_flowerpot, ivGifAddFlowerpot);
 
-        setAdapter();
+        } else {
 
-        scanWifi();
+            setContentView(R.layout.activity_add_flower_pot);
+            inicializarMenu();
+            contexto = this;
 
-        swipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
+            wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
-        ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToNewView(Home.class);
-            }
-        });
+            checkWifiEnabled();
+
+            setAdapter();
+
+            scanWifi();
+
+            swipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
+
+            ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    goToNewView(Home.class);
+                }
+            });
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View elemento, int i, long l) {
+
+                    TextView texto = elemento.findViewById(R.id.tvWifi);
+                    String ssid = texto.getText().toString();
+
+                    Log.d("List", "Se ha hecho click");
+                    Log.d("SSID", ssid);
+
+                    connectToWifi(ssid);
+                }
+            });
+        }
+
+
 
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToNewView(AddFlowerPotWebView.class);
-            }
-        });
-
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View elemento, int i, long l) {
-
-                TextView texto = elemento.findViewById(R.id.tvWifi);
-                String ssid = texto.getText().toString();
-
-                Log.d("List", "Se ha hecho click");
-                Log.d("SSID", ssid);
-
-                connectToWifi(ssid);
             }
         });
 
@@ -146,6 +161,7 @@ public class AddFlowerPot extends AppCompatActivity {
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
         ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
         btnConfirm = findViewById(R.id.btn_confirmar_agregar);
+        ivGifAddFlowerpot = findViewById(R.id.ivGifAddFlowerpot);
 
 
         tvTitulo.setText(R.string.conectar_maceta);
