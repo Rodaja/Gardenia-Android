@@ -80,7 +80,7 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/tv_temperatura_ambiental_medida"
+            android:id="@+id/tv_humedad_ambiental_medida"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -181,7 +181,7 @@
             android:fontFamily="@font/montserrat"
             android:text="32cº"
             android:textColor="@color/colorFontSoft"
-            app:layout_constraintBottom_toTopOf="@+id/tv_temperatura_ambiental_medida"
+            app:layout_constraintBottom_toTopOf="@+id/tv_humedad_ambiental_medida"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView

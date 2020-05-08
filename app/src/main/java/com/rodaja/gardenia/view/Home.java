@@ -30,6 +30,7 @@ public class Home extends AppCompatActivity {
     private LinearLayoutManager linearLayout;
     private Context context;
     private HomeAdapter adapter;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class Home extends AppCompatActivity {
         context = this;
 
         Intent in = getIntent();
-        User user = (User) in.getSerializableExtra("user");
+        user = (User) in.getSerializableExtra("user");
         final List<FlowerPot> listaMacetas = user.getListFlowerPots();
         recyclerView.setLayoutManager(linearLayout);
         adapter = new HomeAdapter(context, listaMacetas);
@@ -48,7 +49,11 @@ public class Home extends AppCompatActivity {
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Seleccion: " + listaMacetas.get(recyclerView.getChildAdapterPosition(v)).getName(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Seleccion: " +
+                //                listaMacetas.get(recyclerView.getChildAdapterPosition(v)).toString(),
+                //        Toast.LENGTH_SHORT).show();
+
+                goDetails(v, Details.class, recyclerView.getChildAdapterPosition(v), user);
             }
         });
 
@@ -86,6 +91,12 @@ public class Home extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayout);
     }
 
+    private void goDetails(View view, Class goToView, int numeroMaceta, User user) {
+        Intent in = new Intent(this, goToView);
+        in.putExtra("numeroMaceta", numeroMaceta);
+        in.putExtra("user", user);
+        startActivity(in);
+    }
 
     private void goToNewView(View view, Class goToView) {
         Intent in = new Intent(this, goToView);
