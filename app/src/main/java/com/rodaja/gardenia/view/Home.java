@@ -60,14 +60,14 @@ public class Home extends AppCompatActivity {
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, Profile.class);
+                goToNewView(v, Profile.class, user);
             }
         });
 
         ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, AddFlowerPot.class);
+                goToNewView(v, AddFlowerPot.class, user);
             }
         });
 
@@ -98,8 +98,9 @@ public class Home extends AppCompatActivity {
         startActivity(in);
     }
 
-    private void goToNewView(View view, Class goToView) {
+    private void goToNewView(View view, Class goToView, User user) {
         Intent in = new Intent(this, goToView);
+        in.putExtra("user", user);
         startActivity(in);
     }
 
