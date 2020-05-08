@@ -9,6 +9,7 @@ public class Constants {
     public static final String URL_FLOWERPOT = URL + "/gardenia/api/flowerpots";
     public static final String URL_USER = URL + "/gardenia/api/users";
     public static final String URL_LOGIN = URL + "/gardenia/api/login";
+    public static final String URL_FLOWERPOT_ROOT = "/flowerpot";
 
     // Web view
     public static final String URL_ADD_POT = "http://192.168.4.1";

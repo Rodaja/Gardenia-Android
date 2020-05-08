@@ -1,12 +1,16 @@
 package com.rodaja.gardenia.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
 import com.rodaja.gardenia.R;
+import com.rodaja.gardenia.model.configuration.Permissions;
 
 public class Splash extends AppCompatActivity {
 
@@ -19,6 +23,7 @@ public class Splash extends AppCompatActivity {
         goLogin();
 
     }
+
 
     private void goLogin() {
         Handler handler = new Handler();

@@ -37,6 +37,7 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.adapter.AddMacetaAdapter;
+import com.rodaja.gardenia.model.entity.User;
 import com.rodaja.gardenia.view.multimedia.Image;
 
 import java.util.ArrayList;
@@ -64,6 +65,7 @@ public class AddFlowerPot extends AppCompatActivity {
     private List<ScanResult> results;
 
     private ImageView ivGifAddFlowerpot;
+    private User user;
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -83,6 +85,7 @@ public class AddFlowerPot extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        user = getUser();
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q){
 
@@ -108,12 +111,6 @@ public class AddFlowerPot extends AppCompatActivity {
 
             swipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
 
-            ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    goToNewView(Home.class);
-                }
-            });
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                 @Override
@@ -130,12 +127,17 @@ public class AddFlowerPot extends AppCompatActivity {
             });
         }
 
-
+        ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNewView(Home.class,user);
+            }
+        });
 
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(AddFlowerPotWebView.class);
+                goToNewView(AddFlowerPotWebView.class, user);
             }
         });
 
@@ -171,8 +173,9 @@ public class AddFlowerPot extends AppCompatActivity {
         swipeRefreshLayout = findViewById(R.id.swipeAddMaceta);
     }
 
-    private void goToNewView(Class goToView){
+    private void goToNewView(Class goToView, User user){
         Intent in = new Intent(this, goToView);
+        in.putExtra("user", user);
         startActivity(in);
     }
 
@@ -229,8 +232,7 @@ public class AddFlowerPot extends AppCompatActivity {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
 
             WifiNetworkSuggestion.Builder builder = new WifiNetworkSuggestion.Builder()
-                    .setSsid(ssid)
-                    .setWpa2Passphrase("9B1A406D362D963500AF");
+                    .setSsid(ssid);
             WifiNetworkSuggestion suggestion = builder.build();
 
             ArrayList<WifiNetworkSuggestion> list = new ArrayList<>();
@@ -267,5 +269,10 @@ public class AddFlowerPot extends AppCompatActivity {
             wifi.enableNetwork(netId, true);
             wifi.reconnect();
         }
+    }
+
+    private User getUser() {
+        Intent in = getIntent();
+        return (User) in.getSerializableExtra("user");
     }
 }
