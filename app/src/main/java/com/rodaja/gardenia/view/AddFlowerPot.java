@@ -16,6 +16,7 @@ import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiNetworkSpecifier;
 import android.net.wifi.WifiNetworkSuggestion;
@@ -36,6 +37,8 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.adapter.AddMacetaAdapter;
+import com.rodaja.gardenia.model.entity.User;
+import com.rodaja.gardenia.view.multimedia.Image;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +64,9 @@ public class AddFlowerPot extends AppCompatActivity {
     private ListView listView;
     private List<ScanResult> results;
 
+    private ImageView ivGifAddFlowerpot;
+    private User user;
+
     private SwipeRefreshLayout swipeRefreshLayout;
 
     BroadcastReceiver wifiReciver = new BroadcastReceiver() {
@@ -79,47 +85,59 @@ public class AddFlowerPot extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_flower_pot);
+        user = getUser();
 
-        inicializarMenu();
-        contexto = this;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q){
 
-        wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+            setContentView(R.layout.activity_add_flower_pot_q_version);
+            inicializarMenu();
+            contexto = this;
 
-        checkWifiEnabled();
+            Image.setGif(contexto, R.drawable.gif_add_flowerpot, ivGifAddFlowerpot);
 
-        setAdapter();
+        } else {
 
-        scanWifi();
+            setContentView(R.layout.activity_add_flower_pot);
+            inicializarMenu();
+            contexto = this;
 
-        swipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
+            wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+
+            checkWifiEnabled();
+
+            setAdapter();
+
+            scanWifi();
+
+            swipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
+
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View elemento, int i, long l) {
+
+                    TextView texto = elemento.findViewById(R.id.tvWifi);
+                    String ssid = texto.getText().toString();
+
+                    Log.d("List", "Se ha hecho click");
+                    Log.d("SSID", ssid);
+
+                    connectToWifi(ssid);
+                }
+            });
+        }
 
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(Home.class);
+                goToNewView(Home.class,user);
             }
         });
 
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(AddFlowerPotWebView.class);
-            }
-        });
-
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View elemento, int i, long l) {
-
-                TextView texto = elemento.findViewById(R.id.tvWifi);
-                String ssid = texto.getText().toString();
-
-                Log.d("List", "Se ha hecho click");
-                Log.d("SSID", ssid);
-
-                connectToWifi(ssid);
+                goToNewView(AddFlowerPotWebView.class, user);
             }
         });
 
@@ -145,6 +163,7 @@ public class AddFlowerPot extends AppCompatActivity {
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
         ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
         btnConfirm = findViewById(R.id.btn_confirmar_agregar);
+        ivGifAddFlowerpot = findViewById(R.id.ivGifAddFlowerpot);
 
 
         tvTitulo.setText(R.string.conectar_maceta);
@@ -154,8 +173,9 @@ public class AddFlowerPot extends AppCompatActivity {
         swipeRefreshLayout = findViewById(R.id.swipeAddMaceta);
     }
 
-    private void goToNewView(Class goToView){
+    private void goToNewView(Class goToView, User user){
         Intent in = new Intent(this, goToView);
+        in.putExtra("user", user);
         startActivity(in);
     }
 
@@ -207,11 +227,12 @@ public class AddFlowerPot extends AppCompatActivity {
         Log.d("connect wifi", "ha entrado en connect wifi");
         WifiConfiguration wifiConfig = new WifiConfiguration();
 
+        WifiInfo wifiInfo = wifi.getConnectionInfo();
+
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
 
             WifiNetworkSuggestion.Builder builder = new WifiNetworkSuggestion.Builder()
-                    .setSsid(ssid)
-                    .setWpa2Passphrase("9B1A406D362D963500AF");
+                    .setSsid(ssid);
             WifiNetworkSuggestion suggestion = builder.build();
 
             ArrayList<WifiNetworkSuggestion> list = new ArrayList<>();
@@ -232,50 +253,26 @@ public class AddFlowerPot extends AppCompatActivity {
             }
 
 
+        } else {
 
+            wifiConfig.SSID = "\"" + ssid + "\"";
 
+            Log.d("SSID", wifiConfig.SSID);
 
-        /*wifiConfig.SSID = "\"" + ssid + "\"";
+            wifiConfig.status = WifiConfiguration.Status.DISABLED;
+            wifiConfig.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
 
-        List<WifiConfiguration> networks = wifi.getConfiguredNetworks();
-        for(WifiConfiguration c : networks) {
-            Log.d("Wifi configured", c.SSID);
+            wifi.getConfiguredNetworks().clear();
+            int netId = wifi.addNetwork(wifiConfig);
+
+            wifi.disconnect();
+            wifi.enableNetwork(netId, true);
+            wifi.reconnect();
         }
+    }
 
-        Log.d("SSID", wifiConfig.SSID);
-
-        wifiConfig.status = WifiConfiguration.Status.DISABLED;
-
-        wifiConfig.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
-        wifiConfig.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
-        wifiConfig.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
-        wifiConfig.allowedAuthAlgorithms.clear();
-        wifiConfig.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
-        wifiConfig.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
-        wifiConfig.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP40);
-        wifiConfig.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP104);
-        wifiConfig.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);
-        wifiConfig.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
-
-        int netId = wifi.addNetwork(wifiConfig);
-        wifi.enableNetwork(netId, true);
-
-
-        /*
-        List<WifiConfiguration> list = wifi.getConfiguredNetworks();
-        Log.d("List size", String.valueOf(list.size()));
-
-        for (WifiConfiguration i : list) {
-            Log.d("listado wifi", i.SSID);
-            if (i.SSID != null && i.SSID.equals("\"" + ssid + "\"")) {
-                Log.d("wifi javo", "ha entrado");
-
-                break;
-            }
-        }
-
-         */
-
-        }
+    private User getUser() {
+        Intent in = getIntent();
+        return (User) in.getSerializableExtra("user");
     }
 }
