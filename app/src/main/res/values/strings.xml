@@ -104,5 +104,6 @@
     <string name="paises">Paises</string>
     <string name="preguntas">Preguntas</string>
     <string name="reportar_fallo">Reportar fallo</string>
+    <string name="regar">Regar</string>
     <!-- /Menu -->
 </resources>
