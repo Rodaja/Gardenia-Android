@@ -3,11 +3,15 @@ package com.rodaja.gardenia.view;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.entity.FlowerPot;
@@ -26,6 +30,8 @@ public class Details extends AppCompatActivity {
     private User user;
     private ImageView ivDetails, ivChoose_plant;
     private FlowerPot maceta;
+    private Button btnRegar;
+    private Context contexto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,7 @@ public class Details extends AppCompatActivity {
 
         maceta = getExtras();
         inicializarMenu();
+        contexto = this;
         setearValores();
 
         Image.setImage(this, R.drawable.detalles_principal, ivDetails);
@@ -58,6 +65,14 @@ public class Details extends AppCompatActivity {
                 goToNewView(v, AddFlowerPot.class);
             }
         });
+
+        btnRegar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Regar", "Se ha regado la planta");
+            }
+        });
+
 
     }
 
@@ -94,6 +109,7 @@ public class Details extends AppCompatActivity {
         tv_temperatura_ambiental_medida2 = findViewById(R.id.tv_temperatura_ambiental_medida2);
         tv_humedad_ambiental_medida = findViewById(R.id.tv_humedad_ambiental_medida);
         tv_titulo_detalle_maceta = findViewById(R.id.tv_titulo_detalle_maceta);
+        btnRegar = findViewById(R.id.btnRegar);
 
         tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
