@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rodaja.gardenia.R;
@@ -49,6 +50,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //holder.iv_foto_bandera.setImageURI(Uri.parse(paises.get(position).getFoto_bandera()));
         holder.nombre_maceta.setText(macetas.get(position).getName());
+
+        ImageView imageView = holder.imagen_maceta;
+        Image.setImage(holder.imagen_maceta.getContext(), R.drawable.detalles_principal, imageView);
     }
 
     @Override
