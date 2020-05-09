@@ -117,6 +117,7 @@
             android:backgroundTint="@color/colorTransparent"
             android:fontFamily="@font/montserrat"
             android:hint="@string/email"
+            android:inputType="textEmailAddress"
             android:singleLine="true"
             android:textColor="@color/colorFont"
             android:textColorHighlight="@color/colorAccent"

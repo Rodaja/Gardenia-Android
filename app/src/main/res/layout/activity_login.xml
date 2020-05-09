@@ -87,19 +87,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
 
-    <TextView
-        android:id="@+id/tvLoginError"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:fontFamily="@font/montserrat"
-        android:text="@string/login_error"
-        android:textColor="@color/colorError"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/textInputEmail"
-        app:layout_constraintEnd_toEndOf="@+id/ivBackground"
-        app:layout_constraintStart_toStartOf="@+id/ivBackground" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
@@ -151,15 +138,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
+            android:backgroundTint="@color/colorTransparent"
             android:fontFamily="@font/montserrat"
             android:hint="@string/email"
-            android:backgroundTint="@color/colorTransparent"
+            android:inputType="textEmailAddress"
             android:singleLine="true"
             android:textColor="@color/colorFont"
             android:textColorHighlight="@color/colorAccent"
             android:textColorHint="@color/colorFont"
             android:textColorLink="@color/colorAccent"
-            android:textCursorDrawable="@color/colorPrimary"/>
+            android:textCursorDrawable="@color/colorPrimary" />
     </com.google.android.material.textfield.TextInputLayout>
 
 

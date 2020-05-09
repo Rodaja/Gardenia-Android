@@ -30,6 +30,7 @@
         android:fontFamily="@font/montserrat_bold"
         android:text="TextView"
         android:textColor="@color/colorFont"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/ivMenuIconLeft"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
