@@ -74,7 +74,7 @@ public class AddFlowerPotWebView extends AppCompatActivity {
             public void onClick(View v) {
 
                 userRequest(getMacAddress(), user.getId());
-                goToView(Home.class, user);
+                goToView(   Home.class, user);
             }
         });
 
