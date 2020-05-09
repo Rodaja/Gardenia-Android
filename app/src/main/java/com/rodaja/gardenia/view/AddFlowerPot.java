@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -37,6 +38,7 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.adapter.AddMacetaAdapter;
+import com.rodaja.gardenia.model.configuration.Permissions;
 import com.rodaja.gardenia.model.entity.User;
 import com.rodaja.gardenia.view.multimedia.Image;
 
@@ -101,13 +103,7 @@ public class AddFlowerPot extends AppCompatActivity {
             inicializarMenu();
             contexto = this;
 
-            wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-
-            checkWifiEnabled();
-
-            setAdapter();
-
-            scanWifi();
+            getWifiList();
 
             swipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
 
@@ -140,6 +136,19 @@ public class AddFlowerPot extends AppCompatActivity {
                 goToNewView(AddFlowerPotWebView.class, user);
             }
         });
+
+    }
+
+    private void getWifiList() {
+        if (Permissions.checkPermission(contexto, Manifest.permission.ACCESS_FINE_LOCATION) != true){
+            Permissions.askForPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, Permissions.REQUEST_ACCESS_FINE_LOCATION);
+            getWifiList();
+        } else{
+            wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+            checkWifiEnabled();
+            setAdapter();
+            scanWifi();
+        }
 
     }
 
@@ -183,16 +192,6 @@ public class AddFlowerPot extends AppCompatActivity {
         listWifi.clear();
         registerReceiver(wifiReciver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
         wifi.startScan();
-
-        /*
-        results = wifi.getScanResults();
-
-        for (ScanResult scanResult : results){
-            listWifi.add(scanResult.SSID);
-            adapter.notifyDataSetChanged();
-        }
-
-         */
 
         Toast.makeText(this, R.string.escaneo_wifi, Toast.LENGTH_LONG).show();
     }

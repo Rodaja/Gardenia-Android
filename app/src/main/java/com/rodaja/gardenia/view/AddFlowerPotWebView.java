@@ -65,7 +65,7 @@ public class AddFlowerPotWebView extends AppCompatActivity {
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, AddFlowerPot.class);
+                goToView(AddFlowerPot.class, user);
             }
         });
 
@@ -73,8 +73,8 @@ public class AddFlowerPotWebView extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                userRequest(getMacAddress(), user);
-                goToNewView(v, Home.class);
+                userRequest(getMacAddress(), user.getId());
+                goToView(Home.class, user);
             }
         });
 
@@ -88,9 +88,7 @@ public class AddFlowerPotWebView extends AppCompatActivity {
         return (User) in.getSerializableExtra("user");
     }
 
-    private void userRequest(String macAddress, User user) {
-
-        int userId = user.getId();
+    private void userRequest(String macAddress, int userId) {
 
         final Map<String, String> body = new HashMap<String, String>();
 
@@ -107,18 +105,19 @@ public class AddFlowerPotWebView extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Gson gson = new Gson();
                         Log.d("Success", response.toString());
-                        User user = gson.fromJson(response.toString(), User.class);
+                        user = gson.fromJson(response.toString(), User.class);
 
                         Toast toast = Toast.makeText(context,
                                 "Maceta añadida " + user.getEmail(), Toast.LENGTH_LONG);
                         toast.show();
-
-                        goToHome(Home.class, user);
                     }
                 }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                Toast toast = Toast.makeText(context,
+                        "Maceta no añadida " , Toast.LENGTH_LONG);
+                toast.show();
                 VolleyLog.d("Error: " + error.getMessage());
             }
         }) {
@@ -142,34 +141,17 @@ public class AddFlowerPotWebView extends AppCompatActivity {
 
     }
 
-    private void goToHome(Class goToView, User user) {
+    private void goToView(Class goToView, User user) {
         Intent in = new Intent(this, goToView);
         in.putExtra("user", user);
         startActivity(in);
     }
 
-    private void askForPermissions() {
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                Permissions.REQUEST_ACCESS_FINE_LOCATION);
-    }
-
-    private boolean checkPermissions() {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Permiso denegado
-            return false;
-        } else {
-            return true;
-        }
-
-    }
-
     private String getMacAddress() {
         String macAddress = "";
 
-        if (checkPermissions() != true){
-            askForPermissions();
+        if (Permissions.checkPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != true){
+            Permissions.askForPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, Permissions.REQUEST_ACCESS_FINE_LOCATION);
             getMacAddress();
         } else{
             WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
@@ -206,9 +188,5 @@ public class AddFlowerPotWebView extends AppCompatActivity {
 
     }
 
-    private void goToNewView(View view, Class goToView) {
-        Intent in = new Intent(this, goToView);
-        startActivity(in);
-    }
 
 }
