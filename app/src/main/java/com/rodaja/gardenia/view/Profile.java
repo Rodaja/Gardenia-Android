@@ -7,7 +7,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +15,7 @@ import android.widget.TextView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.rodaja.gardenia.R;
-import com.rodaja.gardenia.view.multimedia.Image;
+import com.rodaja.gardenia.model.entity.User;
 
 public class Profile extends AppCompatActivity {
 
@@ -27,6 +26,7 @@ public class Profile extends AppCompatActivity {
 
     private ConstraintLayout constLCerrarSesionEditable, constLBorrarCuentaEditable, constLPaises, constLConfiuracion;
     private Context context;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,25 +37,27 @@ public class Profile extends AppCompatActivity {
         inicializarMenu();
 
         context = this;
+        Intent in = getIntent();
+        user = (User) in.getSerializableExtra("user");
 
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, Home.class);
+                goToNewView(Home.class, user);
             }
         });
 
         constLPaises.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, Country.class);
+                goToNewView(Country.class, user);
             }
         });
 
         constLConfiuracion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, Settings.class);
+                goToNewView(Settings.class, user);
             }
         });
 
@@ -137,8 +139,9 @@ public class Profile extends AppCompatActivity {
         ivMenuIconRight.setImageResource(R.drawable.icon_save);
     }
 
-    private void goToNewView(View view, Class goToView) {
+    private void goToNewView(Class goToView, User user) {
         Intent in = new Intent(this, goToView);
+        in.putExtra("user", user);
         startActivity(in);
     }
 }
