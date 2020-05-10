@@ -9,6 +9,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.rodaja.gardenia.R;
@@ -50,6 +53,9 @@ public class AddFlowerPotWebView extends AppCompatActivity {
     private User user;
 
     private WebView webView;
+    private String macAddress;
+    private WifiManager wifi;
+    private ConnectivityManager cm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,12 +79,29 @@ public class AddFlowerPotWebView extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                userRequest(getMacAddress(), user.getId());
-                goToView(   Home.class, user);
+                //Revisar
+                String bssid = wifi.getConnectionInfo().getBSSID();
+                if(bssid != null){
+                    if (bssid.equalsIgnoreCase(macAddress)){
+                        Log.d("comparacion", "True");
+                        Toast.makeText(context, "Por favor conectese a su wifi habitual", Toast.LENGTH_LONG);
+                    } else{
+                        cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+                        boolean isConnected = activeNetwork != null &&
+                                activeNetwork.isConnected();
+
+                        if(isConnected){
+                            userRequest(macAddress, user.getId());
+                        }
+                    }
+                }
             }
         });
 
         setWebView();
+        getMacAddress();
 
 
     }
@@ -92,11 +115,13 @@ public class AddFlowerPotWebView extends AppCompatActivity {
 
         final Map<String, String> body = new HashMap<String, String>();
 
-        body.put("macAddress", macAddress);
+        body.put("macAddress", macAddress.toUpperCase());
+        Log.d("MAC", macAddress.toUpperCase());
 
         RequestQueue queue = Volley.newRequestQueue(context);
 
-        String url = Constants.URL_USER + userId + Constants.URL_FLOWERPOT_ROOT;
+        String url = Constants.URL_USER + "/" + userId + Constants.URL_FLOWERPOT_ROOT;
+        Log.d("URL", url);
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT,
                 url, new JSONObject(body),
                 new Response.Listener<JSONObject>() {
@@ -106,10 +131,8 @@ public class AddFlowerPotWebView extends AppCompatActivity {
                         Gson gson = new Gson();
                         Log.d("Success", response.toString());
                         user = gson.fromJson(response.toString(), User.class);
-
-                        Toast toast = Toast.makeText(context,
-                                "Maceta añadida " + user.getEmail(), Toast.LENGTH_LONG);
-                        toast.show();
+                        Log.d("Añadir maceta", "Maceta añadida con exito");
+                        goToView(Home.class, user);
                     }
                 }, new Response.ErrorListener() {
 
@@ -119,6 +142,7 @@ public class AddFlowerPotWebView extends AppCompatActivity {
                         "Maceta no añadida " , Toast.LENGTH_LONG);
                 toast.show();
                 VolleyLog.d("Error: " + error.getMessage());
+                Log.d("Error", "Ha habido un error");
             }
         }) {
 
@@ -126,6 +150,7 @@ public class AddFlowerPotWebView extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("Api-Key", user.getApiKey());
                 return headers;
             }
 
@@ -148,13 +173,12 @@ public class AddFlowerPotWebView extends AppCompatActivity {
     }
 
     private String getMacAddress() {
-        String macAddress = "";
 
         if (Permissions.checkPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != true){
             Permissions.askForPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, Permissions.REQUEST_ACCESS_FINE_LOCATION);
             getMacAddress();
         } else{
-            WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+            wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
             macAddress = String.valueOf(wifi.getConnectionInfo().getBSSID());
         }
 
