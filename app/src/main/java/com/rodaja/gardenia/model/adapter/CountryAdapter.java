@@ -76,7 +76,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 Toast.makeText(contexto,"Has seleccionado: " + paises.get(position).getNombre_pais(),Toast.LENGTH_SHORT).show();
-                Country.setPais_seleccionado(paises.get(position).getNombre_pais());
+                Country.pais_seleccionado = (paises.get(position).getNombre_pais());
             }
         });
 

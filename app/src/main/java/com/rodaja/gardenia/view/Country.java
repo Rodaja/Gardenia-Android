@@ -62,7 +62,7 @@ public class Country extends AppCompatActivity {
 
 
 
-    private static String pais_seleccionado;
+    public static String pais_seleccionado = "";
     private Context context;
     //
     private User user;
@@ -257,6 +257,7 @@ public class Country extends AppCompatActivity {
     }
 
     private void userRequest(int userId) {
+
         user.setCountry(pais_seleccionado);
         String json = Json.crearJson(user);
         Log.d("json",json);
@@ -315,11 +316,5 @@ public class Country extends AppCompatActivity {
         startActivity(in);
     }
 
-    public String getPais_seleccionado() {
-        return pais_seleccionado;
-    }
 
-    public static void setPais_seleccionado(String pais_seleccionado) {
-        pais_seleccionado = pais_seleccionado;
-    }
 }
