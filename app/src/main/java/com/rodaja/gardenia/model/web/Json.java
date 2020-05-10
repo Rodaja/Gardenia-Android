@@ -42,8 +42,6 @@ public class Json {
                 objeto = gson.fromJson(json, FlowerPot.class);
                 break;
         }
-
-
         return objeto;
     }
 }
