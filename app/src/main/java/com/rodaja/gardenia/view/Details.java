@@ -49,13 +49,13 @@ public class Details extends AppCompatActivity {
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, Home.class);
+                goToNewView(v, Home.class, user);
             }
         });
         ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, AddFlowerPot.class);
+                goToNewView(v, AddFlowerPot.class, user);
             }
         });
 
@@ -104,8 +104,9 @@ public class Details extends AppCompatActivity {
         ivMenuIconRight.setImageResource(R.drawable.icon_add);
     }
 
-    private void goToNewView(View view, Class goToView) {
+    private void goToNewView(View view, Class goToView, User user) {
         Intent in = new Intent(this, goToView);
+        in.putExtra("user", user);
         startActivity(in);
     }
 
