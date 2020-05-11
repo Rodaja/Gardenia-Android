@@ -118,14 +118,14 @@ public class Country extends AppCompatActivity {
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v,Profile.class);
+                goToView(Profile.class, user);
             }
         });
         ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                goToNewView(v,Profile.class);
+                goToView(Profile.class, user);
             }
         });
 
