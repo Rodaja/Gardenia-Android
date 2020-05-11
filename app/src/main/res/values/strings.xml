@@ -41,7 +41,7 @@
     <string name="perfil_cerrar_sesion">Cerrar Sesion</string>
     <string name="perfil_borrar_cuenta">Borrar Cuenta</string>
     <string name="perfil_pais_ejemplo">Spain</string>
-    <string name="country_buscador_editable">País</string>
+    <string name="country_buscador_editable">Buscar un pais</string>
     <string name="settings_unidad_temperatura">Unidad de Temperatura</string>
     <string name="setting_UnidadesTemperaturaEjemplo">ºC</string>
     <string name="settings_notificaciones">Notificaciones</string>
@@ -105,5 +105,6 @@
     <string name="preguntas">Preguntas</string>
     <string name="reportar_fallo">Reportar fallo</string>
     <string name="regar">Regar</string>
+    <string name="escribir_fallo">Escriba aqui su fallo</string>
     <!-- /Menu -->
 </resources>

@@ -24,7 +24,7 @@ public class Details extends AppCompatActivity {
     private ImageView ivMenuIconRight;
     private TextView tv_titulo_detalle_maceta, tv_humedad_tierra_medida, tv_humedad_ambiental_medida, tv_temperatura_ambiental_medida2;
     private User user;
-    private ImageView ivDetails, ivChoose_plant;
+    private ImageView ivDetails, ivChoose_plant, ivDeleteFlowerpot;
     private FlowerPot maceta;
 
     @Override
@@ -94,6 +94,7 @@ public class Details extends AppCompatActivity {
         tv_temperatura_ambiental_medida2 = findViewById(R.id.tv_temperatura_ambiental_medida2);
         tv_humedad_ambiental_medida = findViewById(R.id.tv_humedad_ambiental_medida);
         tv_titulo_detalle_maceta = findViewById(R.id.tv_titulo_detalle_maceta);
+        ivDeleteFlowerpot = findViewById(R.id.ivDeleteFlowerpot);
 
         tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);

@@ -55,7 +55,8 @@
             android:layout_marginBottom="32dp"
             app:layout_constraintBottom_toTopOf="@+id/img_termometro"
             app:layout_constraintStart_toStartOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:srcCompat="@drawable/icon_ground_humudity"
+            tools:srcCompat="@drawable/icon_ground_humudity" />
 
         <ImageView
             android:id="@+id/img_termometro"
@@ -66,7 +67,8 @@
             android:layout_marginBottom="32dp"
             app:layout_constraintBottom_toTopOf="@+id/img_humedad"
             app:layout_constraintStart_toStartOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:srcCompat="@drawable/icon_air_temperature"
+            tools:srcCompat="@drawable/icon_air_temperature" />
 
         <ImageView
             android:id="@+id/img_humedad"
@@ -74,19 +76,21 @@
             android:layout_height="24dp"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="32dp"
             app:layout_constraintBottom_toTopOf="@+id/btnRegar"
             app:layout_constraintStart_toStartOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:srcCompat="@drawable/icon_air_humidity"
+            tools:srcCompat="@drawable/icon_air_humidity" />
 
         <TextView
             android:id="@+id/tv_humedad_ambiental_medida"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="32dp"
             android:fontFamily="@font/montserrat"
+            android:gravity="center_vertical"
             android:text="25%"
             android:textColor="@color/colorFontSoft"
             app:layout_constraintBottom_toTopOf="@+id/btnRegar"
@@ -116,17 +120,19 @@
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/detalles"
             android:textColor="@color/colorFont"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/img_gota_agua"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tv_humedad_tierrra"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginBottom="38dp"
+            android:layout_marginBottom="32dp"
             android:fontFamily="@font/montserrat"
+            android:gravity="center_vertical"
             android:text="@string/humedad_tierra"
             android:textColor="@color/colorFont"
             app:layout_constraintBottom_toTopOf="@+id/tv_temperatura"
@@ -135,11 +141,12 @@
         <TextView
             android:id="@+id/tv_temperatura"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginBottom="38dp"
+            android:layout_marginBottom="32dp"
             android:fontFamily="@font/montserrat"
+            android:gravity="center_vertical"
             android:text="@string/temperatura_ambiental"
             android:textColor="@color/colorFont"
             app:layout_constraintBottom_toTopOf="@+id/tv_humedad_ambiental"
@@ -148,11 +155,12 @@
         <TextView
             android:id="@+id/tv_humedad_ambiental"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="32dp"
             android:fontFamily="@font/montserrat"
+            android:gravity="center_vertical"
             android:text="@string/humedad_ambiental"
             android:textColor="@color/colorFont"
             app:layout_constraintBottom_toTopOf="@+id/btnRegar"
@@ -161,11 +169,12 @@
         <TextView
             android:id="@+id/tv_humedad_tierra_medida"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginBottom="38dp"
+            android:layout_marginBottom="32dp"
             android:fontFamily="@font/montserrat"
+            android:gravity="center_vertical"
             android:text="75%"
             android:textColor="@color/colorFontSoft"
             app:layout_constraintBottom_toTopOf="@+id/tv_temperatura_ambiental_medida2"
@@ -174,11 +183,12 @@
         <TextView
             android:id="@+id/tv_temperatura_ambiental_medida2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginBottom="38dp"
+            android:layout_marginBottom="32dp"
             android:fontFamily="@font/montserrat"
+            android:gravity="center_vertical"
             android:text="32cº"
             android:textColor="@color/colorFontSoft"
             app:layout_constraintBottom_toTopOf="@+id/tv_humedad_ambiental_medida"
@@ -212,6 +222,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivDeleteFlowerpot"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/icon_delete" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
