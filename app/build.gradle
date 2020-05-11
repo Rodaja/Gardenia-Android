@@ -10,7 +10,6 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -69,7 +68,13 @@ dependencies {
     // Image SVG
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.pixplicity.sharp:library:1.1.0'
-    // ...
+
+    //Espresso
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
+    androidTestImplementation ("com.android.support.test.espresso:espresso-intents:3.1.0")
+
 
 
 
