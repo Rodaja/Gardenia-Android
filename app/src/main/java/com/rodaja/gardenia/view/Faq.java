@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rodaja.gardenia.R;
+import com.rodaja.gardenia.model.entity.User;
 
 public class Faq extends AppCompatActivity {
 
@@ -17,6 +18,7 @@ public class Faq extends AppCompatActivity {
     private TextView tvTitulo;
     private ImageView ivMenuIconLeft;
     private ImageView ivMenuIconRight;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,18 +26,20 @@ public class Faq extends AppCompatActivity {
         setContentView(R.layout.activity_faq);
 
         inicializarMenu();
+        Intent in = getIntent();
+        user = (User) in.getSerializableExtra("user");
 
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v,Settings.class);
+                goToNewView(v, Settings.class, user);
             }
         });
 
         ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v,AddFlowerPot.class);
+                goToNewView(v, AddFlowerPot.class, user);
             }
         });
     }
@@ -44,7 +48,7 @@ public class Faq extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.menu);
 
-        tvTitulo  = findViewById(R.id.tvMenuTitulo);
+        tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
         ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
 
@@ -52,8 +56,10 @@ public class Faq extends AppCompatActivity {
         ivMenuIconLeft.setImageResource(R.drawable.back);
         ivMenuIconRight.setImageResource(R.drawable.icon_add);
     }
-    private void goToNewView(View view , Class goToView){
+
+    private void goToNewView(View view, Class goToView, User user) {
         Intent in = new Intent(this, goToView);
+        in.putExtra("user", user);
         startActivity(in);
     }
 
