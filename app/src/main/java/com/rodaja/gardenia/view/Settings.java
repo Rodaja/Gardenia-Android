@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.configuration.Configuration;
+import com.rodaja.gardenia.model.entity.User;
 
 public class Settings extends AppCompatActivity {
 
@@ -26,6 +27,7 @@ public class Settings extends AppCompatActivity {
     private ConstraintLayout constLPreguntasFrecuentes, constLAjustesPorDefectoEditable, constLTemaEditable, contLReportarFallos, constLUnidadTemperaturaEditable;
     private Context context;
     private int cambiaOpcion = 0;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,32 +36,34 @@ public class Settings extends AppCompatActivity {
 
         inicializarMenu();
         context = this;
+        Intent in = getIntent();
+        user = (User) in.getSerializableExtra("user");
 
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, Profile.class);
+                goToNewView(v, Profile.class, user);
             }
         });
 
         ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, AddFlowerPot.class);
+                goToNewView(v, AddFlowerPot.class, user);
             }
         });
 
         constLPreguntasFrecuentes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, Faq.class);
+                goToNewView(v, Faq.class, user);
             }
         });
 
         contLReportarFallos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, FailReport.class);
+                goToNewView(v, FailReport.class, user);
             }
         });
 
@@ -195,8 +199,9 @@ public class Settings extends AppCompatActivity {
         contLReportarFallos = findViewById(R.id.constLReportarFalloEditable);
     }
 
-    private void goToNewView(View view, Class goToView) {
+    private void goToNewView(View view, Class goToView, User user) {
         Intent in = new Intent(this, goToView);
+        in.putExtra("user", user);
         startActivity(in);
     }
 
