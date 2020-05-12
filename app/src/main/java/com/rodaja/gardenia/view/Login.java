@@ -70,7 +70,8 @@ public class Login extends AppCompatActivity {
         inicializar();
         contexto = this;
 
-        Image.setImage(this, R.drawable.login_background, ivBackground);
+        Image.setImage(this, R.drawable.background, ivBackground);
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
