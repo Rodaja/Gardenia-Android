@@ -106,4 +106,8 @@
     <string name="reportar_fallo">Reportar fallo</string>
     <string name="regar">Regar</string>
     <!-- /Menu -->
+
+    <!-- Dialogs -->
+    <string name="cambiar_nombre_maceta" >Cambiar nombre</string>
+    <string name="cambiar_nombre_maceta_texto">Introduzca el nuevo nombre para su dispositivo</string>
 </resources>
