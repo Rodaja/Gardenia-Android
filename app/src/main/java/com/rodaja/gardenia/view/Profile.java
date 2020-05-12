@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,7 +21,8 @@ import com.rodaja.gardenia.model.entity.User;
 public class Profile extends AppCompatActivity {
 
     //Atributos Menu
-    private TextView tvTitulo;
+    private TextView tvTitulo, tituloCorreo, tituloNombreCompleto, tvPaisEt;
+    private EditText etcorreoElectronico, etNombreUsuario, etNombre, etApellidos;
     private ImageView ivMenuIconLeft;
     private ImageView ivMenuIconRight;
 
@@ -33,12 +35,13 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        inicializar();
         inicializarMenu();
 
         context = this;
         Intent in = getIntent();
         user = (User) in.getSerializableExtra("user");
+
+        datosUsuariosReales();
 
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,12 +123,16 @@ public class Profile extends AppCompatActivity {
         });
     }
 
-    private void inicializar() {
-        constLCerrarSesionEditable = findViewById(R.id.constLCerrarSesionEditable);
-        constLBorrarCuentaEditable = findViewById(R.id.constLBorrarCuentaEditable);
-        constLPaises = findViewById(R.id.constLPaisEditable);
-        constLConfiuracion = findViewById(R.id.constLConfiguracionEditable);
+    public void datosUsuariosReales() {
+        tituloCorreo.setText(user.getEmail());
+        etcorreoElectronico.setText(user.getEmail());
+        etNombreUsuario.setText(user.getUserName());
+        tituloNombreCompleto.setText(user.getUserName());
+        etNombre.setText(user.getName());
+        etApellidos.setText(user.getSurname());
+        tvPaisEt.setText(user.getCountry());
     }
+
 
     private void inicializarMenu() {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -137,6 +144,18 @@ public class Profile extends AppCompatActivity {
 
         tvTitulo.setText(R.string.perfil);
         ivMenuIconRight.setImageResource(R.drawable.icon_save);
+        tituloCorreo = findViewById(R.id.tituloCorreo);
+        etcorreoElectronico = findViewById(R.id.etcorreoElectronico);
+        etNombreUsuario = findViewById(R.id.etNombreUsuario);
+        tituloNombreCompleto = findViewById(R.id.tituloNombreCompleto);
+        etNombre = findViewById(R.id.etNombre);
+        etApellidos = findViewById(R.id.etApellidos);
+        tvPaisEt = findViewById(R.id.tvPaisEt);
+
+        constLCerrarSesionEditable = findViewById(R.id.constLCerrarSesionEditable);
+        constLBorrarCuentaEditable = findViewById(R.id.constLBorrarCuentaEditable);
+        constLPaises = findViewById(R.id.constLPaisEditable);
+        constLConfiuracion = findViewById(R.id.constLConfiguracionEditable);
     }
 
     private void goToNewView(Class goToView, User user) {
