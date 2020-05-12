@@ -37,7 +37,7 @@ public class Details extends AppCompatActivity {
         inicializarMenu();
         setearValores();
 
-        Image.setImage(this, R.drawable.detalles_principal, ivDetails);
+        Image.setImageRoundedCorners(this, R.drawable.detalles_principal, ivDetails, 25);
 
         ivChoose_plant.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/login_background" />
+        app:srcCompat="@drawable/login_background"/>
 
     <TextView
         android:id="@+id/tvNombreMaceta"
@@ -33,5 +33,5 @@
         android:textColor="@color/colorFont"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/ivMenuIconLeft"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

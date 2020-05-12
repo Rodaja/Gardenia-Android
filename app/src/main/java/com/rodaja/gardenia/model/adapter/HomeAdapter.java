@@ -52,7 +52,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
         holder.nombre_maceta.setText(macetas.get(position).getName());
 
         ImageView imageView = holder.imagen_maceta;
-        Image.setImage(holder.imagen_maceta.getContext(), R.drawable.detalles_principal, imageView);
+        Image.setImageRoundedCorners(holder.imagen_maceta.getContext(), R.drawable.detalles_principal, imageView, 25);
     }
 
     @Override
