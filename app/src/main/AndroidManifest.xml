@@ -38,7 +38,7 @@
         <activity android:name=".view.ForgotPassword" />
         <activity android:name=".view.Profile" />
         <activity android:name=".view.Details" />
-        <activity android:name=".view.Home" />
+        <activity android:name=".view.Home"/>
         <activity android:name=".view.Signup" />
         <activity android:name=".view.Login"/>
         <activity android:name=".view.Faq"/>
