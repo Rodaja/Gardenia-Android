@@ -277,7 +277,6 @@
                     android:ems="10"
                     android:fontFamily="@font/montserrat"
                     android:gravity="right"
-                    android:hint="@string/perfil_apellidos_edtable"
                     android:inputType="textPersonName"
                     android:textColor="@color/colorFontSoft"
                     android:textColorHint="@color/colorFontSoft"
