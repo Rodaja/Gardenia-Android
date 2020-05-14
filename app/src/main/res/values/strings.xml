@@ -4,6 +4,17 @@
     <string name="settings_dialog_mensaje_ajustes_por_defecto">Se pondran todos los ajustes por defecto de fabrica\n</string>
     <string name="settings_dialog_tema">Tema de la Aplicación</string>
     <string name="perfil_dialog_titulo_cerrar_sesion">¿Cerrar Sesión?</string>
+
+    <string name="perfil_dialog_titulo_apellidos">Cambiar Apellidos</string>
+    <string name="perfil_dialog_titulo_nombre">Cambiar Nombre</string>
+    <string name="perfil_dialog_titulo_username">Cambiar UserName</string>
+    <string name="perfil_dialog_titulo_email">Cambiar Email</string>
+    <string name="perfil_dialog_titulo_cambiar_contrasena">Cambiar Contraseña</string>
+    <string name="perfil_dialog_et_contrasena_actual_hint">Contraseña Actual</string>
+    <string name="perfil_dialog_et_nueva_contrasena_hint">Nueva Contraseña</string>
+    <string name="perfil_dialog_et_repetir_contrasena_hint">Repetir Contraseña</string>
+
+
     <string name="perfil_dialog_mensaje_cerrar_sesion">Esto cerrara su sesión y le llevara al login\n</string>
     <string name="perfil_dialog_cancelar">Cancelar</string>
     <string name="settings_dialog_confirmar">Confirmar</string>
@@ -29,12 +40,10 @@
     <string name="gardenia_email">gardenia@gmail.com</string>
     <string name="perfil_email">Email</string>
     <string name="perfil_email_editable">johndoemurphy@email.com</string>
-    <string name="perfil_nombre_usuario">Nombre Usuario</string>
-    <string name="perfil_nombre_usuario_editable">JohnDoeMur</string>
+    <string name="perfil_nombre_usuario">UserName</string>
     <string name="perfil_nombre">Nombre</string>
-    <string name="perfil_nombre_editable">John</string>
+    <string name="perfil_nombre_usuario_titulo">Usuario</string>
     <string name="perfil_apellidos">Apellidos</string>
-    <string name="perfil_apellidos_edtable">Doe Murphy</string>
     <string name="perfil_cambiar_contrasena">Cambiar Contraseña</string>
     <string name="perfil_pais">País</string>
     <string name="perfil_configuracion">Configuración</string>
