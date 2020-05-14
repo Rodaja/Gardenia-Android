@@ -13,5 +13,8 @@ public class Constants {
 
     // Web view
     public static final String URL_ADD_POT = "http://192.168.4.1";
+
+    //DataBase
+    public static final String NOMBRE_BASE_DATOS="usuarios";
 }
 

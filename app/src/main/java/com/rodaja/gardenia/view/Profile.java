@@ -3,6 +3,9 @@ package com.rodaja.gardenia.view;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -44,6 +47,9 @@ public class Profile extends AppCompatActivity {
     private TextView tvTitulo, tituloCorreo, tituloNombreCompleto, tvPaisEt,
             tvApellidosEt, tvCorreoElectronicoEt, tvNombreUsuarioEt, tvNombreEt;
     private ImageView ivMenuIconLeft, ivMenuIconRight;
+
+    private SQLiteDatabase sqLiteDatabase;
+    private SQLiteOpenHelper sqLiteOpenHelper;
 
     private ConstraintLayout constLCerrarSesionEditable, constLApellidosEditable, constLNombreEditable, constLNombreUsuarioEditable, constLCorreoElectronicoEditable, constLBorrarCuentaEditable, constLCambiarContrasenaEditable, constLPaises, constLConfiuracion;
     private Context context;
@@ -344,7 +350,11 @@ public class Profile extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("Confirmar", "Has seleccionado aceptar");
+                        setupDataBase();
+                        borrarDatabase();
                         goLogin(Login.class);
+
+
                     }
                 });
                 //Mostramos el cuadro de dialogo
@@ -379,6 +389,27 @@ public class Profile extends AppCompatActivity {
                 dialog.show();
             }
         });
+    }
+
+    public void setupDataBase() {
+        sqLiteOpenHelper = new SQLiteOpenHelper(getApplicationContext(), Constants.NOMBRE_BASE_DATOS, null, 1) {
+            @Override
+            public void onCreate(SQLiteDatabase sqLiteDatabase) {
+                Log.d("OnCreate", "create table");
+                String query = "CREATE TABLE " + Constants.NOMBRE_BASE_DATOS + "(email varchar(100), password varchar(100))";
+                sqLiteDatabase.execSQL(query);
+            }
+
+            @Override
+            public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+            }
+        };
+        sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
+    }
+
+    private void borrarDatabase() {
+        context.deleteDatabase(Constants.NOMBRE_BASE_DATOS);
     }
 
     private void profileRequest() {

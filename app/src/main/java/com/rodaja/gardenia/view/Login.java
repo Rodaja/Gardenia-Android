@@ -59,7 +59,6 @@ public class Login extends AppCompatActivity {
     private SQLiteOpenHelper sqLiteOpenHelper;
     private SQLiteDatabase sqLiteDatabase;
 
-    private String nombreBaseDatos = "usuarios";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,10 +91,10 @@ public class Login extends AppCompatActivity {
         });
 
         setupDataBase();
-        if (userCheckLogin()){
+        if (userCheckLogin()) {
             loginRequest(Constants.URL_LOGIN, email, password);
         }
-}
+    }
 
     private void inicializar() {
         ivBackground = findViewById(R.id.ivBackground);
@@ -107,9 +106,9 @@ public class Login extends AppCompatActivity {
 
     }
 
-    private void loginRequest(String url, String email, String password){
+    private void loginRequest(String url, String email, String password) {
 
-        final Map<String,String> body = new HashMap<String, String>();
+        final Map<String, String> body = new HashMap<String, String>();
 
         body.put("email", email);
         body.put("password", password);
@@ -127,7 +126,7 @@ public class Login extends AppCompatActivity {
                         Log.d("Success", response.toString());
                         user = gson.fromJson(response.toString(), User.class);
 
-                        if (chboxRecordarme.isChecked()){
+                        if (chboxRecordarme.isChecked()) {
                             Log.d("Recuerdame", "Recuerdame seleccionado");
                             guardarDatosUsuario(user);
                             Log.d("Datos de usario", "Datos usuario guardados");
@@ -152,9 +151,10 @@ public class Login extends AppCompatActivity {
                 headers.put("Content-Type", "application/json; charset=utf-8");
                 return headers;
             }
+
             @Override
-            protected Map<String,String> getParams(){
-                Map<String,String> params = body;
+            protected Map<String, String> getParams() {
+                Map<String, String> params = body;
                 return params;
             }
 
@@ -163,7 +163,7 @@ public class Login extends AppCompatActivity {
 
     }
 
-    private void goToHome(Class goToView, User user){
+    private void goToHome(Class goToView, User user) {
         Intent in = new Intent(this, goToView);
         in.putExtra("user", user);
         startActivity(in);
@@ -174,12 +174,12 @@ public class Login extends AppCompatActivity {
         startActivity(in);
     }
 
-    public void setupDataBase(){
-        sqLiteOpenHelper = new SQLiteOpenHelper(getApplicationContext(),nombreBaseDatos, null,1) {
+    public void setupDataBase() {
+        sqLiteOpenHelper = new SQLiteOpenHelper(getApplicationContext(), Constants.NOMBRE_BASE_DATOS, null, 1) {
             @Override
             public void onCreate(SQLiteDatabase sqLiteDatabase) {
                 Log.d("OnCreate", "create table");
-                String query = "CREATE TABLE " + nombreBaseDatos + "(email varchar(100), password varchar(100))";
+                String query = "CREATE TABLE " + Constants.NOMBRE_BASE_DATOS + "(email varchar(100), password varchar(100))";
                 sqLiteDatabase.execSQL(query);
             }
 
@@ -190,11 +190,12 @@ public class Login extends AppCompatActivity {
         };
         sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
     }
+
     private boolean userCheckLogin() {
         //Query
-        Cursor cursor =  sqLiteDatabase.rawQuery("SELECT * FROM " +  nombreBaseDatos, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + Constants.NOMBRE_BASE_DATOS, null);
 
-        if (cursor.moveToNext()){
+        if (cursor.moveToNext()) {
             email = cursor.getString(0);
             Log.d("Email guardado", email);
             password = cursor.getString(1);
@@ -205,10 +206,10 @@ public class Login extends AppCompatActivity {
         return false;
     }
 
-    private void guardarDatosUsuario(User user){
+    private void guardarDatosUsuario(User user) {
         ContentValues valores = new ContentValues();
         valores.put("email", user.getEmail());
         valores.put("password", password);
-        sqLiteDatabase.insert(nombreBaseDatos, null, valores);
+        sqLiteDatabase.insert(Constants.NOMBRE_BASE_DATOS, null, valores);
     }
 }
