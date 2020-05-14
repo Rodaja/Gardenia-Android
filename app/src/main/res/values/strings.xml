@@ -5,6 +5,9 @@
     <string name="settings_dialog_tema">Tema de la Aplicación</string>
     <string name="perfil_dialog_titulo_cerrar_sesion">¿Cerrar Sesión?</string>
 
+    <string name="perfil_toast_contrasena_repetir_incorrecta">Las contraseñas nuevas no coinciden</string>
+    <string name="perfil_toast_contrasena_nueva_incorrecta">La contraseña nueva no es valida</string>
+    <string name="perfil_toast_contrasena_actual_incorrecta">La contraseña actual no es correcta</string>
     <string name="perfil_dialog_titulo_apellidos">Cambiar Apellidos</string>
     <string name="perfil_dialog_titulo_nombre">Cambiar Nombre</string>
     <string name="perfil_dialog_titulo_username">Cambiar UserName</string>

@@ -29,6 +29,8 @@ import com.google.gson.Gson;
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.configuration.Constants;
 import com.rodaja.gardenia.model.entity.User;
+import com.rodaja.gardenia.model.security.Hash;
+import com.rodaja.gardenia.model.validation.Validation;
 import com.rodaja.gardenia.model.web.Json;
 
 import org.json.JSONObject;
@@ -46,6 +48,7 @@ public class Profile extends AppCompatActivity {
     private ConstraintLayout constLCerrarSesionEditable, constLApellidosEditable, constLNombreEditable, constLNombreUsuarioEditable, constLCorreoElectronicoEditable, constLBorrarCuentaEditable, constLCambiarContrasenaEditable, constLPaises, constLConfiuracion;
     private Context context;
     private User user;
+    private boolean cambiosGuardar;
 
 
     @Override
@@ -54,6 +57,7 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         inicializarMenu();
+        cambiosGuardar = false;
 
         context = this;
         Intent in = getIntent();
@@ -85,7 +89,10 @@ public class Profile extends AppCompatActivity {
         ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                profileRequest();
+                //Si ha habido alguna modificacion puedes guardar los cambios
+                if (cambiosGuardar == true) {
+                    profileRequest();
+                }
             }
         });
 
@@ -124,6 +131,8 @@ public class Profile extends AppCompatActivity {
                         Log.d("Confirmar", "Has seleccionado aceptar");
                         user.setEmail(etEmail.getText().toString());
                         cargarDatosUsuariosReales();
+                        cambiosGuardar = true;
+                        cambiarImagenGuardar();
                     }
                 });
                 //Mostramos el cuadro de dialogo
@@ -165,6 +174,8 @@ public class Profile extends AppCompatActivity {
                         Log.d("Confirmar", "Has seleccionado aceptar");
                         user.setUserName(etUserName.getText().toString());
                         cargarDatosUsuariosReales();
+                        cambiosGuardar = true;
+                        cambiarImagenGuardar();
                     }
                 });
                 //Mostramos el cuadro de dialogo
@@ -206,6 +217,8 @@ public class Profile extends AppCompatActivity {
                         Log.d("Confirmar", "Has seleccionado aceptar");
                         user.setName(etNombre.getText().toString());
                         cargarDatosUsuariosReales();
+                        cambiosGuardar = true;
+                        cambiarImagenGuardar();
                     }
                 });
                 //Mostramos el cuadro de dialogo
@@ -247,6 +260,8 @@ public class Profile extends AppCompatActivity {
                         Log.d("Confirmar", "Has seleccionado aceptar");
                         user.setSurname(etApellidos.getText().toString());
                         cargarDatosUsuariosReales();
+                        cambiosGuardar = true;
+                        cambiarImagenGuardar();
                     }
                 });
                 //Mostramos el cuadro de dialogo
@@ -294,6 +309,9 @@ public class Profile extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("Confirmar", "Has seleccionado aceptar");
+                        cambiarContrasena(etContrasenaActual.getText().toString(),
+                                etNuevaContrasena.getText().toString(),
+                                etRepetirContrasena.getText().toString());
                     }
                 });
                 //Mostramos el cuadro de dialogo
@@ -380,7 +398,9 @@ public class Profile extends AppCompatActivity {
                         Gson gson = new Gson();
                         Log.d("Success", response.toString());
                         user = gson.fromJson(response.toString(), User.class);
-                        Toast.makeText(context, "Cambios Actualizados", Toast.LENGTH_LONG);
+                        Toast.makeText(context, "Cambios Actualizados", Toast.LENGTH_LONG).show();
+                        cambiosGuardar = false;
+                        cambiarImagenGuardar();
 
 
                     }
@@ -419,6 +439,36 @@ public class Profile extends AppCompatActivity {
         tvNombreEt.setText(user.getName());
         tvApellidosEt.setText(user.getSurname());
         tvPaisEt.setText(user.getCountry());
+    }
+
+    private void cambiarContrasena(String contrasenaAcual, String contrasenaNueva, String contrasenaRepetir) {
+        //Hasheamos la contraseña actual
+        String contrasenaHasheada = Hash.hashPassword(contrasenaAcual);
+        //Contraseña actual correcta
+        if (contrasenaHasheada.equalsIgnoreCase(user.getPassword())) {
+            //Validamos contraseña nueva
+            if (Validation.validarPassword(contrasenaNueva)) {
+                //Vemos si la contraseña nueva y repetir contraseña son inguales
+                if (contrasenaNueva.equalsIgnoreCase(contrasenaRepetir)) {
+                    user.setPassword(contrasenaNueva);
+                    profileRequest();
+                } else {
+                    Toast.makeText(context, R.string.perfil_toast_contrasena_repetir_incorrecta, Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(context, R.string.perfil_toast_contrasena_nueva_incorrecta, Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(context, R.string.perfil_toast_contrasena_actual_incorrecta, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void cambiarImagenGuardar() {
+        if (cambiosGuardar == true) {
+            ivMenuIconRight.setImageResource(R.drawable.icon_save_blue);
+        } else {
+            ivMenuIconRight.setImageResource(R.drawable.icon_save);
+        }
     }
 
 
