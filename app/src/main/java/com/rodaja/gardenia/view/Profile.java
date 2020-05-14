@@ -58,7 +58,7 @@ public class Profile extends AppCompatActivity {
 
         inicializarMenu();
         cambiosGuardar = false;
-
+        cambiarImagenGuardar();
         context = this;
         Intent in = getIntent();
         user = (User) in.getSerializableExtra("user");
@@ -75,6 +75,7 @@ public class Profile extends AppCompatActivity {
         constLPaises.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cambiosGuardar = true;
                 goToNewView(Country.class, user);
             }
         });
@@ -343,6 +344,7 @@ public class Profile extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("Confirmar", "Has seleccionado aceptar");
+                        goLogin(Login.class);
                     }
                 });
                 //Mostramos el cuadro de dialogo
@@ -499,6 +501,11 @@ public class Profile extends AppCompatActivity {
         constLNombreUsuarioEditable = findViewById(R.id.constLNombreUsuarioEditable);
         constLNombreEditable = findViewById(R.id.constLNombreEditable);
         constLApellidosEditable = findViewById(R.id.constLApellidosEditable);
+    }
+
+    private void goLogin(Class goToView) {
+        Intent in = new Intent(this, goToView);
+        startActivity(in);
     }
 
     private void goToNewView(Class goToView, User user) {
