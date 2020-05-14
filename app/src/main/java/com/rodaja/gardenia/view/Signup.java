@@ -51,7 +51,7 @@ public class Signup extends AppCompatActivity {
         inicializar();
         contexto = this;
 
-        Image.setImage(this, R.drawable.login_background, ivBackground);
+        Image.setImage(this, R.drawable.background, ivBackground);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
