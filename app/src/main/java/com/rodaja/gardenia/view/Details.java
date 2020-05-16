@@ -74,13 +74,13 @@ public class Details extends AppCompatActivity {
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, Home.class, user);
+                goToNewView(Home.class, user);
             }
         });
         ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, AddFlowerPot.class, user);
+                goToNewView(AddFlowerPot.class, user);
             }
         });
 
@@ -90,7 +90,49 @@ public class Details extends AppCompatActivity {
                 showAlertDialog();
             }
         });
+        
+        ivDeleteFlowerpot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteFlowerpotRequest();
+            }
+        });
 
+    }
+
+    private void deleteFlowerpotRequest() {
+        RequestQueue queue = Volley.newRequestQueue(contexto);
+
+        String url =Constants.URL_USER +"/" +user.getId() + Constants.URL_FLOWERPOT_ROOT + "/" + maceta.getMacAddress();
+        final StringRequest request = new StringRequest(Request.Method.DELETE,url,
+                new Response.Listener<String>() {
+
+                    @Override
+                    public void onResponse(String response) {
+                        Toast toast = Toast.makeText(contexto,
+                                "Maceta Borrada", Toast.LENGTH_LONG);
+                        toast.show();
+                        requestUpdateUser(Home.class);
+                    }
+
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("Error: " + error.getMessage());
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("Api-Key", user.getApiKey());
+                return headers;
+            }
+
+        };
+        queue.add(request);
     }
 
     private void showAlertDialog() {
@@ -118,14 +160,14 @@ public class Details extends AppCompatActivity {
                 Log.d("Borrar", "Has seleccionado aceptar");
                 requestModifyFlowerpot(newName);
                 tv_titulo_detalle_maceta.setText(newName);
-                requestUpdateUser();
+                requestUpdateUser(null);
             }
         });
         //Mostramos el cuadro de dialogo
         dialog.show();
     }
 
-    private void requestUpdateUser() {
+    private void requestUpdateUser(final Class goTo) {
         RequestQueue queue = Volley.newRequestQueue(contexto);
 
         StringRequest request = new StringRequest(Request.Method.GET,
@@ -141,6 +183,10 @@ public class Details extends AppCompatActivity {
                         Toast toast = Toast.makeText(contexto,
                                 "Usuario actualizado", Toast.LENGTH_LONG);
                         toast.show();
+
+                        if(goTo != null){
+                            goToNewView(goTo, user);
+                        }
                     }
 
                 }, new Response.ErrorListener() {
@@ -258,7 +304,7 @@ public class Details extends AppCompatActivity {
         ivMenuIconRight.setImageResource(R.drawable.icon_add);
     }
 
-    private void goToNewView(View view, Class goToView, User user) {
+    private void goToNewView(Class goToView, User user) {
         Intent in = new Intent(this, goToView);
         in.putExtra("user", user);
         startActivity(in);
