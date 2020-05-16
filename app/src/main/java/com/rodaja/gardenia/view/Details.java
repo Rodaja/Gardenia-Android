@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -52,6 +53,7 @@ public class Details extends AppCompatActivity {
     private FlowerPot maceta;
     private Context contexto;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private Button btnRegar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +104,63 @@ public class Details extends AppCompatActivity {
 
         swipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
 
+        btnRegar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                regarRequest();
+            }
+        });
+
     }
+
+    private void regarRequest() {
+        String macAddress = maceta.getMacAddress();
+        Log.d("Mac" , macAddress.toString());
+        final Map<String,String> body = new HashMap<String, String>();
+
+        body.put("macAddress", macAddress);
+        body.put("water", String.valueOf(true));
+
+        RequestQueue queue = Volley.newRequestQueue(contexto);
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT,
+                Constants.URL_FLOWERPOT + "/" + macAddress , new JSONObject(body),
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Gson gson = new Gson();
+                        Log.d("Success", response.toString());
+                        maceta = gson.fromJson(response.toString(), FlowerPot.class);
+
+                        Toast toast = Toast.makeText(contexto,
+                                "Planta regandose", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("Error: " + error.getMessage());
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
+            }
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = body;
+                return params;
+            }
+
+        };
+        queue.add(request);
+    }
+
     protected SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
@@ -348,6 +406,7 @@ public class Details extends AppCompatActivity {
         ivChangeName = findViewById(R.id.img_Tarjeta_elegir_nombre);
         ivDeleteFlowerpot = findViewById(R.id.ivDeleteFlowerpot);
         swipeRefreshLayout = findViewById(R.id.swipeDetails);
+        btnRegar = findViewById(R.id.btnRegar);
 
         tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
