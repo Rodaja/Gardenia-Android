@@ -132,7 +132,7 @@ public class Login extends AppCompatActivity {
                             Log.d("Datos de usario", "Datos usuario guardados");
                         }
                         Toast toast = Toast.makeText(contexto,
-                                "Bienvenido " + user.getEmail(), Toast.LENGTH_LONG);
+                                R.string.toast_bienvenido + user.getEmail(), Toast.LENGTH_LONG);
                         toast.show();
 
                         goToHome(Home.class, user);
@@ -141,6 +141,9 @@ public class Login extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                Toast toast = Toast.makeText(contexto,
+                        R.string.login_error, Toast.LENGTH_LONG);
+                toast.show();
                 VolleyLog.d("Error: " + error.getMessage());
             }
         }) {

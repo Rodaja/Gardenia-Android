@@ -123,4 +123,7 @@
     <!-- Dialogs -->
     <string name="cambiar_nombre_maceta" >Cambiar nombre</string>
     <string name="cambiar_nombre_maceta_texto">Introduzca el nuevo nombre para su dispositivo</string>
+
+    <!-- Toast -->
+    <string name="toast_bienvenido">Bienvenid@</string>
 </resources>
