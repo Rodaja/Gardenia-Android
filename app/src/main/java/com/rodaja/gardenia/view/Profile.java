@@ -26,6 +26,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.Gson;
@@ -383,6 +384,9 @@ public class Profile extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("Borrar", "Has seleccionado aceptar");
+                        borrarUsuario();
+
+
                     }
                 });
                 //Mostramos el cuadro de dialogo
@@ -410,6 +414,44 @@ public class Profile extends AppCompatActivity {
 
     private void borrarDatabase() {
         context.deleteDatabase(Constants.NOMBRE_BASE_DATOS);
+    }
+
+
+    private void borrarUsuario() {
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = Constants.URL_USER + "/" + user.getId();
+        final StringRequest request = new StringRequest(Request.Method.DELETE, url,
+                new Response.Listener<String>() {
+
+                    @Override
+                    public void onResponse(String response) {
+                        Toast toast = Toast.makeText(context,
+                                "Usuario Borrado", Toast.LENGTH_LONG);
+                        toast.show();
+                        borrarDatabase();
+                        goLogin(Login.class);
+
+                    }
+
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("Error: " + error.getMessage());
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("Api-Key", user.getApiKey());
+                return headers;
+            }
+
+        };
+        queue.add(request);
     }
 
     private void profileRequest() {
