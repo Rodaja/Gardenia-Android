@@ -9,6 +9,7 @@
         <item name="android:windowBackground">@color/colorBackground</item>
         <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/background_dark </item>
         <item name="materialAlertDialogTheme">@style/Theme.App.MaterialDialog</item>
+        <item name="android:buttonStyle">@style/Theme.App.Button</item>
 
     </style>
 
@@ -63,6 +64,15 @@
     <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">4dp</item>
+    </style>
+
+    <!-- Button -->
+    <style name="Theme.App.Button" parent="Widget.AppCompat.Button">
+        <item name="backgroundTint">@color/colorAccent</item>
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
 </resources>
