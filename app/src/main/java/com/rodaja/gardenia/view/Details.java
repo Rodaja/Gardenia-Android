@@ -2,6 +2,7 @@ package com.rodaja.gardenia.view;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -50,6 +51,7 @@ public class Details extends AppCompatActivity {
     private ImageView ivDetails, ivChoose_plant, ivDeleteFlowerpot, ivChangeName;
     private FlowerPot maceta;
     private Context contexto;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +100,58 @@ public class Details extends AppCompatActivity {
             }
         });
 
+        swipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
+
     }
+    protected SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            updateFlowerpotRequest();
+            setearValores();
+            swipeRefreshLayout.setRefreshing(false);
+        }
+    };
+
+
+    private void updateFlowerpotRequest() {
+        RequestQueue queue = Volley.newRequestQueue(contexto);
+
+        StringRequest request = new StringRequest(Request.Method.GET,
+                Constants.URL_FLOWERPOT + "/" +maceta.getMacAddress(),
+                new Response.Listener<String>() {
+
+                    @Override
+                    public void onResponse(String response) {
+                        Gson gson = new Gson();
+                        Log.d("Success", response.toString());
+                        maceta = gson.fromJson(response.toString(), FlowerPot.class);
+
+                        Toast toast = Toast.makeText(contexto,
+                                "Maceta actualizada", Toast.LENGTH_LONG);
+                        toast.show();
+
+                    }
+
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("Error: " + error.getMessage());
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("Api-Key", user.getApiKey());
+                return headers;
+            }
+
+        };
+        queue.add(request);
+    }
+
 
     private void deleteFlowerpotRequest() {
         RequestQueue queue = Volley.newRequestQueue(contexto);
@@ -269,9 +322,9 @@ public class Details extends AppCompatActivity {
 
 
     private void setearValores() {
-        tv_humedad_tierra_medida.setText(String.valueOf(maceta.getGroundHumidity()));
-        tv_temperatura_ambiental_medida2.setText(String.valueOf(maceta.getAirTemperature()));
-        tv_humedad_ambiental_medida.setText(String.valueOf(maceta.getAirHumidity()));
+        tv_humedad_tierra_medida.setText(String.valueOf(maceta.getGroundHumidity()) + "%");
+        tv_temperatura_ambiental_medida2.setText(String.valueOf(maceta.getAirTemperature()) + " ºC");
+        tv_humedad_ambiental_medida.setText(String.valueOf(maceta.getAirHumidity()) + "%");
         tv_titulo_detalle_maceta.setText(String.valueOf(maceta.getName()));
 
     }
@@ -294,6 +347,7 @@ public class Details extends AppCompatActivity {
         tv_titulo_detalle_maceta = findViewById(R.id.tv_titulo_detalle_maceta);
         ivChangeName = findViewById(R.id.img_Tarjeta_elegir_nombre);
         ivDeleteFlowerpot = findViewById(R.id.ivDeleteFlowerpot);
+        swipeRefreshLayout = findViewById(R.id.swipeDetails);
 
         tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
