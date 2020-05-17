@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -94,7 +95,7 @@ public class Details extends AppCompatActivity {
                 showAlertDialog();
             }
         });
-        
+
         ivDeleteFlowerpot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,8 +116,8 @@ public class Details extends AppCompatActivity {
 
     private void regarRequest() {
         String macAddress = maceta.getMacAddress();
-        Log.d("Mac" , macAddress.toString());
-        final Map<String,String> body = new HashMap<String, String>();
+        Log.d("Mac", macAddress.toString());
+        final Map<String, String> body = new HashMap<String, String>();
 
         body.put("macAddress", macAddress);
         body.put("water", String.valueOf(true));
@@ -124,7 +125,7 @@ public class Details extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(contexto);
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT,
-                Constants.URL_FLOWERPOT + "/" + macAddress , new JSONObject(body),
+                Constants.URL_FLOWERPOT + "/" + macAddress, new JSONObject(body),
                 new Response.Listener<JSONObject>() {
 
                     @Override
@@ -151,9 +152,10 @@ public class Details extends AppCompatActivity {
                 headers.put("Content-Type", "application/json; charset=utf-8");
                 return headers;
             }
+
             @Override
-            protected Map<String,String> getParams(){
-                Map<String,String> params = body;
+            protected Map<String, String> getParams() {
+                Map<String, String> params = body;
                 return params;
             }
 
@@ -175,7 +177,7 @@ public class Details extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(contexto);
 
         StringRequest request = new StringRequest(Request.Method.GET,
-                Constants.URL_FLOWERPOT + "/" +maceta.getMacAddress(),
+                Constants.URL_FLOWERPOT + "/" + maceta.getMacAddress(),
                 new Response.Listener<String>() {
 
                     @Override
@@ -214,8 +216,8 @@ public class Details extends AppCompatActivity {
     private void deleteFlowerpotRequest() {
         RequestQueue queue = Volley.newRequestQueue(contexto);
 
-        String url =Constants.URL_USER +"/" +user.getId() + Constants.URL_FLOWERPOT_ROOT + "/" + maceta.getMacAddress();
-        final StringRequest request = new StringRequest(Request.Method.DELETE,url,
+        String url = Constants.URL_USER + "/" + user.getId() + Constants.URL_FLOWERPOT_ROOT + "/" + maceta.getMacAddress();
+        final StringRequest request = new StringRequest(Request.Method.DELETE, url,
                 new Response.Listener<String>() {
 
                     @Override
@@ -253,8 +255,14 @@ public class Details extends AppCompatActivity {
 
         dialog.setMessage(R.string.cambiar_nombre_maceta_texto);
 
-        final EditText editText = new EditText(this);
-        dialog.setView(editText);
+        LinearLayout layout = new LinearLayout(contexto);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(65, 24, 65, 24);
+        final EditText etNombreMaceta = new EditText(contexto);
+        etNombreMaceta.setHint(tv_titulo_detalle_maceta.getText().toString());
+        layout.addView(etNombreMaceta);
+        dialog.setView(layout);
+
         //Damos funcionalidad al boton neutral (el de la izquierda)
         dialog.setNeutralButton(R.string.perfil_dialog_cancelar, new DialogInterface.OnClickListener() {
             @Override
@@ -267,7 +275,7 @@ public class Details extends AppCompatActivity {
         dialog.setPositiveButton(R.string.perfil_dialog_confirmar, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                String newName = editText.getText().toString();
+                String newName = etNombreMaceta.getText().toString();
                 Log.d("Borrar", "Has seleccionado aceptar");
                 requestModifyFlowerpot(newName);
                 tv_titulo_detalle_maceta.setText(newName);
@@ -282,7 +290,7 @@ public class Details extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(contexto);
 
         StringRequest request = new StringRequest(Request.Method.GET,
-                Constants.URL_USER + "/" +user.getId(),
+                Constants.URL_USER + "/" + user.getId(),
                 new Response.Listener<String>() {
 
                     @Override
@@ -295,7 +303,7 @@ public class Details extends AppCompatActivity {
                                 "Usuario actualizado", Toast.LENGTH_LONG);
                         toast.show();
 
-                        if(goTo != null){
+                        if (goTo != null) {
                             goToNewView(goTo, user);
                         }
                     }
@@ -323,7 +331,7 @@ public class Details extends AppCompatActivity {
 
     private void requestModifyFlowerpot(String name) {
         String macAddress = maceta.getMacAddress();
-        final Map<String,String> body = new HashMap<String, String>();
+        final Map<String, String> body = new HashMap<String, String>();
 
         body.put("macAdress", macAddress);
         body.put("name", name);
@@ -332,7 +340,7 @@ public class Details extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(contexto);
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT,
-                Constants.URL_FLOWERPOT + "/" + macAddress , new JSONObject(body),
+                Constants.URL_FLOWERPOT + "/" + macAddress, new JSONObject(body),
                 new Response.Listener<JSONObject>() {
 
                     @Override
@@ -342,7 +350,7 @@ public class Details extends AppCompatActivity {
                         User user = gson.fromJson(response.toString(), User.class);
 
                         Toast toast = Toast.makeText(contexto,
-                               "Nombre cambiado", Toast.LENGTH_LONG);
+                                "Nombre cambiado", Toast.LENGTH_LONG);
                         toast.show();
                     }
                 }, new Response.ErrorListener() {
@@ -359,9 +367,10 @@ public class Details extends AppCompatActivity {
                 headers.put("Content-Type", "application/json; charset=utf-8");
                 return headers;
             }
+
             @Override
-            protected Map<String,String> getParams(){
-                Map<String,String> params = body;
+            protected Map<String, String> getParams() {
+                Map<String, String> params = body;
                 return params;
             }
 
