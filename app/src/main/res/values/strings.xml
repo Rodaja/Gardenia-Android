@@ -95,7 +95,7 @@
     <!-- /strings elegir imagenes -->
 
     <!--strings agregar maceta -->
-    <string name="pasos_para_agregar_maceta">Pasos para añadir una maceta</string>
+    <string name="pasos_para_agregar_maceta">Añadir una maceta</string>
     <string name="paso1">1) Conecte la maceta y asegurase de que el
         LED de encendido se encuentre iluminado</string>
     <string name="paso2">2) Asegurese de la Wi-Fi del hogar se encuentra encendida y disponible</string>
