@@ -76,9 +76,9 @@ public class Signup extends AppCompatActivity {
         ivBack = findViewById(R.id.ivBack);
     }
 
-    private void signUpRequest(String url, String email, String password){
+    private void signUpRequest(String url, String email, String password) {
 
-        final Map<String,String> body = new HashMap<String, String>();
+        final Map<String, String> body = new HashMap<String, String>();
 
         body.put("email", email);
         body.put("password", password);
@@ -97,7 +97,7 @@ public class Signup extends AppCompatActivity {
                         User user = gson.fromJson(response.toString(), User.class);
 
                         Toast toast = Toast.makeText(contexto,
-                                "Bienvenido " + user.getName(), Toast.LENGTH_LONG);
+                                R.string.signup_toast_binevenido + " " + user.getName(), Toast.LENGTH_LONG);
                         toast.show();
 
                         goTo(Home.class, user);
@@ -108,7 +108,7 @@ public class Signup extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d("Error: " + error.getMessage());
                 Toast toast = Toast.makeText(contexto,
-                        "El correo ya esta en uso", Toast.LENGTH_LONG);
+                        R.string.signup_toast_correo_en_uso, Toast.LENGTH_LONG);
                 toast.show();
             }
         }) {
@@ -119,9 +119,10 @@ public class Signup extends AppCompatActivity {
                 headers.put("Content-Type", "application/json; charset=utf-8");
                 return headers;
             }
+
             @Override
-            protected Map<String,String> getParams(){
-                Map<String,String> params = body;
+            protected Map<String, String> getParams() {
+                Map<String, String> params = body;
                 return params;
             }
 
@@ -130,7 +131,7 @@ public class Signup extends AppCompatActivity {
 
     }
 
-    private void goTo(Class goToView, User user){
+    private void goTo(Class goToView, User user) {
         Intent in = new Intent(this, goToView);
         in.putExtra("user", user);
         startActivity(in);

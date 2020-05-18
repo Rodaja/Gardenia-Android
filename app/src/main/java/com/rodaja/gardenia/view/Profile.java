@@ -427,7 +427,7 @@ public class Profile extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Toast toast = Toast.makeText(context,
-                                "Usuario Borrado", Toast.LENGTH_LONG);
+                                R.string.profile_toast_usuario_borrado, Toast.LENGTH_LONG);
                         toast.show();
                         borrarDatabase();
                         goLogin(Login.class);
@@ -473,7 +473,7 @@ public class Profile extends AppCompatActivity {
                         Gson gson = new Gson();
                         Log.d("Success", response.toString());
                         user = gson.fromJson(response.toString(), User.class);
-                        Toast.makeText(context, "Cambios Actualizados", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, R.string.profile_toast_cambios_actualizados, Toast.LENGTH_LONG).show();
                         cambiosGuardar = false;
                         cambiarImagenGuardar();
 

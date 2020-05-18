@@ -5,6 +5,22 @@
     <string name="settings_dialog_tema">Tema de la Aplicación</string>
     <string name="perfil_dialog_titulo_cerrar_sesion">¿Cerrar Sesión?</string>
 
+
+    <string name="signup_toast_correo_en_uso">El correo ya esta en uso</string>
+    <string name="signup_toast_binevenido">Bienvenido</string>
+    <string name="profile_toast_cambios_actualizados">Cambios Actualizados</string>
+    <string name="profile_toast_usuario_borrado">Usuario Borrado</string>
+    <string name="details_toast_planta_regandose">Planta regandose</string>
+    <string name="details_toast_nombre_cambiado">Nombre cambiado</string>
+    <string name="details_toast_usuario_actualizado">Usuario actualizado</string>
+    <string name="details_toast_maceta_borrada">Maceta Borrada</string>
+    <string name="details_toast_maceta_actualizada">Maceta actualizada</string>
+    <string name="country_toast_pais_no_cambiado">Pais no se ha cambiado</string>
+    <string name="country_toast_no_poder_conectar">No se ha podido conectar</string>
+    <string name="country_toast_minimo_caracteres">Necesitas mínimo caracteres para buscar</string>
+    <string name="addflowerpotview_toast_maceta_no_anadida">Maceta no añadida</string>
+    <string name="addflowerpotview_toast_wifi_habitual">Por favor conectese a su wifi habitual</string>
+
     <string name="perfil_toast_contrasena_repetir_incorrecta">Las contraseñas nuevas no coinciden</string>
     <string name="perfil_toast_contrasena_nueva_incorrecta">La contraseña nueva no es valida</string>
     <string name="perfil_toast_contrasena_actual_incorrecta">La contraseña actual no es correcta</string>
@@ -121,7 +137,7 @@
     <!-- /Menu -->
 
     <!-- Dialogs -->
-    <string name="cambiar_nombre_maceta" >Cambiar nombre</string>
+    <string name="cambiar_nombre_maceta">Cambiar nombre</string>
     <string name="cambiar_nombre_maceta_texto">Introduzca el nuevo nombre para su dispositivo</string>
     <string name="details_borrar_maceta_titulo">Borrar maceta</string>
     <string name="details_borrar_maceta_mensaje">Aviso: Esto borrará la maceta de su cuenta</string>
