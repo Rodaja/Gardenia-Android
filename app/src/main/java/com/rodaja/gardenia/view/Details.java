@@ -98,7 +98,28 @@ public class Details extends AppCompatActivity {
         ivDeleteFlowerpot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteFlowerpotRequest();
+                MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(contexto);
+                dialog.setTitle(R.string.details_borrar_maceta_titulo);
+                dialog.setMessage(R.string.details_borrar_maceta_mensaje);
+                //Damos funcionalidad al boton neutral (el de la izquierda)
+                dialog.setNeutralButton(R.string.perfil_dialog_cancelar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Log.d("Cancelar", "Has seleccionado cancelar");
+                    }
+                });
+
+                //Damos funcionalidad al boton positivo (el de la derecha)
+                dialog.setPositiveButton(R.string.perfil_dialog_borrar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Log.d("Borrar", "Has seleccionado aceptar");
+                        deleteFlowerpotRequest();
+                    }
+                });
+                //Mostramos el cuadro de dialogo
+                dialog.show();
+
             }
         });
 
