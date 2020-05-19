@@ -17,6 +17,7 @@ import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.entity.FlowerPot;
 import com.rodaja.gardenia.view.multimedia.Image;
 
+import java.io.File;
 import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> implements View.OnClickListener {
@@ -54,11 +55,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
         ImageView imageView = holder.imagen_maceta;
         FlowerPot maceta = macetas.get(position);
 
-        try {
+        File img = new File(maceta.getImageUrl());
+        if (img.exists()) {
             Image.setUriImageRoundedCorners(holder.imagen_maceta.getContext(), maceta.getImageUrl(), imageView, 25);
-        } catch (Exception e){
+        } else {
             Image.setImageRoundedCorners(holder.imagen_maceta.getContext(), R.drawable.detalles_principal, imageView, 25);
         }
+
     }
 
     @Override

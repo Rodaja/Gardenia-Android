@@ -73,12 +73,7 @@ public class Details extends AppCompatActivity {
         inicializarMenu();
         contexto = this;
         setearValores();
-
-        try {
-            Image.setUriImageRoundedCorners(this, maceta.getImageUrl(), ivDetails, 25);
-        } catch (Exception e){
-            Image.setImageRoundedCorners(this, R.drawable.detalles_principal, ivDetails, 25);
-        }
+        checkMacetaImageUrl();
 
         ivChoosePlant.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,6 +141,15 @@ public class Details extends AppCompatActivity {
         });
 
 
+    }
+
+    private void checkMacetaImageUrl() {
+        File img = new File(maceta.getImageUrl());
+        if (img.exists()){
+            Image.setUriImageRoundedCorners(this, maceta.getImageUrl(), ivDetails, 25);
+        } else{
+            Image.setImageRoundedCorners(this, R.drawable.detalles_principal, ivDetails, 25);
+        }
     }
 
     private void selectGalleryImage() {
