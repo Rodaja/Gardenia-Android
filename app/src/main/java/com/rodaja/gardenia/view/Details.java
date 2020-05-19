@@ -156,7 +156,7 @@ public class Details extends AppCompatActivity {
                         maceta = gson.fromJson(response.toString(), FlowerPot.class);
 
                         Toast toast = Toast.makeText(contexto,
-                                "Planta regandose", Toast.LENGTH_LONG);
+                                R.string.details_toast_planta_regandose, Toast.LENGTH_LONG);
                         toast.show();
                     }
                 }, new Response.ErrorListener() {
@@ -208,7 +208,7 @@ public class Details extends AppCompatActivity {
                         maceta = gson.fromJson(response.toString(), FlowerPot.class);
 
                         Toast toast = Toast.makeText(contexto,
-                                "Maceta actualizada", Toast.LENGTH_LONG);
+                                R.string.details_toast_maceta_actualizada, Toast.LENGTH_LONG);
                         toast.show();
 
                     }
@@ -244,7 +244,7 @@ public class Details extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Toast toast = Toast.makeText(contexto,
-                                "Maceta Borrada", Toast.LENGTH_LONG);
+                                R.string.details_toast_maceta_borrada, Toast.LENGTH_LONG);
                         toast.show();
                         requestUpdateUser(Home.class);
                     }
@@ -321,7 +321,7 @@ public class Details extends AppCompatActivity {
                         user = gson.fromJson(response.toString(), User.class);
 
                         Toast toast = Toast.makeText(contexto,
-                                "Usuario actualizado", Toast.LENGTH_LONG);
+                                R.string.details_toast_usuario_actualizado, Toast.LENGTH_LONG);
                         toast.show();
 
                         if (goTo != null) {
@@ -371,7 +371,7 @@ public class Details extends AppCompatActivity {
                         User user = gson.fromJson(response.toString(), User.class);
 
                         Toast toast = Toast.makeText(contexto,
-                                "Nombre cambiado", Toast.LENGTH_LONG);
+                                R.string.details_toast_nombre_cambiado, Toast.LENGTH_LONG);
                         toast.show();
                     }
                 }, new Response.ErrorListener() {

@@ -127,7 +127,7 @@ public class Signup extends AppCompatActivity {
                         User user = gson.fromJson(response.toString(), User.class);
 
                         Toast toast = Toast.makeText(contexto,
-                                "Bienvenido " + user.getName(), Toast.LENGTH_LONG);
+                                R.string.signup_toast_binevenido + " " + user.getName(), Toast.LENGTH_LONG);
                         toast.show();
 
                         goTo(Home.class, user);
@@ -138,7 +138,7 @@ public class Signup extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d("Error: " + error.getMessage());
                 Toast toast = Toast.makeText(contexto,
-                        "El correo ya esta en uso", Toast.LENGTH_LONG);
+                        R.string.signup_toast_correo_en_uso, Toast.LENGTH_LONG);
                 toast.show();
             }
         }) {

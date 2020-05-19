@@ -131,7 +131,7 @@ public class Login extends AppCompatActivity {
                             guardarDatosUsuario(user);
                             Log.d("Datos de usario", "Datos usuario guardados");
                         }
-                        Toast toast = Toast.makeText(contexto,getString(R.string.toast_bienvenido) + " " + user.getEmail(), Toast.LENGTH_LONG);
+                                Toast toast = Toast.makeText(contexto,getString(R.string.toast_bienvenido) + " " + user.getEmail(), Toast.LENGTH_LONG);
                         toast.show();
 
                         goToHome(Home.class, user);

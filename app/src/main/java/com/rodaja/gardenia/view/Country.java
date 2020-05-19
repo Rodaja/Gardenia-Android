@@ -54,12 +54,11 @@ public class Country extends AppCompatActivity {
     //
     private EditText et_buscador;
     //
-    private  LinearLayoutManager linearLayoutManager;
+    private LinearLayoutManager linearLayoutManager;
     private RecyclerView recyclerView;
     private CountryAdapter adapter;
     public RequestQueue queue;
-    private List<Pais> paises  = new ArrayList<>() ;
-
+    private List<Pais> paises = new ArrayList<>();
 
 
     public static String pais_seleccionado = "";
@@ -80,10 +79,10 @@ public class Country extends AppCompatActivity {
         user = getUser();
         String url = "https://restcountries.eu/rest/v2/all";
 //      String url = "https://restcountries.eu/rest/v2/name/japan";
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,url,null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                recyclerView.setLayoutManager(linearLayoutManager );
+                recyclerView.setLayoutManager(linearLayoutManager);
                 try {
 
                     for (int i = 0; i < response.length(); i++) {
@@ -92,18 +91,18 @@ public class Country extends AppCompatActivity {
                         int poblacion = mjsonObject.getInt("population");
                         JSONObject traduccion = mjsonObject.getJSONObject("translations");
                         String nombre = traduccion.getString("es");
-                        if (nombre.contains("República")){
+                        if (nombre.contains("República")) {
                             nombre = nombre_abreviado(nombre);
                         }
                         String foto = mjsonObject.getString("flag");
-                        if (nombre.length()<21 && poblacion > 10000000  ){
-                            paises.add(new Pais(nombre,siglas, foto));
+                        if (nombre.length() < 21 && poblacion > 10000000) {
+                            paises.add(new Pais(nombre, siglas, foto));
                         }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                adapter = new CountryAdapter( context, paises);
+                adapter = new CountryAdapter(context, paises);
                 recyclerView.setAdapter(adapter);
 
 
@@ -130,21 +129,17 @@ public class Country extends AppCompatActivity {
         });
 
 
-
-
-
-
         et_buscador.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 boolean handled = false;
                 if (actionId == EditorInfo.IME_ACTION_SEND || actionId == EditorInfo.IME_ACTION_NEXT) {
                     String nombre = String.valueOf(et_buscador.getText());
-                    if (nombre.length()>2) {
+                    if (nombre.length() > 2) {
                         peticion_nombre(nombre);
                         handled = true;
-                    }else{
-                        Toast.makeText(context,"Necesitas mínimo caracteres para buscar",Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(context, R.string.country_toast_minimo_caracteres, Toast.LENGTH_LONG).show();
                     }
                 }
                 return handled;
@@ -154,18 +149,17 @@ public class Country extends AppCompatActivity {
         ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                        cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-                        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-                        boolean isConnected = activeNetwork != null &&
-                                activeNetwork.isConnected();
-                        if(isConnected){
-                            userRequest(user.getId());
-                        }else{
-                            Toast.makeText(context,"No se ha podido conectar",Toast.LENGTH_LONG).show();
-                        }
+                cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+                boolean isConnected = activeNetwork != null &&
+                        activeNetwork.isConnected();
+                if (isConnected) {
+                    userRequest(user.getId());
+                } else {
+                    Toast.makeText(context, R.string.country_toast_no_poder_conectar, Toast.LENGTH_LONG).show();
+                }
             }
         });
-
 
 
     }
@@ -174,12 +168,12 @@ public class Country extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.menu);
 
-        tvTitulo  = findViewById(R.id.tvMenuTitulo);
+        tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
         ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
         tvTitulo.setText(R.string.paises);
         ivMenuIconRight.setImageResource(R.drawable.icon_save);
-        et_buscador = (EditText)findViewById(R.id.editText_buscador);
+        et_buscador = (EditText) findViewById(R.id.editText_buscador);
 
         //Adaptador Recycler
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
@@ -188,11 +182,10 @@ public class Country extends AppCompatActivity {
         //
     }
 
-    private void goToNewView(View view , Class goToView){
+    private void goToNewView(View view, Class goToView) {
         Intent in = new Intent(this, goToView);
         startActivity(in);
     }
-
 
 
     public void peticion_nombre(final String nombre_pais) {
@@ -210,7 +203,7 @@ public class Country extends AppCompatActivity {
                         int poblacion = mjsonObject.getInt("population");
                         JSONObject traduccion = mjsonObject.getJSONObject("translations");
                         String nombre = traduccion.getString("es");
-                        if (nombre.contains(" ")){
+                        if (nombre.contains(" ")) {
                             nombre = nombre_abreviado(nombre);
                         }
                         String foto = mjsonObject.getString("flag");
@@ -239,15 +232,15 @@ public class Country extends AppCompatActivity {
     }
 
 
-    public String nombre_abreviado(String nombre){
+    public String nombre_abreviado(String nombre) {
         String nombre_final = "";
-        if (nombre.contains(" ")){
-            String nombre_largo [] = nombre.split(" ");
-            String inicial = nombre_largo[0].substring(0,1);
-            nombre_final = inicial+"."+nombre_largo[1];
+        if (nombre.contains(" ")) {
+            String nombre_largo[] = nombre.split(" ");
+            String inicial = nombre_largo[0].substring(0, 1);
+            nombre_final = inicial + "." + nombre_largo[1];
         }
 
-        return   nombre_final;
+        return nombre_final;
 
     }
 
@@ -260,12 +253,12 @@ public class Country extends AppCompatActivity {
 
         user.setCountry(pais_seleccionado);
         String json = Json.crearJson(user);
-        Log.d("json",json);
+        Log.d("json", json);
         Gson gson = new Gson();
         final Map body = gson.fromJson(json, Map.class);
         final RequestQueue queue = Volley.newRequestQueue(context);
-        final String url = Constants.URL_USER + "/" + userId ;
-       // String url = "http://url/api/users/" + userId;
+        final String url = Constants.URL_USER + "/" + userId;
+        // String url = "http://url/api/users/" + userId;
         Log.d("URL", url);
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT,
                 url, new JSONObject(body),
@@ -283,7 +276,7 @@ public class Country extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast toast = Toast.makeText(context,
-                        "Pais no se ha cambiado " , Toast.LENGTH_LONG);
+                        R.string.country_toast_pais_no_cambiado, Toast.LENGTH_LONG);
                 toast.show();
                 VolleyLog.d("Error: " + error.getMessage());
                 Log.d("Error", "Ha habido un error");
