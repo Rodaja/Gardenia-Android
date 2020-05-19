@@ -4,10 +4,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -30,12 +34,15 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.Gson;
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.configuration.Constants;
+import com.rodaja.gardenia.model.configuration.Permissions;
 import com.rodaja.gardenia.model.entity.FlowerPot;
 import com.rodaja.gardenia.model.entity.User;
 import com.rodaja.gardenia.view.multimedia.Image;
 
 import org.json.JSONObject;
 
+import java.io.File;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,7 +57,7 @@ public class Details extends AppCompatActivity {
     private ImageView ivMenuIconRight;
     private TextView tv_titulo_detalle_maceta, tv_humedad_tierra_medida, tv_humedad_ambiental_medida, tv_temperatura_ambiental_medida2;
     private User user;
-    private ImageView ivDetails, ivChoose_plant, ivDeleteFlowerpot, ivChangeName;
+    private ImageView ivDetails, ivChoosePlant, ivDeleteFlowerpot, ivChangeName;
     private FlowerPot maceta;
     private Context contexto;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -67,12 +74,17 @@ public class Details extends AppCompatActivity {
         contexto = this;
         setearValores();
 
-        Image.setImageRoundedCorners(this, R.drawable.detalles_principal, ivDetails, 25);
+        try {
+            Image.setUriImageRoundedCorners(this, maceta.getImageUrl(), ivDetails, 25);
+        } catch (Exception e){
+            Image.setImageRoundedCorners(this, R.drawable.detalles_principal, ivDetails, 25);
+        }
 
-        ivChoose_plant.setOnClickListener(new View.OnClickListener() {
+        ivChoosePlant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToChooseImage(v);
+                //goToChooseImage(v);
+                selectGalleryImage();
             }
         });
 
@@ -133,7 +145,44 @@ public class Details extends AppCompatActivity {
             }
         });
 
+
     }
+
+    private void selectGalleryImage() {
+       if(Permissions.checkPermission(contexto, Manifest.permission.READ_EXTERNAL_STORAGE)){
+           openGallery();
+       } else{
+           Log.d("Permisos", "Activa los permisos");
+           Permissions.askForPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Permissions.READ_EXTERNAL_STORAGE);
+       }
+    }
+
+    private void openGallery(){
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery, 100);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 100) {
+            Uri imageUri = data.getData();
+            Log.d("URI", imageUri.getPath());
+            Log.d("Scheme", imageUri.getScheme());
+            Log.d("String", imageUri.toString());
+
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            Cursor cursor = contexto.getContentResolver().query(imageUri, filePathColumn, null, null, null);
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+            Log.d("Cargando la imagen", "Cargando la imagen");
+            requestModifyFlowerpot(maceta.getName(), picturePath);
+            Image.setUriImageRoundedCorners(contexto, picturePath, ivDetails, 25);
+        }
+    }
+
 
     private void regarRequest() {
         String macAddress = maceta.getMacAddress();
@@ -298,7 +347,7 @@ public class Details extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 String newName = etNombreMaceta.getText().toString();
                 Log.d("Borrar", "Has seleccionado aceptar");
-                requestModifyFlowerpot(newName);
+                requestModifyFlowerpot(newName, maceta.getImageUrl());
                 tv_titulo_detalle_maceta.setText(newName);
                 requestUpdateUser(null);
             }
@@ -350,12 +399,13 @@ public class Details extends AppCompatActivity {
     }
 
 
-    private void requestModifyFlowerpot(String name) {
+    private void requestModifyFlowerpot(String name, String imageUrl) {
         String macAddress = maceta.getMacAddress();
         final Map<String, String> body = new HashMap<String, String>();
 
-        body.put("macAdress", macAddress);
+        body.put("macAddress", macAddress);
         body.put("name", name);
+        body.put("imageUrl", imageUrl);
 
 
         RequestQueue queue = Volley.newRequestQueue(contexto);
@@ -368,11 +418,11 @@ public class Details extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Gson gson = new Gson();
                         Log.d("Success", response.toString());
-                        User user = gson.fromJson(response.toString(), User.class);
 
                         Toast toast = Toast.makeText(contexto,
-                                R.string.details_toast_nombre_cambiado, Toast.LENGTH_LONG);
+                                R.string.details_toast_maceta_actualizada, Toast.LENGTH_LONG);
                         toast.show();
+                        requestUpdateUser(null);
                     }
                 }, new Response.ErrorListener() {
 
@@ -427,7 +477,7 @@ public class Details extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.menu);
 
         ivDetails = findViewById(R.id.img_planta_1);
-        ivChoose_plant = findViewById(R.id.img_elegir_imagen);
+        ivChoosePlant = findViewById(R.id.img_elegir_imagen);
 
         tv_humedad_tierra_medida = findViewById(R.id.tv_humedad_tierra_medida);
         tv_temperatura_ambiental_medida2 = findViewById(R.id.tv_temperatura_ambiental_medida2);
