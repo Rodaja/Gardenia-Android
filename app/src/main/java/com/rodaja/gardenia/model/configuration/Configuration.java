@@ -19,10 +19,10 @@ public class Configuration {
     }
 
     public static String getTemperatureUnit(User user){
-        String response = "celsius";
+        String response = " ºC";
 
         if (user.getTemperature().equalsIgnoreCase("kelvin")){
-            response = "ºK";
+            response = " ºK";
         } else if(user.getTemperature().equalsIgnoreCase("fahrenheit")){
             response = " ºF";
         }
@@ -36,6 +36,20 @@ public class Configuration {
             response = temperature + 273;
         } else if(user.getTemperature().equalsIgnoreCase("fahrenheit")){
             response = (int) Math.round(temperature * 1.8 + 32);
+        }
+
+        return response;
+    }
+
+    public static String  getTemperatureString(int temperature){
+        String response = "celsius";
+
+        if (temperature == 0){
+            response = "celsius";
+        } else if(temperature == 1){
+            response = "kelvin";
+        } else {
+            response = "fahrenheit";
         }
 
         return response;
