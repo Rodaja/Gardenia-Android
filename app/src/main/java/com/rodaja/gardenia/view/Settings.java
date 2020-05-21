@@ -39,7 +39,7 @@ import java.util.Map;
 public class Settings extends AppCompatActivity {
 
     //Atributos Menu
-    private TextView tvTitulo;
+    private TextView tvTitulo, tvUnidadTemperaturaSimbolo;
     private ImageView ivMenuIconLeft;
     private ImageView ivMenuIconRight;
     private ConstraintLayout constLPreguntasFrecuentes, constLAjustesPorDefectoEditable, constLTemaEditable, contLReportarFallos, constLUnidadTemperaturaEditable;
@@ -56,6 +56,8 @@ public class Settings extends AppCompatActivity {
         context = this;
         Intent in = getIntent();
         user = (User) in.getSerializableExtra("user");
+
+        tvUnidadTemperaturaSimbolo.setText(Configuration.getTemperatureUnit(user));
 
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -216,6 +218,7 @@ public class Settings extends AppCompatActivity {
         constLUnidadTemperaturaEditable = findViewById(R.id.constLUnidadTemperaturaEditable);
         constLPreguntasFrecuentes = findViewById(R.id.constLPreguntasFrecuentesEditable);
         contLReportarFallos = findViewById(R.id.constLReportarFalloEditable);
+        tvUnidadTemperaturaSimbolo = findViewById(R.id.tvUnidadTemperaturaSimbolo);
     }
 
     private void goToNewView(Class goToView, User user) {
@@ -241,7 +244,10 @@ public class Settings extends AppCompatActivity {
                         Log.d("Success", response.toString());
                         user = gson.fromJson(response.toString(), User.class);
                         Log.d("Añadir maceta", "Maceta añadida con exito");
-                        goToNewView(Home.class, user);
+                        Toast toast = Toast.makeText(context,
+                                R.string.temperatura_actualizada, Toast.LENGTH_LONG);
+                        toast.show();
+                        tvUnidadTemperaturaSimbolo.setText(Configuration.getTemperatureUnit(user));
                     }
                 }, new Response.ErrorListener() {
 

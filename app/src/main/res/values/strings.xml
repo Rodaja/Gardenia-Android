@@ -144,4 +144,5 @@
 
     <!-- Toast -->
     <string name="toast_bienvenido">Bienvenid@</string>
+    <string name="temperatura_actualizada">Temperatura actualizada</string>
 </resources>
