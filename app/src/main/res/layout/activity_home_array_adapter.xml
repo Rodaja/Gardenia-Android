@@ -28,6 +28,16 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/login_background" />
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/image_filter_home"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tvNombreMaceta"
             android:layout_width="wrap_content"
