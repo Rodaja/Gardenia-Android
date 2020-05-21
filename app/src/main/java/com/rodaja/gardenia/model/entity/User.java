@@ -14,14 +14,16 @@ public class User implements Serializable {
     private String country;
     private String apiKey;
 
+    private String temperature;
+    private String theme;
+    private boolean notifications;
+
     private List<FlowerPot> listFlowerPots;
 
     public User() {
     }
 
-    public User(String email, String userName, String name, String surname, String password, String country,
-                String apiKey, List<FlowerPot> listFlowerPots) {
-        super();
+    public User(String email, String userName, String name, String surname, String password, String country, String apiKey, String temperature, String theme, boolean notifications, List<FlowerPot> listFlowerPots) {
         this.email = email;
         this.userName = userName;
         this.name = name;
@@ -29,6 +31,9 @@ public class User implements Serializable {
         this.password = password;
         this.country = country;
         this.apiKey = apiKey;
+        this.temperature = temperature;
+        this.theme = theme;
+        this.notifications = notifications;
         this.listFlowerPots = listFlowerPots;
     }
 
@@ -104,10 +109,45 @@ public class User implements Serializable {
         this.listFlowerPots = listFlowerPots;
     }
 
+    public String getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(String temperature) {
+        this.temperature = temperature;
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
+
+    public boolean isNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(boolean notifications) {
+        this.notifications = notifications;
+    }
+
     @Override
     public String toString() {
-        return "User [id=" + id + ", email=" + email + ", userName=" + userName + ", name=" + name + ", surname="
-                + surname + ", password=" + password + ", country=" + country + ", apiKey=" + apiKey
-                + ", listFlowerPots=" + listFlowerPots + "]";
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", userName='" + userName + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", password='" + password + '\'' +
+                ", country='" + country + '\'' +
+                ", apiKey='" + apiKey + '\'' +
+                ", temperature='" + temperature + '\'' +
+                ", theme='" + theme + '\'' +
+                ", notifications=" + notifications +
+                ", listFlowerPots=" + listFlowerPots +
+                '}';
     }
 }

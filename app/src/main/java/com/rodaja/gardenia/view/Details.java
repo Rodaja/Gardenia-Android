@@ -33,6 +33,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.Gson;
 import com.rodaja.gardenia.R;
+import com.rodaja.gardenia.model.configuration.Configuration;
 import com.rodaja.gardenia.model.configuration.Constants;
 import com.rodaja.gardenia.model.configuration.Permissions;
 import com.rodaja.gardenia.model.entity.FlowerPot;
@@ -465,7 +466,10 @@ public class Details extends AppCompatActivity {
 
     private void setearValores() {
         tv_humedad_tierra_medida.setText(String.valueOf(maceta.getGroundHumidity()) + "%");
-        tv_temperatura_ambiental_medida2.setText(String.valueOf(maceta.getAirTemperature()) + " ºC");
+
+        String unidadTemperatura = Configuration.getTemperatureUnit(user);
+        int temperatura = Configuration.getTemperatureValue(user, maceta.getAirTemperature());
+        tv_temperatura_ambiental_medida2.setText(String.valueOf(temperatura) + unidadTemperatura);
         tv_humedad_ambiental_medida.setText(String.valueOf(maceta.getAirHumidity()) + "%");
         tv_titulo_detalle_maceta.setText(String.valueOf(maceta.getName()));
 
