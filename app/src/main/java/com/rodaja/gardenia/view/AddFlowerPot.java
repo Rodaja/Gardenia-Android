@@ -77,7 +77,7 @@ public class AddFlowerPot extends AppCompatActivity {
             results = wifi.getScanResults();
             unregisterReceiver(this);
             listWifi.clear();
-            for (ScanResult scanResult : results){
+            for (ScanResult scanResult : results) {
                 listWifi.add(scanResult.SSID);
                 adapter.notifyDataSetChanged();
             }
@@ -89,7 +89,7 @@ public class AddFlowerPot extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         user = getUser();
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
 
             setContentView(R.layout.activity_add_flower_pot_q_version);
             inicializarMenu();
@@ -108,7 +108,7 @@ public class AddFlowerPot extends AppCompatActivity {
             swipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
 
 
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View elemento, int i, long l) {
 
@@ -126,7 +126,7 @@ public class AddFlowerPot extends AppCompatActivity {
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(Home.class,user);
+                goToNewView(Home.class, user);
             }
         });
 
@@ -140,10 +140,10 @@ public class AddFlowerPot extends AppCompatActivity {
     }
 
     private void getWifiList() {
-        if (Permissions.checkPermission(contexto, Manifest.permission.ACCESS_FINE_LOCATION) != true){
+        if (Permissions.checkPermission(contexto, Manifest.permission.ACCESS_FINE_LOCATION) != true) {
             Permissions.askForPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, Permissions.REQUEST_ACCESS_FINE_LOCATION);
             getWifiList();
-        } else{
+        } else {
             wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
             checkWifiEnabled();
             setAdapter();
@@ -158,7 +158,7 @@ public class AddFlowerPot extends AppCompatActivity {
     }
 
     private void checkWifiEnabled() {
-        if (!wifi.isWifiEnabled()){
+        if (!wifi.isWifiEnabled()) {
             Toast.makeText(this, R.string.wifi_desactivada, Toast.LENGTH_LONG).show();
             wifi.setWifiEnabled(true);
         }
@@ -168,7 +168,7 @@ public class AddFlowerPot extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.menu);
 
-        tvTitulo  = findViewById(R.id.tvMenuTitulo);
+        tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
         ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
         btnConfirm = findViewById(R.id.btn_confirmar_agregar);
@@ -182,13 +182,21 @@ public class AddFlowerPot extends AppCompatActivity {
         swipeRefreshLayout = findViewById(R.id.swipeAddMaceta);
     }
 
-    private void goToNewView(Class goToView, User user){
+
+    @Override
+    public void onBackPressed() {
+        Intent in = new Intent(this, Home.class);
+        in.putExtra("user", user);
+        startActivity(in);
+    }
+
+    private void goToNewView(Class goToView, User user) {
         Intent in = new Intent(this, goToView);
         in.putExtra("user", user);
         startActivity(in);
     }
 
-    private void scanWifi(){
+    private void scanWifi() {
         listWifi.clear();
         registerReceiver(wifiReciver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
         wifi.startScan();
@@ -206,7 +214,7 @@ public class AddFlowerPot extends AppCompatActivity {
         }
     };
 
-    private void snackBar(){
+    private void snackBar() {
         final ConstraintLayout constraintLayout = findViewById(R.id.constLAddMaceta);
         Snackbar snackbar = Snackbar
                 .make(constraintLayout, R.string.wifi_actualizada, Snackbar.LENGTH_LONG);
