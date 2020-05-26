@@ -221,6 +221,13 @@ public class Settings extends AppCompatActivity {
         tvUnidadTemperaturaSimbolo = findViewById(R.id.tvUnidadTemperaturaSimbolo);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent in = new Intent(this, Profile.class);
+        in.putExtra("user", user);
+        startActivity(in);
+    }
+
     private void goToNewView(Class goToView, User user) {
         Intent in = new Intent(this, goToView);
         in.putExtra("user", user);

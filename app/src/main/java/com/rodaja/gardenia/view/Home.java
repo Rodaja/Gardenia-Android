@@ -87,6 +87,13 @@ public class Home extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayout);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent in = new Intent(this, Home.class);
+        in.putExtra("user", user);
+        startActivity(in);
+    }
+
     private void goDetails(View view, Class goToView, int numeroMaceta, User user) {
         Intent in = new Intent(this, goToView);
         in.putExtra("numeroMaceta", numeroMaceta);
