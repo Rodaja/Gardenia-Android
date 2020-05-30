@@ -576,6 +576,13 @@ public class Profile extends AppCompatActivity {
         constLApellidosEditable = findViewById(R.id.constLApellidosEditable);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent in = new Intent(this, Home.class);
+        in.putExtra("user", user);
+        startActivity(in);
+    }
+
     private void goLogin(Class goToView) {
         Intent in = new Intent(this, goToView);
         startActivity(in);

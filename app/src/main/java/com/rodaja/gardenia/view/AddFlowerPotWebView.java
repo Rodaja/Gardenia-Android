@@ -166,6 +166,13 @@ public class AddFlowerPotWebView extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent in = new Intent(this, AddFlowerPot.class);
+        in.putExtra("user", user);
+        startActivity(in);
+    }
+
     private void goToView(Class goToView, User user) {
         Intent in = new Intent(this, goToView);
         in.putExtra("user", user);
