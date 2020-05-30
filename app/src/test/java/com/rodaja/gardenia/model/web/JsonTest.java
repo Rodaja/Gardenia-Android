@@ -43,9 +43,16 @@ public class JsonTest {
             "    ]\n" +
             "}";
 
+    private static String nuevoJson(Object objeto) {
+        Gson gson = new Gson();
+        String json = gson.toJson(objeto);
+        return json;
+    }
+
     @Test
     public void crearJson() {
-        Json.crearJson(jsonDePrueba);
+        assertEquals(nuevoJson(jsonDePrueba), Json.crearJson(jsonDePrueba));
+
     }
 
 }
