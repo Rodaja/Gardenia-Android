@@ -1,22 +1,20 @@
 package com.rodaja.gardenia.view;
 
-
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class LoginTest {
-    private Login login;
+public class SettingsTest {
+    private Settings settings;
 
     @Before
     public void setUp() {
-        login = new Login();
+        settings = new Settings();
     }
 
     @Test
-    public void userNotNull() throws Exception {
-        assertNotNull(login);
+    public void settingsNotNull() throws Exception {
+        assertNotNull(settings);
     }
-
 }

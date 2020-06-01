@@ -13,7 +13,7 @@ public class Validation {
     //Validamos que el password no este vacio o sea null
     public static boolean validarPassword(String password) {
         boolean esPassword = false;
-        esPassword = password.equals(null) || password.equals("") ? false : true;
+        esPassword = password == null || password.equals("") ? false : true;
         return esPassword;
     }
 
