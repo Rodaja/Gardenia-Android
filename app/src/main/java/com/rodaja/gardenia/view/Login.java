@@ -131,7 +131,7 @@ public class Login extends AppCompatActivity {
                             guardarDatosUsuario(user);
                             Log.d("Datos de usario", "Datos usuario guardados");
                         }
-                                Toast toast = Toast.makeText(contexto,getString(R.string.toast_bienvenido) + " " + user.getEmail(), Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(contexto, getString(R.string.toast_bienvenido) + " " + user.getEmail(), Toast.LENGTH_LONG);
                         toast.show();
 
                         goToHome(Home.class, user);
@@ -206,6 +206,12 @@ public class Login extends AppCompatActivity {
         }
 
         return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent in = new Intent(this, Login.class);
+        startActivity(in);
     }
 
     private void guardarDatosUsuario(User user) {
