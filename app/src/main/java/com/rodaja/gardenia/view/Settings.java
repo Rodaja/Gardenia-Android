@@ -173,28 +173,24 @@ public class Settings extends AppCompatActivity {
         constLAjustesPorDefectoEditable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Creamos un objeto
                 MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(context);
-                //Seteamos el titulo
                 dialog.setTitle(R.string.settings_dialog_titulo_ajustes_por_defecto);
-                //Establecemos el mensaje que se mostrara
                 dialog.setMessage(R.string.settings_dialog_mensaje_ajustes_por_defecto);
-                //Damos funcionalidad al boton neutral (el de la izquierda)
+
                 dialog.setNeutralButton(R.string.perfil_dialog_cancelar, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Log.d("Cancelar", "Has seleccionado cancelar");
+
                     }
                 });
 
-                //Damos funcionalidad al boton positivo (el de la derecha)
                 dialog.setPositiveButton(R.string.perfil_dialog_confirmar, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Log.d("Confirmar", "Has seleccionado aceptar");
+                        Configuration.defaultConfiguration(user);
+                        userRequest();
                     }
                 });
-                //Mostramos el cuadro de dialogo
                 dialog.show();
             }
         });
@@ -250,7 +246,6 @@ public class Settings extends AppCompatActivity {
                         Gson gson = new Gson();
                         Log.d("Success", response.toString());
                         user = gson.fromJson(response.toString(), User.class);
-                        Log.d("Añadir maceta", "Maceta añadida con exito");
                         Toast toast = Toast.makeText(context,
                                 R.string.temperatura_actualizada, Toast.LENGTH_LONG);
                         toast.show();
