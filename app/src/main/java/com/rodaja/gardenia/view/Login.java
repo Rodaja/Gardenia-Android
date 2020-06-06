@@ -49,7 +49,7 @@ public class Login extends AppCompatActivity {
     private Button btnLogin;
     private TextInputEditText etEmail;
     private TextInputEditText etPassword;
-    private TextView tvSignUp;
+    private TextView tvSignUp, tvForgotPassword;
     private CheckBox chboxRecordarme;
     private User user;
 
@@ -94,6 +94,13 @@ public class Login extends AppCompatActivity {
         if (userCheckLogin()) {
             loginRequest(Constants.URL_LOGIN, email, password);
         }
+
+        tvForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToNewView(null, ForgotPassword.class);
+            }
+        });
     }
 
     private void inicializar() {
@@ -103,6 +110,7 @@ public class Login extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         tvSignUp = findViewById(R.id.tvSignUp);
         chboxRecordarme = findViewById(R.id.chboxRecordar);
+        tvForgotPassword = findViewById(R.id.tvForgotPassword);
 
     }
 
