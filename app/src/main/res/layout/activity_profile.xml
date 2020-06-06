@@ -74,7 +74,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constLCorreoElectronicoEditable"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="24dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -131,7 +131,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constLNombreUsuarioEditable"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -183,7 +183,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constLNombreEditable"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -236,7 +236,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constLApellidosEditable"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -288,12 +288,22 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constLCambiarContrasenaEditable"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="24dp"
+                android:layout_height="40dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constLApellidosEditable">
+
+                <ImageView
+                    android:id="@+id/ivCambiarContrasena"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/next" />
 
                 <TextView
                     android:id="@+id/tvCambiarContrasena"
@@ -307,23 +317,12 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/ivCambiarContrasena"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginRight="24dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/next" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constLPaisEditable"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="24dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -371,7 +370,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constLConfiguracionEditable"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="24dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -406,7 +405,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constLCerrarSesionEditable"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="24dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -441,7 +440,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constLBorrarCuentaEditable"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginBottom="24dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
