@@ -9,4 +9,6 @@
     <color name="colorError">#B3190B</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorTransparent">#00000000</color>
+    <color name="colorWhiteSemiTransparent1">#22FFFFFF</color>
+    <color name="colorWhiteSemiTransparent2">#33FFFFFF</color>
 </resources>

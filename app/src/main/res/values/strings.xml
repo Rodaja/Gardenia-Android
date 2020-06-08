@@ -4,6 +4,36 @@
     <string name="settings_dialog_mensaje_ajustes_por_defecto">Se pondran todos los ajustes por defecto de fabrica\n</string>
     <string name="settings_dialog_tema">Tema de la Aplicación</string>
     <string name="perfil_dialog_titulo_cerrar_sesion">¿Cerrar Sesión?</string>
+
+
+    <string name="signup_toast_correo_en_uso">El correo ya esta en uso</string>
+    <string name="signup_toast_binevenido">Bienvenido</string>
+    <string name="profile_toast_cambios_actualizados">Cambios Actualizados</string>
+    <string name="profile_toast_usuario_borrado">Usuario Borrado</string>
+    <string name="details_toast_planta_regandose">Planta regandose</string>
+    <string name="details_toast_nombre_cambiado">Nombre cambiado</string>
+    <string name="details_toast_usuario_actualizado">Usuario actualizado</string>
+    <string name="details_toast_maceta_borrada">Maceta Borrada</string>
+    <string name="details_toast_maceta_actualizada">Maceta actualizada</string>
+    <string name="country_toast_pais_no_cambiado">Pais no se ha cambiado</string>
+    <string name="country_toast_no_poder_conectar">No se ha podido conectar</string>
+    <string name="country_toast_minimo_caracteres">Necesitas mínimo caracteres para buscar</string>
+    <string name="addflowerpotview_toast_maceta_no_anadida">Maceta no añadida</string>
+    <string name="addflowerpotview_toast_wifi_habitual">Por favor conectese a su wifi habitual</string>
+
+    <string name="perfil_toast_contrasena_repetir_incorrecta">Las contraseñas nuevas no coinciden</string>
+    <string name="perfil_toast_contrasena_nueva_incorrecta">La contraseña nueva no es valida</string>
+    <string name="perfil_toast_contrasena_actual_incorrecta">La contraseña actual no es correcta</string>
+    <string name="perfil_dialog_titulo_apellidos">Cambiar Apellidos</string>
+    <string name="perfil_dialog_titulo_nombre">Cambiar Nombre</string>
+    <string name="perfil_dialog_titulo_username">Cambiar UserName</string>
+    <string name="perfil_dialog_titulo_email">Cambiar Email</string>
+    <string name="perfil_dialog_titulo_cambiar_contrasena">Cambiar Contraseña</string>
+    <string name="perfil_dialog_et_contrasena_actual_hint">Contraseña Actual</string>
+    <string name="perfil_dialog_et_nueva_contrasena_hint">Nueva Contraseña</string>
+    <string name="perfil_dialog_et_repetir_contrasena_hint">Repetir Contraseña</string>
+
+
     <string name="perfil_dialog_mensaje_cerrar_sesion">Esto cerrara su sesión y le llevara al login\n</string>
     <string name="perfil_dialog_cancelar">Cancelar</string>
     <string name="settings_dialog_confirmar">Confirmar</string>
@@ -24,17 +54,15 @@
     <string name="code_verify">Código de verificación</string>
     <string name="reset_password">Resetear contraseña</string>
     <string name="understand">¡Entendido!</string>
-    <string name="email_send">Email enviado</string>
-    <string name="email_message">Se ha enviado un email a tu dirección de correo electrónico. Recuerda revisar tu bandeja de spam. Si surge algún problema no dudes en ponerte en contacto con nosotros a traves del siguiente correo electrónico:</string>
+    <string name="email_send">Recuperar contraseña</string>
+    <string name="email_message">A continuación se enviará un email a tu dirección de correo electrónico con el código de verificación. Recuerda revisar tu bandeja de spam. Si surge algún problema no dudes en ponerte en contacto con nosotros a traves del siguiente correo electrónico:</string>
     <string name="gardenia_email">gardenia@gmail.com</string>
     <string name="perfil_email">Email</string>
     <string name="perfil_email_editable">johndoemurphy@email.com</string>
-    <string name="perfil_nombre_usuario">Nombre Usuario</string>
-    <string name="perfil_nombre_usuario_editable">JohnDoeMur</string>
+    <string name="perfil_nombre_usuario">UserName</string>
     <string name="perfil_nombre">Nombre</string>
-    <string name="perfil_nombre_editable">John</string>
+    <string name="perfil_nombre_usuario_titulo">Usuario</string>
     <string name="perfil_apellidos">Apellidos</string>
-    <string name="perfil_apellidos_edtable">Doe Murphy</string>
     <string name="perfil_cambiar_contrasena">Cambiar Contraseña</string>
     <string name="perfil_pais">País</string>
     <string name="perfil_configuracion">Configuración</string>
@@ -83,7 +111,7 @@
     <!-- /strings elegir imagenes -->
 
     <!--strings agregar maceta -->
-    <string name="pasos_para_agregar_maceta">Pasos para añadir una maceta</string>
+    <string name="pasos_para_agregar_maceta">Añadir una maceta</string>
     <string name="paso1">1) Conecte la maceta y asegurase de que el
         LED de encendido se encuentre iluminado</string>
     <string name="paso2">2) Asegurese de la Wi-Fi del hogar se encuentra encendida y disponible</string>
@@ -107,4 +135,14 @@
     <string name="regar">Regar</string>
     <string name="escribir_fallo">Escriba aqui su fallo</string>
     <!-- /Menu -->
+
+    <!-- Dialogs -->
+    <string name="cambiar_nombre_maceta">Cambiar nombre</string>
+    <string name="cambiar_nombre_maceta_texto">Introduzca el nuevo nombre para su dispositivo</string>
+    <string name="details_borrar_maceta_titulo">Borrar maceta</string>
+    <string name="details_borrar_maceta_mensaje">Aviso: Esto borrará la maceta de su cuenta</string>
+
+    <!-- Toast -->
+    <string name="toast_bienvenido">Bienvenid@</string>
+    <string name="temperatura_actualizada">Configuración actualizada</string>
 </resources>

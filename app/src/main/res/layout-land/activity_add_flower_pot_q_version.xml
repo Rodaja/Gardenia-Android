@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".view.AddFlowerPot">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constLAddMaceta"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/border_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <Button
+            android:id="@+id/btn_confirmar_agregar"
+            style="@style/Theme.App.Button"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/confirmar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:rippleColor="@color/colorWhite" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_confirmar_agregar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toTopOf="@+id/btn_confirmar_agregar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/ivGifAddFlowerpot"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/guideline8"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/detalles_principal" />
+
+                <TextView
+                    android:id="@+id/tv_paso3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/paso3"
+                    android:textColor="@color/colorFont"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_paso2" />
+
+                <TextView
+                    android:id="@+id/tv_paso4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/paso4"
+                    android:textColor="@color/colorFont"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_paso3" />
+
+                <TextView
+                    android:id="@+id/tv_titulo_agregar_maceta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/pasos_para_agregar_maceta"
+                    android:textColor="@color/colorFont"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_paso1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/paso1"
+                    android:textColor="@color/colorFont"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_titulo_agregar_maceta" />
+
+                <TextView
+                    android:id="@+id/tv_paso2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/paso2"
+                    android:textColor="@color/colorFont"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_paso1" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.50" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

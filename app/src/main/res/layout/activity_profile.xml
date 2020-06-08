@@ -31,8 +31,8 @@
 
                 <ImageView
                     android:id="@+id/imagenPerfil"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginLeft="24dp"
                     android:layout_marginTop="24dp"
@@ -46,40 +46,51 @@
                     android:id="@+id/tituloNombreCompleto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
                     android:layout_marginTop="24dp"
-                    android:fontFamily="@font/montserrat"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:fontFamily="@font/montserrat_bold"
                     android:text="JohnDoeMur"
                     android:textColor="@color/colorFont"
                     android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/imagenPerfil"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tituloCorreo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
                     android:layout_marginBottom="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="johndoemurphy@email.com"
                     android:textColor="@color/colorFontSoft"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imagenPerfil" />
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constLCorreoElectronicoEditable"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="24dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                <ImageView
+                    android:id="@+id/ivEmail"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/next" />
 
                 <TextView
                     android:id="@+id/tvEmail"
@@ -94,25 +105,25 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <EditText
-                    android:id="@+id/etcorreoElectronico"
+                <TextView
+                    android:id="@+id/tvCorreoElectronicoEt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginRight="24dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginRight="6dp"
                     android:background="@null"
                     android:ems="10"
                     android:fontFamily="@font/montserrat"
                     android:gravity="right"
-                    android:hint="@string/perfil_email_editable"
+
                     android:inputType="textPersonName"
 
                     android:textColor="@color/colorFontSoft"
                     android:textColorHint="@color/colorFontSoft"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/ivEmail"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -120,11 +131,22 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constLNombreUsuarioEditable"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constLCorreoElectronicoEditable">
+
+                <ImageView
+                    android:id="@+id/ivNombreUsuario"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/next" />
 
                 <TextView
                     android:id="@+id/tvNombreUsuario"
@@ -139,36 +161,45 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <EditText
-                    android:id="@+id/etNombreUsuario"
+                <TextView
+                    android:id="@+id/tvNombreUsuarioEt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginRight="24dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginRight="6dp"
                     android:background="@null"
                     android:ems="10"
                     android:fontFamily="@font/montserrat"
                     android:gravity="right"
-                    android:hint="@string/perfil_nombre_usuario_editable"
                     android:inputType="textPersonName"
                     android:textColor="@color/colorFontSoft"
                     android:textColorHint="@color/colorFontSoft"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/ivNombreUsuario"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constLNombreEditable"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="24dp"
+                android:layout_height="40dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constLNombreUsuarioEditable">
+
+                <ImageView
+                    android:id="@+id/ivNombre"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/next" />
 
                 <TextView
                     android:id="@+id/tvNombre"
@@ -183,34 +214,44 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <EditText
-                    android:id="@+id/etNombre"
+                <TextView
+                    android:id="@+id/tvNombreEt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginRight="24dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginRight="6dp"
                     android:background="@null"
                     android:ems="10"
                     android:fontFamily="@font/montserrat"
                     android:gravity="right"
-                    android:hint="@string/perfil_nombre_editable"
                     android:inputType="textPersonName"
                     android:textColor="@color/colorFontSoft"
                     android:textColorHint="@color/colorFontSoft"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/ivNombre"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constLApellidosEditable"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constLNombreEditable">
+
+                <ImageView
+                    android:id="@+id/ivApellidos"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/next" />
 
                 <TextView
                     android:id="@+id/tvApellidos"
@@ -225,35 +266,44 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <EditText
-                    android:id="@+id/etApellidos"
+                <TextView
+                    android:id="@+id/tvApellidosEt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginRight="24dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginRight="6dp"
                     android:background="@null"
                     android:ems="10"
                     android:fontFamily="@font/montserrat"
                     android:gravity="right"
-                    android:hint="@string/perfil_apellidos_edtable"
                     android:inputType="textPersonName"
                     android:textColor="@color/colorFontSoft"
                     android:textColorHint="@color/colorFontSoft"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/ivApellidos"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constLCambiarContrasenaEditable"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="24dp"
+                android:layout_height="40dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constLApellidosEditable">
+
+                <ImageView
+                    android:id="@+id/ivCambiarContrasena"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/next" />
 
                 <TextView
                     android:id="@+id/tvCambiarContrasena"
@@ -267,23 +317,12 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/ivCambiarContrasena"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginRight="24dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/next" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constLPaisEditable"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="24dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -315,7 +354,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/tvPaisEt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="6dp"
@@ -331,7 +370,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constLConfiguracionEditable"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="24dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -366,7 +405,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constLCerrarSesionEditable"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="24dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -401,9 +440,10 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constLBorrarCuentaEditable"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="24dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="24dp"
                 android:background="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constLCerrarSesionEditable">

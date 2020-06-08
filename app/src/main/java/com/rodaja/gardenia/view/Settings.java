@@ -12,16 +12,34 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.gson.Gson;
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.configuration.Configuration;
+import com.rodaja.gardenia.model.configuration.Constants;
 import com.rodaja.gardenia.model.entity.User;
+import com.rodaja.gardenia.model.web.Json;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Settings extends AppCompatActivity {
 
     //Atributos Menu
-    private TextView tvTitulo;
+    private TextView tvTitulo, tvUnidadTemperaturaSimbolo;
     private ImageView ivMenuIconLeft;
     private ImageView ivMenuIconRight;
     private ConstraintLayout constLPreguntasFrecuentes, constLAjustesPorDefectoEditable, constLTemaEditable, contLReportarFallos, constLUnidadTemperaturaEditable;
@@ -39,31 +57,33 @@ public class Settings extends AppCompatActivity {
         Intent in = getIntent();
         user = (User) in.getSerializableExtra("user");
 
+        tvUnidadTemperaturaSimbolo.setText(Configuration.getTemperatureUnit(user));
+
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, Profile.class, user);
+                goToNewView(Profile.class, user);
             }
         });
 
         ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, AddFlowerPot.class, user);
+                goToNewView(AddFlowerPot.class, user);
             }
         });
 
         constLPreguntasFrecuentes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, Faq.class, user);
+                goToNewView(Faq.class, user);
             }
         });
 
         contLReportarFallos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, FailReport.class, user);
+                goToNewView(FailReport.class, user);
             }
         });
 
@@ -102,8 +122,9 @@ public class Settings extends AppCompatActivity {
                 dialog.setPositiveButton(R.string.perfil_dialog_confirmar, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Configuration.temperature = cambiaOpcion;
-                        System.out.println(Configuration.temperature);
+                        String temperatura = Configuration.getTemperatureString(cambiaOpcion);
+                        user.setTemperature(temperatura);
+                        userRequest();
                     }
                 });
                 //Mostramos el cuadro de dialogo
@@ -152,28 +173,24 @@ public class Settings extends AppCompatActivity {
         constLAjustesPorDefectoEditable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Creamos un objeto
                 MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(context);
-                //Seteamos el titulo
                 dialog.setTitle(R.string.settings_dialog_titulo_ajustes_por_defecto);
-                //Establecemos el mensaje que se mostrara
                 dialog.setMessage(R.string.settings_dialog_mensaje_ajustes_por_defecto);
-                //Damos funcionalidad al boton neutral (el de la izquierda)
+
                 dialog.setNeutralButton(R.string.perfil_dialog_cancelar, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Log.d("Cancelar", "Has seleccionado cancelar");
+
                     }
                 });
 
-                //Damos funcionalidad al boton positivo (el de la derecha)
                 dialog.setPositiveButton(R.string.perfil_dialog_confirmar, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Log.d("Confirmar", "Has seleccionado aceptar");
+                        Configuration.defaultConfiguration(user);
+                        userRequest();
                     }
                 });
-                //Mostramos el cuadro de dialogo
                 dialog.show();
             }
         });
@@ -197,12 +214,72 @@ public class Settings extends AppCompatActivity {
         constLUnidadTemperaturaEditable = findViewById(R.id.constLUnidadTemperaturaEditable);
         constLPreguntasFrecuentes = findViewById(R.id.constLPreguntasFrecuentesEditable);
         contLReportarFallos = findViewById(R.id.constLReportarFalloEditable);
+        tvUnidadTemperaturaSimbolo = findViewById(R.id.tvUnidadTemperaturaSimbolo);
     }
 
-    private void goToNewView(View view, Class goToView, User user) {
+    @Override
+    public void onBackPressed() {
+        Intent in = new Intent(this, Profile.class);
+        in.putExtra("user", user);
+        startActivity(in);
+    }
+
+    private void goToNewView(Class goToView, User user) {
         Intent in = new Intent(this, goToView);
         in.putExtra("user", user);
         startActivity(in);
     }
 
+    private void userRequest() {
+        String json = Json.crearJson(user);
+        Log.d("json", json);
+        Gson gson = new Gson();
+        final Map body = gson.fromJson(json, Map.class);
+        final RequestQueue queue = Volley.newRequestQueue(context);
+        final String url = Constants.URL_USER + "/" + user.getId();
+        Log.d("URL", url);
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT,
+                url, new JSONObject(body),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Gson gson = new Gson();
+                        Log.d("Success", response.toString());
+                        user = gson.fromJson(response.toString(), User.class);
+                        Toast toast = Toast.makeText(context,
+                                R.string.temperatura_actualizada, Toast.LENGTH_LONG);
+                        toast.show();
+                        tvUnidadTemperaturaSimbolo.setText(Configuration.getTemperatureUnit(user));
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast toast = Toast.makeText(context,
+                        R.string.login_error, Toast.LENGTH_LONG);
+                toast.show();
+                VolleyLog.d("Error: " + error.getMessage());
+                Log.d("Error", "Ha habido un error");
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("Api-Key", user.getApiKey());
+                return headers;
+            }
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = body;
+                return params;
+            }
+
+        };
+        queue.add(request);
+
+
+    }
 }

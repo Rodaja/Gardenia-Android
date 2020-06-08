@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.configuration.Constants;
 import com.rodaja.gardenia.model.entity.User;
+import com.rodaja.gardenia.model.validation.Validation;
 import com.rodaja.gardenia.view.multimedia.Image;
 
 import org.json.JSONObject;
@@ -51,7 +52,7 @@ public class Signup extends AppCompatActivity {
         inicializar();
         contexto = this;
 
-        Image.setImage(this, R.drawable.login_background, ivBackground);
+        Image.setImage(this, R.drawable.background, ivBackground);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +62,39 @@ public class Signup extends AppCompatActivity {
                 String email = String.valueOf(etEmail.getText()).trim();
                 String password = String.valueOf(etPassword.getText()).trim();
 
-                signUpRequest(Constants.URL_USER, email, password);
+                if (validaciones(email, password)) {
+                    signUpRequest(Constants.URL_USER, email, password);
+                }
+
             }
         });
 
+    }
+
+    private boolean validaciones(String email, String password) {
+        if (validarEmail(email) && validarPassword(password)) {
+            return true;
+        } else {
+            Toast.makeText(contexto, "Email o contraseña no validos", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+    }
+
+    private boolean validarEmail(String email) {
+        if (Validation.validarEmail(email)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean validarPassword(String password) {
+        if (Validation.validarPassword(password)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private void inicializar() {
@@ -76,9 +106,9 @@ public class Signup extends AppCompatActivity {
         ivBack = findViewById(R.id.ivBack);
     }
 
-    private void signUpRequest(String url, String email, String password){
+    private void signUpRequest(String url, String email, String password) {
 
-        final Map<String,String> body = new HashMap<String, String>();
+        final Map<String, String> body = new HashMap<String, String>();
 
         body.put("email", email);
         body.put("password", password);
@@ -97,7 +127,7 @@ public class Signup extends AppCompatActivity {
                         User user = gson.fromJson(response.toString(), User.class);
 
                         Toast toast = Toast.makeText(contexto,
-                                "Bienvenido " + user.getName(), Toast.LENGTH_LONG);
+                                R.string.signup_toast_binevenido + " " + user.getName(), Toast.LENGTH_LONG);
                         toast.show();
 
                         goTo(Home.class, user);
@@ -108,7 +138,7 @@ public class Signup extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d("Error: " + error.getMessage());
                 Toast toast = Toast.makeText(contexto,
-                        "El correo ya esta en uso", Toast.LENGTH_LONG);
+                        R.string.signup_toast_correo_en_uso, Toast.LENGTH_LONG);
                 toast.show();
             }
         }) {
@@ -119,9 +149,10 @@ public class Signup extends AppCompatActivity {
                 headers.put("Content-Type", "application/json; charset=utf-8");
                 return headers;
             }
+
             @Override
-            protected Map<String,String> getParams(){
-                Map<String,String> params = body;
+            protected Map<String, String> getParams() {
+                Map<String, String> params = body;
                 return params;
             }
 
@@ -130,7 +161,7 @@ public class Signup extends AppCompatActivity {
 
     }
 
-    private void goTo(Class goToView, User user){
+    private void goTo(Class goToView, User user) {
         Intent in = new Intent(this, goToView);
         in.putExtra("user", user);
         startActivity(in);

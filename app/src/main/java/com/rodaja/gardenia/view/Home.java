@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.adapter.HomeAdapter;
@@ -49,9 +48,6 @@ public class Home extends AppCompatActivity {
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(getApplicationContext(), "Seleccion: " +
-                //                listaMacetas.get(recyclerView.getChildAdapterPosition(v)).toString(),
-                //        Toast.LENGTH_SHORT).show();
 
                 goDetails(v, Details.class, recyclerView.getChildAdapterPosition(v), user);
             }
@@ -89,6 +85,13 @@ public class Home extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.rvHome);
         linearLayout = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayout);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent in = new Intent(this, Home.class);
+        in.putExtra("user", user);
+        startActivity(in);
     }
 
     private void goDetails(View view, Class goToView, int numeroMaceta, User user) {

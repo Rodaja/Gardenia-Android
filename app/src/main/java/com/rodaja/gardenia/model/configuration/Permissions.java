@@ -11,6 +11,8 @@ import androidx.core.content.ContextCompat;
 public class Permissions {
 
     public static final int REQUEST_ACCESS_FINE_LOCATION = 1;
+    public static final int READ_EXTERNAL_STORAGE = 2;
+    public static final int WRITE_EXTERNAL_STORAGE = 3;
 
     public static void askForPermissions(Activity activity, String[] permisoSolicitado, Integer codigoPermiso) {
         ActivityCompat.requestPermissions(activity,

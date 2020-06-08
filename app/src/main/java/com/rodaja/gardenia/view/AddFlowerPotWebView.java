@@ -81,18 +81,18 @@ public class AddFlowerPotWebView extends AppCompatActivity {
 
                 //Revisar
                 String bssid = wifi.getConnectionInfo().getBSSID();
-                if(bssid != null){
-                    if (bssid.equalsIgnoreCase(macAddress)){
+                if (bssid != null) {
+                    if (bssid.equalsIgnoreCase(macAddress)) {
                         Log.d("comparacion", "True");
-                        Toast.makeText(context, "Por favor conectese a su wifi habitual", Toast.LENGTH_LONG);
-                    } else{
-                        cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                        Toast.makeText(context, R.string.addflowerpotview_toast_wifi_habitual, Toast.LENGTH_LONG);
+                    } else {
+                        cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
                         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
                         boolean isConnected = activeNetwork != null &&
                                 activeNetwork.isConnected();
 
-                        if(isConnected){
+                        if (isConnected) {
                             userRequest(macAddress, user.getId());
                         }
                     }
@@ -139,7 +139,7 @@ public class AddFlowerPotWebView extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast toast = Toast.makeText(context,
-                        "Maceta no añadida " , Toast.LENGTH_LONG);
+                        R.string.addflowerpotview_toast_maceta_no_anadida, Toast.LENGTH_LONG);
                 toast.show();
                 VolleyLog.d("Error: " + error.getMessage());
                 Log.d("Error", "Ha habido un error");
@@ -166,6 +166,13 @@ public class AddFlowerPotWebView extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent in = new Intent(this, AddFlowerPot.class);
+        in.putExtra("user", user);
+        startActivity(in);
+    }
+
     private void goToView(Class goToView, User user) {
         Intent in = new Intent(this, goToView);
         in.putExtra("user", user);
@@ -174,10 +181,10 @@ public class AddFlowerPotWebView extends AppCompatActivity {
 
     private String getMacAddress() {
 
-        if (Permissions.checkPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != true){
+        if (Permissions.checkPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != true) {
             Permissions.askForPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, Permissions.REQUEST_ACCESS_FINE_LOCATION);
             getMacAddress();
-        } else{
+        } else {
             wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
             macAddress = String.valueOf(wifi.getConnectionInfo().getBSSID());
         }
