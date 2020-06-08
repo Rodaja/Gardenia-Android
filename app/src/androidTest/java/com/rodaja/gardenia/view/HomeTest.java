@@ -29,10 +29,10 @@ public class HomeTest {
         User user = new User();
 
         ArrayList<FlowerPot> macetas = new ArrayList<FlowerPot>();
-        macetas.add(new FlowerPot("11:11:11:11:11:11","F1", 30, 30, 30));
-        macetas.add(new FlowerPot("22:22:22:22:22:22","F2", 30, 30, 30));
-        macetas.add(new FlowerPot("33:33:33:33:33:33","F3", 30, 30, 30));
-        macetas.add(new FlowerPot("44:44:44:44:44:44","F4", 30, 30, 30));
+        macetas.add(new FlowerPot("11:11:11:11:11:11", "1", "F1","image", 30, 30, 30, true));
+        macetas.add(new FlowerPot("22:22:22:22:22:22","1", "F2","image", 30, 30, 30, false));
+        macetas.add(new FlowerPot("33:33:33:33:33:33", "1", "F3","image", 30, 30, 30, false));
+        macetas.add(new FlowerPot("44:44:44:44:44:44", "1", "F4", "image", 30, 30, 30, false));
         user.setListFlowerPots(macetas);
 
         Intent intent = new Intent();
