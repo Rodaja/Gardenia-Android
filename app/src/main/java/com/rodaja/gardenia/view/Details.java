@@ -144,6 +144,11 @@ public class Details extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        goToNewView(Home.class, user);
+    }
+
     private void checkMacetaImageUrl() {
         File img = new File(maceta.getImageUrl());
         if (img.exists()){
