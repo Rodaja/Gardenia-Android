@@ -172,14 +172,12 @@ public class Settings extends AppCompatActivity {
                         if (itemSelectedTema == 0) {
                             Toast.makeText(context, R.string.settings_tema_claro, Toast.LENGTH_SHORT).show();
                             user.setTheme("light");
-                            cambiarTema(0);
                         } else {
                             Toast.makeText(context, R.string.settings_tema_oscuro, Toast.LENGTH_SHORT).show();
                             user.setTheme("dark");
-                            cambiarTema(1);
 
                         }
-                        tvTemaEjemplo.setText(Configuration.getTema(user));
+                        tvTemaEjemplo.setText(getString(Configuration.getTema(user)));
                     }
                 });
                 //Mostramos el cuadro de dialogo
@@ -247,14 +245,6 @@ public class Settings extends AppCompatActivity {
         startActivity(in);
     }
 
-    private void cambiarTema(int tema) {
-        if (tema == 0) {
-            setTheme(R.style.Theme_App);
-        } else {
-            //setTheme(R.style.DarkTheme);
-        }
-
-    }
 
     private void userRequest() {
         String json = Json.crearJson(user);

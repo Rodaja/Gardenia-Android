@@ -11,4 +11,5 @@
     <color name="colorTransparent">#00000000</color>
     <color name="colorWhiteSemiTransparent1">#22FFFFFF</color>
     <color name="colorWhiteSemiTransparent2">#33FFFFFF</color>
+    <color name="colorBackgroundDark">#2C2C2C</color>
 </resources>

@@ -1,25 +1,39 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="Theme.App" parent="Theme.MaterialComponents.DayNight">
+    <style name="Theme.App" parent="Theme.MaterialComponents.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
+        <item name="android:windowBackground">@color/colorBackground</item>
         <item name="android:statusBarColor" tools:targetApi="lollipop">
             @android:color/background_dark
         </item>
-
+        <item name="android:textColor">@android:color/background_dark</item>
 
         <item name="materialAlertDialogTheme">@style/Theme.App.MaterialDialog</item>
         <item name="android:buttonStyle">@style/Theme.App.Button</item>
 
     </style>
-    <!--
-    <item name="android:windowBackground">@color/colorBackground</item>
-    <item name="android:textColor">@android:color/background_dark</item>
--->
+
+    <!-- Base application theme Dark. -->
+    <style name="Theme.App.Dark" parent="ThemeOverlay.MaterialComponents.Dark">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorFont</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorBackgroundDark</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">
+            @android:color/background_dark
+        </item>
+        <item name="android:textColor">@android:color/background_light</item>
+
+        <item name="materialAlertDialogTheme">@style/Theme.App.MaterialDialog</item>
+        <item name="android:buttonStyle">@style/Theme.App.Button</item>
+
+    </style>
+
     <!-- Dialog Alert Style -->
     <style name="Theme.App.MaterialDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="colorPrimary">@color/colorPrimary</item>

@@ -31,6 +31,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.Gson;
 import com.rodaja.gardenia.R;
+import com.rodaja.gardenia.model.configuration.Configuration;
 import com.rodaja.gardenia.model.configuration.Constants;
 import com.rodaja.gardenia.model.entity.User;
 import com.rodaja.gardenia.model.security.Hash;
@@ -61,9 +62,23 @@ public class Profile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (Configuration.valorTema()) {
+            setTheme(R.style.Theme_App_Dark);
+        }
+
+
         setContentView(R.layout.activity_profile);
 
+
         inicializarMenu();
+        //Coloreamos las imagenes a blanco solo en tema DARK
+        if (Configuration.valorTema()) {
+            ivMenuIconLeft.setColorFilter(getResources().getColor(R.color.colorWhite));
+            ivMenuIconRight.setColorFilter(getResources().getColor(R.color.colorWhite));
+        }
+
+
         cambiosGuardar = false;
         cambiarImagenGuardar();
         context = this;
@@ -539,10 +554,16 @@ public class Profile extends AppCompatActivity {
     }
 
     public void cambiarImagenGuardar() {
+
         if (cambiosGuardar == true) {
-            ivMenuIconRight.setImageResource(R.drawable.icon_save_blue);
+            ivMenuIconRight.setColorFilter(getResources().getColor(R.color.colorAccent));
         } else {
-            ivMenuIconRight.setImageResource(R.drawable.icon_save);
+            if (Configuration.valorTema()) {
+                ivMenuIconRight.setColorFilter(getResources().getColor(R.color.colorWhite));
+            } else {
+                ivMenuIconRight.setColorFilter(getResources().getColor(R.color.colorFont));
+            }
+
         }
     }
 
