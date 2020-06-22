@@ -18,41 +18,53 @@ public class Configuration {
         return user;
     }
 
-    public static String getTemperatureUnit(User user){
+    public static String getTemperatureUnit(User user) {
         String response = " ºC";
 
-        if (user.getTemperature().equalsIgnoreCase("kelvin")){
+        if (user.getTemperature().equalsIgnoreCase("kelvin")) {
             response = " ºK";
-        } else if(user.getTemperature().equalsIgnoreCase("fahrenheit")){
+        } else if (user.getTemperature().equalsIgnoreCase("fahrenheit")) {
             response = " ºF";
         }
 
         return response;
     }
-    public static int getTemperatureValue(User user, int temperature){
+
+
+    public static int getTemperatureValue(User user, int temperature) {
         int response = temperature;
 
-        if (user.getTemperature().equalsIgnoreCase("kelvin")){
+        if (user.getTemperature().equalsIgnoreCase("kelvin")) {
             response = temperature + 273;
-        } else if(user.getTemperature().equalsIgnoreCase("fahrenheit")){
+        } else if (user.getTemperature().equalsIgnoreCase("fahrenheit")) {
             response = (int) Math.round(temperature * 1.8 + 32);
         }
 
         return response;
     }
 
-    public static String  getTemperatureString(int temperature){
+    public static String getTemperatureString(int temperature) {
         String response = "celsius";
 
-        if (temperature == 0){
+        if (temperature == 0) {
             response = "celsius";
-        } else if(temperature == 1){
+        } else if (temperature == 1) {
             response = "kelvin";
         } else {
             response = "fahrenheit";
         }
 
         return response;
+    }
+
+    public static String getTema(User user) {
+        String tema = "";
+        if (user.getTheme().equals("light")) {
+            tema = "Claro";
+        } else {
+            tema = "Oscuro";
+        }
+        return tema;
     }
 
 }

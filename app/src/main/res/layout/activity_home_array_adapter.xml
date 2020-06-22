@@ -13,8 +13,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBackground">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/ivMenuIconLeft"
@@ -47,7 +46,6 @@
             android:layout_marginBottom="24dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="TextView"
-            android:textColor="@color/colorFont"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/ivMenuIconLeft"
             app:layout_constraintStart_toStartOf="parent" />

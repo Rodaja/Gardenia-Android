@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
     tools:context=".view.FailReport">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,7 +42,6 @@
                     android:layout_marginTop="32dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="@string/fail_report_titulo"
-                    android:textColor="@color/colorFont"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +58,6 @@
                     android:layout_marginRight="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/fail_report_dar_gracias"
-                    android:textColor="@color/colorFont"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvReportarFallo" />
@@ -76,7 +73,6 @@
                     android:layout_marginRight="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/fail_report_preguntas"
-                    android:textColor="@color/colorFont"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvDarGracias" />
@@ -92,7 +88,6 @@
                     android:layout_marginRight="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/fail_report_pregunta1"
-                    android:textColor="@color/colorFont"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvPreguntas" />
@@ -108,7 +103,6 @@
                     android:layout_marginRight="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/fail_report_pregunta2"
-                    android:textColor="@color/colorFont"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvPregunta1" />
@@ -124,7 +118,6 @@
                     android:layout_marginRight="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/fail_report_pregunta3"
-                    android:textColor="@color/colorFont"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvPregunta2" />

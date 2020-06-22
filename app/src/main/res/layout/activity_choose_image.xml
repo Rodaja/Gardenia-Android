@@ -126,7 +126,6 @@
             android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/elige_imagen"
-            android:textColor="@color/colorFont"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.503"

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
     tools:context=".view.AddFlowerPot">
 
 
@@ -88,7 +87,6 @@
                     android:layout_marginRight="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/paso2"
-                    android:textColor="@color/colorFont"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_paso1" />
@@ -104,7 +102,6 @@
                     android:layout_marginRight="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/paso3"
-                    android:textColor="@color/colorFont"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_paso2" />
@@ -120,7 +117,6 @@
                     android:layout_marginRight="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/paso4"
-                    android:textColor="@color/colorFont"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_paso3" />
@@ -132,7 +128,6 @@
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="@string/pasos_para_agregar_maceta"
-                    android:textColor="@color/colorFont"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -149,7 +144,6 @@
                     android:layout_marginRight="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/paso1"
-                    android:textColor="@color/colorFont"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_titulo_agregar_maceta" />

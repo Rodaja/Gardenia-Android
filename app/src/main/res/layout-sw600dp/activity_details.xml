@@ -10,7 +10,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBackground"
         tools:context=".view.Details">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -92,7 +91,6 @@
                 android:layout_marginBottom="24dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/nombre_maceta_detalle"
-                android:textColor="@color/colorFont"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_planta_1"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -168,7 +166,6 @@
                 android:layout_marginBottom="32dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/detalles"
-                android:textColor="@color/colorFont"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/img_gota_agua"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -197,7 +194,6 @@
                 android:fontFamily="@font/montserrat"
                 android:gravity="center_vertical"
                 android:text="@string/temperatura_ambiental"
-                android:textColor="@color/colorFont"
                 app:layout_constraintBottom_toTopOf="@+id/tv_humedad_ambiental"
                 app:layout_constraintStart_toEndOf="@+id/img_termometro" />
 
@@ -225,7 +221,6 @@
                 android:fontFamily="@font/montserrat"
                 android:gravity="center_vertical"
                 android:text="@string/humedad_ambiental"
-                android:textColor="@color/colorFont"
                 app:layout_constraintBottom_toTopOf="@+id/btnRegar"
                 app:layout_constraintStart_toEndOf="@+id/img_humedad" />
 
@@ -253,7 +248,6 @@
                 android:fontFamily="@font/montserrat"
                 android:gravity="center_vertical"
                 android:text="@string/humedad_tierra"
-                android:textColor="@color/colorFont"
                 app:layout_constraintBottom_toTopOf="@+id/tv_temperatura"
                 app:layout_constraintStart_toEndOf="@+id/img_gota_agua" />
         </androidx.constraintlayout.widget.ConstraintLayout>

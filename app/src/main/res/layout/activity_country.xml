@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
     tools:context=".view.Country">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,7 +42,6 @@
             android:fontFamily="@font/montserrat"
             android:hint="@string/country_buscador_editable"
             android:inputType="textPersonName"
-            android:textColor="@color/colorFont"
             android:textColorHint="@color/colorFontSoft"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView7"

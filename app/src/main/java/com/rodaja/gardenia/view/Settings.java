@@ -7,10 +7,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,12 +42,13 @@ import java.util.Map;
 public class Settings extends AppCompatActivity {
 
     //Atributos Menu
-    private TextView tvTitulo, tvUnidadTemperaturaSimbolo;
+    private TextView tvTitulo, tvUnidadTemperaturaSimbolo, tvTemaEjemplo;
     private ImageView ivMenuIconLeft;
     private ImageView ivMenuIconRight;
     private ConstraintLayout constLPreguntasFrecuentes, constLAjustesPorDefectoEditable, constLTemaEditable, contLReportarFallos, constLUnidadTemperaturaEditable;
     private Context context;
     private int cambiaOpcion = 0;
+    private int itemSelectedTema = 0;
     private User user;
 
     @Override
@@ -58,6 +62,7 @@ public class Settings extends AppCompatActivity {
         user = (User) in.getSerializableExtra("user");
 
         tvUnidadTemperaturaSimbolo.setText(Configuration.getTemperatureUnit(user));
+        tvTemaEjemplo.setText(Configuration.getTema(user));
 
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,19 +140,19 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Creamos array de opciones a seleccionar
-                String[] temas = getResources().getStringArray(R.array.settings_dialog_tema);
+                final String[] temas = getResources().getStringArray(R.array.settings_dialog_tema);
                 //Por defecto para que solo se pueda seleccionar una opcion
-                final int itemSelected = 0;
                 //Creamos un objeto
                 MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(context);
                 //Seteamos el titulo
                 dialog.setTitle(R.string.settings_dialog_tema);
                 //Seleccionamos la opcion del RadioButton
-                dialog.setSingleChoiceItems(temas, itemSelected, new DialogInterface.OnClickListener() {
+                dialog.setSingleChoiceItems(temas, itemSelectedTema, new DialogInterface.OnClickListener() {
                     @Override
                     //selectedIndex selecciona la posicion seleccionada del array
                     public void onClick(DialogInterface dialogInterface, int selectedIndex) {
                         Log.d(String.valueOf(selectedIndex), "opcion");
+                        itemSelectedTema = selectedIndex;
                     }
                 });
 
@@ -164,6 +169,17 @@ public class Settings extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("Confirmar", "Has seleccionado aceptar");
+                        if (itemSelectedTema == 0) {
+                            Toast.makeText(context, R.string.settings_tema_claro, Toast.LENGTH_SHORT).show();
+                            user.setTheme("light");
+                            cambiarTema(0);
+                        } else {
+                            Toast.makeText(context, R.string.settings_tema_oscuro, Toast.LENGTH_SHORT).show();
+                            user.setTheme("dark");
+                            cambiarTema(1);
+
+                        }
+                        tvTemaEjemplo.setText(Configuration.getTema(user));
                     }
                 });
                 //Mostramos el cuadro de dialogo
@@ -215,6 +231,7 @@ public class Settings extends AppCompatActivity {
         constLPreguntasFrecuentes = findViewById(R.id.constLPreguntasFrecuentesEditable);
         contLReportarFallos = findViewById(R.id.constLReportarFalloEditable);
         tvUnidadTemperaturaSimbolo = findViewById(R.id.tvUnidadTemperaturaSimbolo);
+        tvTemaEjemplo = findViewById(R.id.tvTemaEjemplo);
     }
 
     @Override
@@ -228,6 +245,15 @@ public class Settings extends AppCompatActivity {
         Intent in = new Intent(this, goToView);
         in.putExtra("user", user);
         startActivity(in);
+    }
+
+    private void cambiarTema(int tema) {
+        if (tema == 0) {
+            setTheme(R.style.Theme_App);
+        } else {
+            //setTheme(R.style.DarkTheme);
+        }
+
     }
 
     private void userRequest() {

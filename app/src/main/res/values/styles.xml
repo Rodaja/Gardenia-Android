@@ -1,18 +1,25 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="Theme.App" parent="Theme.MaterialComponents.Light">
+    <style name="Theme.App" parent="Theme.MaterialComponents.DayNight">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/colorBackground</item>
-        <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/background_dark </item>
+
+        <item name="android:statusBarColor" tools:targetApi="lollipop">
+            @android:color/background_dark
+        </item>
+
+
         <item name="materialAlertDialogTheme">@style/Theme.App.MaterialDialog</item>
         <item name="android:buttonStyle">@style/Theme.App.Button</item>
 
     </style>
-
+    <!--
+    <item name="android:windowBackground">@color/colorBackground</item>
+    <item name="android:textColor">@android:color/background_dark</item>
+-->
     <!-- Dialog Alert Style -->
     <style name="Theme.App.MaterialDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -21,7 +28,9 @@
         <item name="colorOnSurface">#000000</item> <!--Letter color-->
         <item name="fontFamily">@font/montserrat</item>
         <item name="alertDialogStyle">@style/ThemeOverlay.App.MaterialAlertDialog</item>
-        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.MaterialComponents.Title.Text</item>
+        <item name="materialAlertDialogTitleTextStyle">
+            @style/MaterialAlertDialog.MaterialComponents.Title.Text
+        </item>
         <item name="buttonBarPositiveButtonStyle">@style/Theme.App.Button.Positive</item>
         <item name="buttonBarNeutralButtonStyle">@style/Theme.App.Button.Neutral</item>
     </style>
@@ -74,5 +83,11 @@
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <!-- Contraint Layout -->
+    <style name="Theme.App.ContraintLayout">
+        <item name="android:background">@color/colorAccent</item>
+    </style>
+
 
 </resources>

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
     tools:context=".view.Profile">
 
     <ScrollView
@@ -17,14 +16,12 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorBackground">
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
-                android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -51,7 +48,6 @@
                     android:layout_marginRight="24dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="JohnDoeMur"
-                    android:textColor="@color/colorFont"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -65,7 +61,6 @@
                     android:layout_marginBottom="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="johndoemurphy@email.com"
-                    android:textColor="@color/colorFontSoft"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
@@ -100,7 +95,6 @@
                     android:layout_marginLeft="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/perfil_email"
-                    android:textColor="@color/colorFont"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -156,7 +150,6 @@
                     android:layout_marginLeft="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/perfil_nombre_usuario"
-                    android:textColor="@color/colorFont"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -209,7 +202,6 @@
                     android:layout_marginLeft="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/perfil_nombre"
-                    android:textColor="@color/colorFont"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -261,7 +253,6 @@
                     android:layout_marginLeft="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/perfil_apellidos"
-                    android:textColor="@color/colorFont"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -313,7 +304,6 @@
                     android:layout_marginLeft="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/perfil_cambiar_contrasena"
-                    android:textColor="@color/colorFont"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -348,7 +338,6 @@
                     android:layout_marginLeft="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/perfil_pais"
-                    android:textColor="@color/colorFont"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -396,7 +385,6 @@
                     android:layout_marginLeft="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/perfil_configuracion"
-                    android:textColor="@color/colorFont"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

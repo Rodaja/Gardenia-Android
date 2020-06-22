@@ -70,6 +70,7 @@
     <string name="perfil_borrar_cuenta">Borrar Cuenta</string>
     <string name="perfil_pais_ejemplo">Spain</string>
     <string name="country_buscador_editable">Buscar un pais</string>
+
     <string name="settings_unidad_temperatura">Unidad de Temperatura</string>
     <string name="setting_UnidadesTemperaturaEjemplo">ºC</string>
     <string name="settings_notificaciones">Notificaciones</string>
@@ -78,6 +79,9 @@
     <string name="settings_preguntas_frecuentes">Preguntas Frecuentes</string>
     <string name="settings_reportar_fallo">Reportar un fallo</string>
     <string name="settings_ajustes_por_defecto">Ajustes por defecto</string>
+    <string name="settings_tema_claro">Claro</string>
+    <string name="settings_tema_oscuro">Oscuro</string>
+
     <string name="faq_preguntas_frecuentes">Preguntas Frecuentes</string>
     <string name="faq_pregunta1">1) ¿Como conecto una maceta?</string>
     <string name="faq_respuesta1">Para conectar una maceta deberás pulsar el  botón "+" situado arriba a la derecha en la  ventana inicial</string>

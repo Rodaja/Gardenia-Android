@@ -24,7 +24,6 @@
         android:layout_marginTop="2dp"
         android:fontFamily="@font/montserrat"
         android:text="TextView"
-        android:textColor="@color/colorFont"
         app:layout_constraintStart_toEndOf="@+id/ivWifi"
         app:layout_constraintTop_toTopOf="parent"/>
 

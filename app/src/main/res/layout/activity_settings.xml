@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
     tools:context=".view.Settings">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,7 +48,6 @@
             android:layout_marginLeft="24dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/settings_unidad_temperatura"
-            android:textColor="@color/colorFont"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -82,7 +80,6 @@
             android:layout_marginLeft="24dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/settings_notificaciones"
-            android:textColor="@color/colorFont"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -129,7 +126,6 @@
             android:layout_marginLeft="24dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/settings_tema"
-            android:textColor="@color/colorFont"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -164,7 +160,6 @@
             android:layout_marginLeft="24dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/settings_preguntas_frecuentes"
-            android:textColor="@color/colorFont"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -198,7 +193,6 @@
             android:layout_marginLeft="24dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/settings_reportar_fallo"
-            android:textColor="@color/colorFont"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
