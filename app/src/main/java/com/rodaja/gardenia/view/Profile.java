@@ -46,7 +46,7 @@ public class Profile extends AppCompatActivity {
     private Context context;
 
     //Atributos Menu
-    private ImageView ivMenuIconLeft, ivMenuIconRight;
+    private ImageView ivMenuIconLeft;
 
     private TextView tvTitulo, tituloCorreo, tituloNombreCompleto, tvPaisEt,
             tvApellidosEt, tvCorreoElectronicoEt, tvNombreUsuarioEt, tvNombreEt;
@@ -95,14 +95,14 @@ public class Profile extends AppCompatActivity {
                 layout.addView(etUserName);
                 dialog.setView(layout);
 
-                dialog.setNeutralButton(R.string.perfil_dialog_cancelar, new DialogInterface.OnClickListener() {
+                dialog.setNeutralButton(R.string.alert_dialog_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("Cancelar", "Has seleccionado cancelar");
                     }
                 });
 
-                dialog.setPositiveButton(R.string.perfil_dialog_confirmar, new DialogInterface.OnClickListener() {
+                dialog.setPositiveButton(R.string.alert_dialog_accept, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("Confirmar", "Has seleccionado aceptar");
@@ -125,18 +125,18 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(context);
-                dialog.setTitle(R.string.perfil_dialog_titulo_borrar_cuenta);
+                dialog.setTitle(R.string.alert_dialog_delete_account_tittle);
 
-                dialog.setMessage(R.string.perfil_dialog_mensaje_borrar_cuenta);
+                dialog.setMessage(R.string.alert_dialog_delete_account_body);
 
-                dialog.setNeutralButton(R.string.perfil_dialog_cancelar, new DialogInterface.OnClickListener() {
+                dialog.setNeutralButton(R.string.alert_dialog_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("Cancelar", "Has seleccionado cancelar");
                     }
                 });
 
-                dialog.setPositiveButton(R.string.perfil_dialog_borrar, new DialogInterface.OnClickListener() {
+                dialog.setPositiveButton(R.string.perfil_dialog_delete, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("Borrar", "Has seleccionado aceptar");
@@ -170,17 +170,13 @@ public class Profile extends AppCompatActivity {
 
         tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
-        ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
 
-        tvTitulo.setText(R.string.perfil);
-        ivMenuIconRight.setImageResource(R.drawable.icon_save);
+        tvTitulo.setText(R.string.profile);
         tituloCorreo = findViewById(R.id.tituloCorreo);
         tvCorreoElectronicoEt = findViewById(R.id.tvCorreoElectronicoEt);
         tvNombreUsuarioEt = findViewById(R.id.tvNombreUsuarioEt);
         tituloNombreCompleto = findViewById(R.id.tituloNombreCompleto);
         tvNombreEt = findViewById(R.id.tvNombreEt);
-        tvApellidosEt = findViewById(R.id.tvApellidosEt);
-        tvPaisEt = findViewById(R.id.tvPaisEt);
 
         //constLCerrarSesionEditable = findViewById(R.id.constLCerrarSesionEditable);
         constLBorrarCuentaEditable = findViewById(R.id.constLBorrarCuentaEditable);

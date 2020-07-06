@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile_snackbar_contrasena_repetir_incorrecta">Las contraseñas nuevas no coinciden</string>
+    <string name="profile_snackbar_contrasena_nueva_incorrecta">La contraseña nueva no es valida</string>
+    <string name="profile_snackbar_contrasena_actual_incorrecta">La contraseña actual no es correcta</string>
+    <string name="toast_bienvenido">Bienvenid@</string>
+    <string name="temperatura_actualizada">Configuración actualizada</string>
+</resources>

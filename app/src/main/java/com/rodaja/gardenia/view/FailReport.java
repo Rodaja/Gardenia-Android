@@ -21,7 +21,6 @@ public class FailReport extends AppCompatActivity {
     //Atributos Menu
     private TextView tvTitulo;
     private ImageView ivMenuIconLeft;
-    private ImageView ivMenuIconRight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +35,6 @@ public class FailReport extends AppCompatActivity {
                 Navegation.goToView(context, Settings.class);
             }
         });
-
-        ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navegation.goToView(context, AddFlowerPot.class);
-            }
-        });
     }
 
     private void inicializar() {
@@ -51,10 +43,8 @@ public class FailReport extends AppCompatActivity {
 
         tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
-        ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
 
-        tvTitulo.setText(R.string.reportar_fallo);
+        tvTitulo.setText(R.string.fail_report);
         ivMenuIconLeft.setImageResource(R.drawable.back);
-        ivMenuIconRight.setImageResource(R.drawable.icon_add);
     }
 }

@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:textColor">@color/colorFont</item>
         <item name="android:windowBackground">@color/colorBackground</item>
         <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/background_dark </item>
         <item name="materialAlertDialogTheme">@style/Theme.App.MaterialDialog</item>
@@ -73,6 +75,27 @@
         <item name="android:gravity">center_horizontal|center_vertical</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">14sp</item>
+        <item name="height">48dp</item>
     </style>
 
+    <!-- Button Google -->
+    <style name="Theme.App.ButtonGoogle" parent="Widget.AppCompat.Button">
+        <item name="backgroundTint">@color/colorWhite</item>
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="icon">@drawable/icon_google</item>
+        <item name="iconTintMode">multiply</item>
+        <item name="iconGravity">start</item>
+        <item name="iconSize">24dp</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:textColor">@color/colorFont</item>
+        <item name="android:textSize">14sp</item>
+        <item name="height">48dp</item>
+    </style>
+
+    <!-- Button Google -->
+    <style name="Theme.App.Icon" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:padding">12dp</item>
+    </style>
 </resources>

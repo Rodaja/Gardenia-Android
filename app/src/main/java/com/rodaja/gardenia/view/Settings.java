@@ -41,7 +41,6 @@ public class Settings extends AppCompatActivity {
     //Atributos Menu
     private TextView tvTitulo, tvUnidadTemperaturaSimbolo;
     private ImageView ivMenuIconLeft;
-    private ImageView ivMenuIconRight;
     private ConstraintLayout constLPreguntasFrecuentes, constLAjustesPorDefectoEditable, constLTemaEditable, contLReportarFallos, constLUnidadTemperaturaEditable;
     private Context context;
     private int cambiaOpcion = 0;
@@ -63,13 +62,6 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 goToNewView(Profile.class, user);
-            }
-        });
-
-        ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToNewView(AddFlowerPot.class, user);
             }
         });
 
@@ -111,7 +103,7 @@ public class Settings extends AppCompatActivity {
                 });
 
                 //Damos funcionalidad al boton neutral (el de la izquierda)
-                dialog.setNeutralButton(R.string.perfil_dialog_cancelar, new DialogInterface.OnClickListener() {
+                dialog.setNeutralButton(R.string.alert_dialog_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("Cancelar", "Has seleccionado cancelar");
@@ -119,7 +111,7 @@ public class Settings extends AppCompatActivity {
                 });
 
                 //Damos funcionalidad al boton positivo (el de la derecha)
-                dialog.setPositiveButton(R.string.perfil_dialog_confirmar, new DialogInterface.OnClickListener() {
+                dialog.setPositiveButton(R.string.alert_dialog_accept, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //String temperatura = Configuration.getTemperatureString(cambiaOpcion);
@@ -151,7 +143,7 @@ public class Settings extends AppCompatActivity {
                 });
 
                 //Damos funcionalidad al boton neutral (el de la izquierda)
-                dialog.setNeutralButton(R.string.perfil_dialog_cancelar, new DialogInterface.OnClickListener() {
+                dialog.setNeutralButton(R.string.alert_dialog_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("Cancelar", "Has seleccionado cancelar");
@@ -159,7 +151,7 @@ public class Settings extends AppCompatActivity {
                 });
 
                 //Damos funcionalidad al boton positivo (el de la derecha)
-                dialog.setPositiveButton(R.string.perfil_dialog_confirmar, new DialogInterface.OnClickListener() {
+                dialog.setPositiveButton(R.string.alert_dialog_accept, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("Confirmar", "Has seleccionado aceptar");
@@ -176,14 +168,14 @@ public class Settings extends AppCompatActivity {
                 dialog.setTitle(R.string.settings_dialog_titulo_ajustes_por_defecto);
                 dialog.setMessage(R.string.settings_dialog_mensaje_ajustes_por_defecto);
 
-                dialog.setNeutralButton(R.string.perfil_dialog_cancelar, new DialogInterface.OnClickListener() {
+                dialog.setNeutralButton(R.string.alert_dialog_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                     }
                 });
 
-                dialog.setPositiveButton(R.string.perfil_dialog_confirmar, new DialogInterface.OnClickListener() {
+                dialog.setPositiveButton(R.string.alert_dialog_accept, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Configuration.defaultConfiguration(user);
@@ -201,11 +193,8 @@ public class Settings extends AppCompatActivity {
 
         tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
-        ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
 
-        tvTitulo.setText(R.string.configuracion);
-        ivMenuIconRight.setImageResource(R.drawable.icon_add);
-
+        tvTitulo.setText(R.string.configuration);
 
         constLAjustesPorDefectoEditable = findViewById(R.id.constLAjustesPorDefectoEditable);
         constLTemaEditable = findViewById(R.id.constLTemaEditable);

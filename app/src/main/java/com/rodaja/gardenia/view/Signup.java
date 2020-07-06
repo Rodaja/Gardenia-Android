@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.configuration.Constants;
 import com.rodaja.gardenia.model.entity.User;
+import com.rodaja.gardenia.model.navegation.Navegation;
 import com.rodaja.gardenia.model.validation.Validation;
 import com.rodaja.gardenia.view.multimedia.Image;
 
@@ -36,12 +37,11 @@ public class Signup extends AppCompatActivity {
 
     private Context context;
 
-    private ImageView ivBackground;
+    private ImageView ivBackground, ivBack;
     private Button btnSignUp;
     private TextInputEditText etEmail;
     private TextInputEditText etPassword;
     private TextInputEditText etRepeatPassword;
-    private ImageView ivBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +69,24 @@ public class Signup extends AppCompatActivity {
             }
         });
 
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navegation.goToView(context, Login.class);
+            }
+        });
+
     }
+
+    private void inicializar() {
+        ivBackground = findViewById(R.id.ivBackground);
+        btnSignUp = findViewById(R.id.btnSignUp);
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
+        etRepeatPassword = findViewById(R.id.etPasswordRepeat);
+        ivBack = findViewById(R.id.ivBack);
+    }
+
 
     private boolean validaciones(String email, String password) {
         if (validarEmail(email) && validarPassword(password)) {
@@ -95,14 +112,5 @@ public class Signup extends AppCompatActivity {
         } else {
             return false;
         }
-    }
-
-    private void inicializar() {
-        ivBackground = findViewById(R.id.ivBackground);
-        btnSignUp = findViewById(R.id.btnSignUp);
-        etEmail = findViewById(R.id.etEmail);
-        etPassword = findViewById(R.id.etPassword);
-        etRepeatPassword = findViewById(R.id.etPasswordRepeat);
-        ivBack = findViewById(R.id.ivBack);
     }
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_flowerpot_tittle">Añadir una maceta</string>
+    <string name="add_flowerpot_step1">1) Conecte la maceta y asegurase de que el
+        LED de encendido se encuentre iluminado</string>
+    <string name="add_flowerpot_step2">2) Asegúrese de la Wi-Fi del hogar se encuentra encendida y disponible</string>
+    <string name="add_flowerpot_step3">3) Asegúrese de que el Wi-Fi en su dispositivo móvil se encuentra encendidon</string>
+    <string name="add_flowerpot_step4">4) Seleccione la red Wi-Fi generada por el dispositivo con el nombre Garden.ia (la red Wi-Fi puede tardar hasta 1 o 2 minutos en aparecer)</string>
+    <string name="add_flowerpot_scan_wifi">Escaneando WIFI</string>
+    <string name="add_flowerpot_no_wifi">La WIFI esta desactivada, por favor actívala</string>
+    <string name="add_flowerpot_updated_wifi">Lista de WIFI actualizada</string>
+</resources>

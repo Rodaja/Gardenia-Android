@@ -49,7 +49,6 @@ public class AddFlowerPot extends AppCompatActivity {
     //Atributos Menu
     private TextView tvTitulo;
     private ImageView ivMenuIconLeft;
-    private ImageView ivMenuIconRight;
     private Button btnConfirm;
 
     private WifiManager wifi;
@@ -150,7 +149,7 @@ public class AddFlowerPot extends AppCompatActivity {
 
     private void checkWifiEnabled() {
         if (!wifi.isWifiEnabled()) {
-            Toast.makeText(this, R.string.wifi_desactivada, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.add_flowerpot_no_wifi, Toast.LENGTH_LONG).show();
             wifi.setWifiEnabled(true);
         }
     }
@@ -161,13 +160,11 @@ public class AddFlowerPot extends AppCompatActivity {
 
         tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
-        ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
         btnConfirm = findViewById(R.id.btn_confirmar_agregar);
         ivGifAddFlowerpot = findViewById(R.id.ivGifAddFlowerpot);
 
 
-        tvTitulo.setText(R.string.conectar_maceta);
-        ivMenuIconRight.setImageResource(0);
+        tvTitulo.setText(R.string.connect_flowerpot);
 
         listView = findViewById(R.id.listView);
         swipeRefreshLayout = findViewById(R.id.swipeAddMaceta);
@@ -192,7 +189,7 @@ public class AddFlowerPot extends AppCompatActivity {
         registerReceiver(wifiReciver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
         wifi.startScan();
 
-        Toast.makeText(this, R.string.escaneo_wifi, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.add_flowerpot_scan_wifi, Toast.LENGTH_LONG).show();
     }
 
 

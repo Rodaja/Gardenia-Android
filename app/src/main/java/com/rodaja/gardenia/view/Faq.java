@@ -19,7 +19,6 @@ public class Faq extends AppCompatActivity {
     //Atributos Menu
     private TextView tvTitulo;
     private ImageView ivMenuIconLeft;
-    private ImageView ivMenuIconRight;
 
     //Atributos
     private Context context;
@@ -37,13 +36,6 @@ public class Faq extends AppCompatActivity {
                 Navegation.goToView(context, Settings.class);
             }
         });
-
-        ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navegation.goToView(context, AddFlowerPot.class);
-            }
-        });
     }
 
     private void inicializar() {
@@ -52,11 +44,9 @@ public class Faq extends AppCompatActivity {
 
         tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
-        ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
 
-        tvTitulo.setText(R.string.preguntas);
+        tvTitulo.setText(R.string.questions);
         ivMenuIconLeft.setImageResource(R.drawable.back);
-        ivMenuIconRight.setImageResource(R.drawable.icon_add);
     }
 
 }

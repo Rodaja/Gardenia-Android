@@ -7,23 +7,11 @@
 
     <ImageView
         android:id="@+id/ivMenuIconLeft"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        style="@style/Theme.App.Icon"
         android:layout_marginTop="4dp"
-        android:padding="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back" />
-
-    <ImageView
-        android:id="@+id/ivMenuIconRight"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="4dp"
-        android:padding="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_email" />
 
     <TextView
         android:id="@+id/tvMenuTitulo"

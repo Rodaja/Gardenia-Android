@@ -47,7 +47,6 @@ public class AddFlowerPotWebView extends AppCompatActivity {
     //Atributos Menu
     private TextView tvTitulo;
     private ImageView ivMenuIconLeft;
-    private ImageView ivMenuIconRight;
 
     private Context context;
     private User user;
@@ -72,31 +71,6 @@ public class AddFlowerPotWebView extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 goToView(AddFlowerPot.class, user);
-            }
-        });
-
-        ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //Revisar
-                String bssid = wifi.getConnectionInfo().getBSSID();
-                if (bssid != null) {
-                    if (bssid.equalsIgnoreCase(macAddress)) {
-                        Log.d("comparacion", "True");
-                        Toast.makeText(context, R.string.addflowerpotview_toast_wifi_habitual, Toast.LENGTH_LONG);
-                    } else {
-                        cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-                        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-                        boolean isConnected = activeNetwork != null &&
-                                activeNetwork.isConnected();
-
-                        if (isConnected) {
-
-                        }
-                    }
-                }
             }
         });
 
@@ -156,10 +130,8 @@ public class AddFlowerPotWebView extends AppCompatActivity {
 
         tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
-        ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
 
-        tvTitulo.setText(R.string.conectar_maceta);
-        ivMenuIconRight.setImageResource(R.drawable.icon_save);
+        tvTitulo.setText(R.string.connect_flowerpot);
 
         webView = findViewById(R.id.wvAddFlowerpot);
 

@@ -25,7 +25,6 @@ public class Home extends AppCompatActivity {
     //Atributos Menu
     private TextView tvTitulo;
     private ImageView ivMenuIconLeft;
-    private ImageView ivMenuIconRight;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayout;
     private Context context;
@@ -60,13 +59,6 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navegation.goToView(context, AddFlowerPot.class);
-            }
-        });
-
 
     }
 
@@ -76,11 +68,9 @@ public class Home extends AppCompatActivity {
 
         tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
-        ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
 
         tvTitulo.setText(R.string.home);
         ivMenuIconLeft.setImageResource(R.drawable.perfil);
-        ivMenuIconRight.setImageResource(R.drawable.icon_add);
 
         recyclerView = (RecyclerView) findViewById(R.id.rvHome);
         linearLayout = new LinearLayoutManager(context);

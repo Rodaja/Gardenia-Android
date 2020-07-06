@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="alert_dialog_cancel">Cancelar</string>
+    <string name="alert_dialog_accept">Aceptar</string>
+    <string name="perfil_dialog_delete">Borrar</string>
+
+    <string name="alert_dialog_delete_account_tittle">¿Borrar cuenta?</string>
+    <string name="alert_dialog_delete_account_body">Aviso:\nAl borrar su cuenta se borrarán todos los datos de forma permanente y no se podrán recuperar.\n</string>
+
+    <string name="alert_dialog_change_name_tittle">Cambiar nombre</string>
+    <string name="alert_dialog_change_name_body">Introduzca el nuevo nombre para su dispositivo</string>
+</resources>

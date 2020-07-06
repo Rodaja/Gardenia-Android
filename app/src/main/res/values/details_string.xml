@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="details_information">Información</string>
+    <string name="details_ground_humidity">Humedad de la tierra</string>
+    <string name="details_temperature">Temperatura ambiental</string>
+    <string name="details_air_humidity">Humedad ambiental</string>
+    <string name="details_water">Regar</string>
+</resources>
