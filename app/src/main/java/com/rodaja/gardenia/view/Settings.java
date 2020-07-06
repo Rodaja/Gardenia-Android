@@ -57,7 +57,7 @@ public class Settings extends AppCompatActivity {
         Intent in = getIntent();
         user = (User) in.getSerializableExtra("user");
 
-        tvUnidadTemperaturaSimbolo.setText(Configuration.getTemperatureUnit(user));
+        //tvUnidadTemperaturaSimbolo.setText(Configuration.getTemperatureUnit(user));
 
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,9 +122,8 @@ public class Settings extends AppCompatActivity {
                 dialog.setPositiveButton(R.string.perfil_dialog_confirmar, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        String temperatura = Configuration.getTemperatureString(cambiaOpcion);
-                        user.setTemperature(temperatura);
-                        userRequest();
+                        //String temperatura = Configuration.getTemperatureString(cambiaOpcion);
+                        //user.setTemperature(temperatura);
                     }
                 });
                 //Mostramos el cuadro de dialogo
@@ -188,7 +187,6 @@ public class Settings extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Configuration.defaultConfiguration(user);
-                        userRequest();
                     }
                 });
                 dialog.show();
@@ -228,58 +226,5 @@ public class Settings extends AppCompatActivity {
         Intent in = new Intent(this, goToView);
         in.putExtra("user", user);
         startActivity(in);
-    }
-
-    private void userRequest() {
-        String json = Json.crearJson(user);
-        Log.d("json", json);
-        Gson gson = new Gson();
-        final Map body = gson.fromJson(json, Map.class);
-        final RequestQueue queue = Volley.newRequestQueue(context);
-        final String url = Constants.URL_USER + "/" + user.getId();
-        Log.d("URL", url);
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT,
-                url, new JSONObject(body),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Gson gson = new Gson();
-                        Log.d("Success", response.toString());
-                        user = gson.fromJson(response.toString(), User.class);
-                        Toast toast = Toast.makeText(context,
-                                R.string.temperatura_actualizada, Toast.LENGTH_LONG);
-                        toast.show();
-                        tvUnidadTemperaturaSimbolo.setText(Configuration.getTemperatureUnit(user));
-                    }
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast toast = Toast.makeText(context,
-                        R.string.login_error, Toast.LENGTH_LONG);
-                toast.show();
-                VolleyLog.d("Error: " + error.getMessage());
-                Log.d("Error", "Ha habido un error");
-            }
-        }) {
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json; charset=utf-8");
-                headers.put("Api-Key", user.getApiKey());
-                return headers;
-            }
-
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = body;
-                return params;
-            }
-
-        };
-        queue.add(request);
-
-
     }
 }

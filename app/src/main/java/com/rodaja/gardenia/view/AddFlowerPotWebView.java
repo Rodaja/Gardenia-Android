@@ -93,7 +93,7 @@ public class AddFlowerPotWebView extends AppCompatActivity {
                                 activeNetwork.isConnected();
 
                         if (isConnected) {
-                            userRequest(macAddress, user.getId());
+
                         }
                     }
                 }
@@ -147,7 +147,7 @@ public class AddFlowerPotWebView extends AppCompatActivity {
 
         webView.setWebViewClient(new WebViewClient());
 
-        webView.loadUrl(Constants.URL_ADD_POT);
+        //webView.loadUrl(Constants.URL_ADD_POT);
     }
 
     private void inicializarMenu() {

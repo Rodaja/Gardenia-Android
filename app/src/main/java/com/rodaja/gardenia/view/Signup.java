@@ -75,7 +75,7 @@ public class Signup extends AppCompatActivity {
         if (validarEmail(email) && validarPassword(password)) {
             return true;
         } else {
-            Toast.makeText(contexto, "Email o contraseña no validos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Email o contraseña no validos", Toast.LENGTH_SHORT).show();
             return false;
         }
 

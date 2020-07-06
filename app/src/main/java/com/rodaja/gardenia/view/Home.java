@@ -49,7 +49,7 @@ public class Home extends AppCompatActivity {
             public void onClick(View v) {
 
                 //TODO: Hacer metodo
-                Navegation.goToView(context, Details.class, recyclerView.getChildAdapterPosition(v));
+                //Navegation.goToView(context, Details.class, recyclerView.getChildAdapterPosition(v));
             }
         });
 

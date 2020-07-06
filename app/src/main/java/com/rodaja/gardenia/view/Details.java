@@ -75,7 +75,7 @@ public class Details extends AppCompatActivity {
         context = this;
 
         setValues();
-        checkMacetaImageUrl();
+        //checkMacetaImageUrl();
 
         ivChoosePlant.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,16 +163,16 @@ public class Details extends AppCompatActivity {
 
     //TODO: Refactorizar
     private void selectGalleryImage() {
-       if(Permissions.checkPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)){
-           openGallery();
-       } else{
-           Log.d("Permisos", "Activa los permisos");
-           Permissions.askForPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Permissions.READ_EXTERNAL_STORAGE);
-       }
+        if (Permissions.checkPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            openGallery();
+        } else {
+            Log.d("Permisos", "Activa los permisos");
+            Permissions.askForPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Permissions.READ_EXTERNAL_STORAGE);
+        }
     }
 
     //TODO: Refactorizar
-    private void openGallery(){
+    private void openGallery() {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, 100);
     }
@@ -187,7 +187,7 @@ public class Details extends AppCompatActivity {
             Log.d("Scheme", imageUri.getScheme());
             Log.d("String", imageUri.toString());
 
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
             Cursor cursor = context.getContentResolver().query(imageUri, filePathColumn, null, null, null);
             cursor.moveToFirst();
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
@@ -197,7 +197,6 @@ public class Details extends AppCompatActivity {
             Image.setUriImageRoundedCorners(context, picturePath, ivDetails, 25);
         }
     }
-
 
 
     protected SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
@@ -244,12 +243,16 @@ public class Details extends AppCompatActivity {
 
     //TODO: Refactorizar
     private void setValues() {
-        tv_humedad_tierra_medida.setText(String.valueOf(maceta.getGroundHumidity()) + "%");
+        /**
+         *
 
-        int temperatura = Configuration.getTemperatureValue(user, maceta.getAirTemperature());
-        tv_temperatura_ambiental_medida2.setText(String.valueOf(temperatura) + unidadTemperatura);
-        tv_humedad_ambiental_medida.setText(String.valueOf(maceta.getAirHumidity()) + "%");
-        tv_titulo_detalle_maceta.setText(String.valueOf(maceta.getName()));
+         tv_humedad_tierra_medida.setText(String.valueOf(maceta.getGroundHumidity()) + "%");
+
+         int temperatura = Configuration.getTemperatureValue(user, maceta.getAirTemperature());
+         tv_temperatura_ambiental_medida2.setText(String.valueOf(temperatura) + unidadTemperatura);
+         tv_humedad_ambiental_medida.setText(String.valueOf(maceta.getAirHumidity()) + "%");
+         tv_titulo_detalle_maceta.setText(String.valueOf(maceta.getName()));
+         */
 
     }
 

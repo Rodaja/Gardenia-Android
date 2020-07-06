@@ -91,7 +91,7 @@ public class Profile extends AppCompatActivity {
 
                 //Añadir editText al dialog
                 final EditText etUserName = new EditText(context);
-                etUserName.setHint(user.getUserName());
+                //etUserName.setHint(user.getUserName());
                 layout.addView(etUserName);
                 dialog.setView(layout);
 
@@ -150,13 +150,17 @@ public class Profile extends AppCompatActivity {
 
     //TODO: Cargar los datos del usuario desde firestore
     private void cargarDatosUsuariosReales() {
-        tituloCorreo.setText(user.getEmail());
-        tvCorreoElectronicoEt.setText(user.getEmail());
-        tvNombreUsuarioEt.setText(user.getUserName());
-        tituloNombreCompleto.setText(user.getUserName());
-        tvNombreEt.setText(user.getName());
-        tvApellidosEt.setText(user.getSurname());
-        tvPaisEt.setText(user.getCountry());
+        /**
+         *
+
+         tituloCorreo.setText(user.getEmail());
+         tvCorreoElectronicoEt.setText(user.getEmail());
+         tvNombreUsuarioEt.setText(user.getUserName());
+         tituloNombreCompleto.setText(user.getUserName());
+         tvNombreEt.setText(user.getName());
+         tvApellidosEt.setText(user.getSurname());
+         tvPaisEt.setText(user.getCountry());
+         */
     }
 
 
@@ -178,15 +182,15 @@ public class Profile extends AppCompatActivity {
         tvApellidosEt = findViewById(R.id.tvApellidosEt);
         tvPaisEt = findViewById(R.id.tvPaisEt);
 
-        constLCerrarSesionEditable = findViewById(R.id.constLCerrarSesionEditable);
+        //constLCerrarSesionEditable = findViewById(R.id.constLCerrarSesionEditable);
         constLBorrarCuentaEditable = findViewById(R.id.constLBorrarCuentaEditable);
-        constLPaises = findViewById(R.id.constLPaisEditable);
-        constLConfiuracion = findViewById(R.id.constLConfiguracionEditable);
+        //constLPaises = findViewById(R.id.constLPaisEditable);
+        //constLConfiuracion = findViewById(R.id.constLConfiguracionEditable);
         constLCambiarContrasenaEditable = findViewById(R.id.constLCambiarContrasenaEditable);
         constLCorreoElectronicoEditable = findViewById(R.id.constLCorreoElectronicoEditable);
         constLNombreUsuarioEditable = findViewById(R.id.constLNombreUsuarioEditable);
-        constLNombreEditable = findViewById(R.id.constLNombreEditable);
-        constLApellidosEditable = findViewById(R.id.constLApellidosEditable);
+        //constLNombreEditable = findViewById(R.id.constLNombreEditable);
+        //constLApellidosEditable = findViewById(R.id.constLApellidosEditable);
     }
 
     @Override
