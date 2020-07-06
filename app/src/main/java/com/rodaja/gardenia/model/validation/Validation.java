@@ -1,5 +1,6 @@
 package com.rodaja.gardenia.model.validation;
 
+//TODO: Metodo para verificar la longitud minima de 6 caracteres de la contraseña
 public class Validation {
     //Validamos que el email tenga @ y .
     public static boolean validarEmail(String email) {

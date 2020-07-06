@@ -34,11 +34,7 @@
         <activity android:name=".view.AddFlowerPotWebView"/>
         <activity android:name=".view.AddFlowerPot"/>
         <activity android:name=".view.FailReport"/>
-        <activity android:name=".view.Country"/>
         <activity android:name=".view.Settings"/>
-        <activity android:name=".view.ChooseImage"/>
-        <activity android:name=".view.ResetPassword" />
-        <activity android:name=".view.ForgotPassword" />
         <activity android:name=".view.Profile" />
         <activity android:name=".view.Details"/>
         <activity android:name=".view.Home"/>

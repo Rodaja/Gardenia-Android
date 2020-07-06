@@ -16,6 +16,7 @@ import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.adapter.HomeAdapter;
 import com.rodaja.gardenia.model.entity.FlowerPot;
 import com.rodaja.gardenia.model.entity.User;
+import com.rodaja.gardenia.model.navegation.Navegation;
 
 import java.util.List;
 
@@ -35,11 +36,9 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        inicializarMenu();
+        inicializar();
         context = this;
 
-        Intent in = getIntent();
-        user = (User) in.getSerializableExtra("user");
         final List<FlowerPot> listaMacetas = user.getListFlowerPots();
         recyclerView.setLayoutManager(linearLayout);
         adapter = new HomeAdapter(context, listaMacetas);
@@ -49,28 +48,29 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                goDetails(v, Details.class, recyclerView.getChildAdapterPosition(v), user);
+                //TODO: Hacer metodo
+                Navegation.goToView(context, Details.class, recyclerView.getChildAdapterPosition(v));
             }
         });
 
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, Profile.class, user);
+                Navegation.goToView(context, Profile.class);
             }
         });
 
         ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, AddFlowerPot.class, user);
+                Navegation.goToView(context, AddFlowerPot.class);
             }
         });
 
 
     }
 
-    private void inicializarMenu() {
+    private void inicializar() {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.menu);
 
@@ -94,6 +94,7 @@ public class Home extends AppCompatActivity {
         startActivity(in);
     }
 
+    //TODO: Revisar
     private void goDetails(View view, Class goToView, int numeroMaceta, User user) {
         Intent in = new Intent(this, goToView);
         in.putExtra("numeroMaceta", numeroMaceta);
@@ -101,10 +102,5 @@ public class Home extends AppCompatActivity {
         startActivity(in);
     }
 
-    private void goToNewView(View view, Class goToView, User user) {
-        Intent in = new Intent(this, goToView);
-        in.putExtra("user", user);
-        startActivity(in);
-    }
 
 }

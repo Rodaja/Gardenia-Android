@@ -2,6 +2,7 @@ package com.rodaja.gardenia.model.entity;
 
 import java.io.Serializable;
 
+//TODO: Revisar campos de la maceta
 public class FlowerPot implements Serializable {
 
     private String macAddress;

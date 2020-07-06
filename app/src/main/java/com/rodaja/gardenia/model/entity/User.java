@@ -3,6 +3,7 @@ package com.rodaja.gardenia.model.entity;
 import java.io.Serializable;
 import java.util.List;
 
+//TODO: Revisar campos del usuario
 public class User implements Serializable {
 
     private int id;

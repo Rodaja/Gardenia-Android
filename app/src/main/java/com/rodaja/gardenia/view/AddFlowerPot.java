@@ -3,7 +3,6 @@ package com.rodaja.gardenia.view;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.Manifest;
@@ -11,15 +10,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkCapabilities;
-import android.net.NetworkRequest;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.net.wifi.WifiNetworkSpecifier;
 import android.net.wifi.WifiNetworkSuggestion;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,17 +21,15 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.rodaja.gardenia.R;
-import com.rodaja.gardenia.model.adapter.AddMacetaAdapter;
+import com.rodaja.gardenia.model.adapter.WifiAdapter;
 import com.rodaja.gardenia.model.configuration.Permissions;
 import com.rodaja.gardenia.model.entity.User;
 import com.rodaja.gardenia.view.multimedia.Image;
@@ -61,7 +53,7 @@ public class AddFlowerPot extends AppCompatActivity {
     private Button btnConfirm;
 
     private WifiManager wifi;
-    private AddMacetaAdapter adapter;
+    private WifiAdapter adapter;
     private ArrayList<String> listWifi = new ArrayList<>();
     private ListView listView;
     private List<ScanResult> results;
@@ -153,7 +145,7 @@ public class AddFlowerPot extends AppCompatActivity {
     }
 
     private void setAdapter() {
-        adapter = new AddMacetaAdapter(listWifi, contexto);
+        adapter = new WifiAdapter(listWifi, contexto);
         listView.setAdapter(adapter);
     }
 
@@ -209,26 +201,9 @@ public class AddFlowerPot extends AppCompatActivity {
         @Override
         public void onRefresh() {
             scanWifi();
-            snackBar();
             swipeRefreshLayout.setRefreshing(false);
         }
     };
-
-    private void snackBar() {
-        final ConstraintLayout constraintLayout = findViewById(R.id.constLAddMaceta);
-        Snackbar snackbar = Snackbar
-                .make(constraintLayout, R.string.wifi_actualizada, Snackbar.LENGTH_LONG);
-        View mView = snackbar.getView();
-        // get textview inside snackbar view
-        TextView mTextView = (TextView) mView.findViewById(R.id.snackbar_text);
-        // set text to center
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
-            mTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        else
-            mTextView.setGravity(Gravity.CENTER_HORIZONTAL);
-
-        snackbar.show();
-    }
 
     private void connectToWifi(String ssid) {
         Log.d("connect wifi", "ha entrado en connect wifi");
@@ -276,10 +251,5 @@ public class AddFlowerPot extends AppCompatActivity {
             wifi.enableNetwork(netId, true);
             wifi.reconnect();
         }
-    }
-
-    private User getUser() {
-        Intent in = getIntent();
-        return (User) in.getSerializableExtra("user");
     }
 }

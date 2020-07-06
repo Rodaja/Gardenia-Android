@@ -2,10 +2,7 @@ package com.rodaja.gardenia.model.web;
 
 import com.google.gson.Gson;
 import com.rodaja.gardenia.model.entity.FlowerPot;
-import com.rodaja.gardenia.model.entity.Login;
 import com.rodaja.gardenia.model.entity.User;
-
-import java.lang.reflect.Type;
 
 public class Json {
 
@@ -21,6 +18,7 @@ public class Json {
     }
 
 
+    //TODO: Revisar
     /**
      * Este metodo transforma un JSON en un objeto generico, para poder utilizarlo se debe de castear a la clase que se quiera usar
      * @param json El JSON a convertir
@@ -31,6 +29,7 @@ public class Json {
         Gson gson = new Gson();
         Object objeto = null;
 
+       /*
         switch (clase.toLowerCase()) {
             case "user":
                 objeto = gson.fromJson(json, User.class);
@@ -42,6 +41,7 @@ public class Json {
                 objeto = gson.fromJson(json, FlowerPot.class);
                 break;
         }
+        */
         return objeto;
     }
 }

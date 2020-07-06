@@ -14,11 +14,11 @@ import com.rodaja.gardenia.R;
 
 import java.util.List;
 
-public class AddMacetaAdapter extends BaseAdapter {
+public class WifiAdapter extends BaseAdapter {
     private List<String> listWifi;
     private Context contexto;
 
-    public AddMacetaAdapter(List<String> listWifi, Context contexto) {
+    public WifiAdapter(List<String> listWifi, Context contexto) {
         this.listWifi = listWifi;
         this.contexto = contexto;
     }

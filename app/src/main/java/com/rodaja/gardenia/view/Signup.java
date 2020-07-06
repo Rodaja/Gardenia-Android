@@ -34,7 +34,7 @@ import java.util.Map;
 
 public class Signup extends AppCompatActivity {
 
-    private Context contexto;
+    private Context context;
 
     private ImageView ivBackground;
     private Button btnSignUp;
@@ -48,12 +48,12 @@ public class Signup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         getSupportActionBar().hide();
-
         inicializar();
-        contexto = this;
+        context = this;
 
         Image.setImage(this, R.drawable.background, ivBackground);
 
+        //TODO: Revisar
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,7 +63,7 @@ public class Signup extends AppCompatActivity {
                 String password = String.valueOf(etPassword.getText()).trim();
 
                 if (validaciones(email, password)) {
-                    signUpRequest(Constants.URL_USER, email, password);
+
                 }
 
             }
@@ -104,66 +104,5 @@ public class Signup extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         etRepeatPassword = findViewById(R.id.etPasswordRepeat);
         ivBack = findViewById(R.id.ivBack);
-    }
-
-    private void signUpRequest(String url, String email, String password) {
-
-        final Map<String, String> body = new HashMap<String, String>();
-
-        body.put("email", email);
-        body.put("password", password);
-
-
-        RequestQueue queue = Volley.newRequestQueue(contexto);
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,
-                url, new JSONObject(body),
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Gson gson = new Gson();
-                        Log.d("Success", response.toString());
-                        User user = gson.fromJson(response.toString(), User.class);
-
-                        Toast toast = Toast.makeText(contexto,
-                                R.string.signup_toast_binevenido + " " + user.getName(), Toast.LENGTH_LONG);
-                        toast.show();
-
-                        goTo(Home.class, user);
-                    }
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d("Error: " + error.getMessage());
-                Toast toast = Toast.makeText(contexto,
-                        R.string.signup_toast_correo_en_uso, Toast.LENGTH_LONG);
-                toast.show();
-            }
-        }) {
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json; charset=utf-8");
-                return headers;
-            }
-
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = body;
-                return params;
-            }
-
-        };
-        queue.add(request);
-
-    }
-
-    private void goTo(Class goToView, User user) {
-        Intent in = new Intent(this, goToView);
-        in.putExtra("user", user);
-        startActivity(in);
     }
 }

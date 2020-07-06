@@ -3,6 +3,7 @@ package com.rodaja.gardenia.view;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,39 +12,40 @@ import android.widget.TextView;
 
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.entity.User;
+import com.rodaja.gardenia.model.navegation.Navegation;
 
 public class FailReport extends AppCompatActivity {
+
+    private Context context;
+
     //Atributos Menu
     private TextView tvTitulo;
     private ImageView ivMenuIconLeft;
     private ImageView ivMenuIconRight;
-    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fail_report);
-
-        inicializarMenu();
-        Intent in = getIntent();
-        user = (User) in.getSerializableExtra("user");
+        inicializar();
+        context = this;
 
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, Settings.class, user);
+                Navegation.goToView(context, Settings.class);
             }
         });
 
         ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(v, AddFlowerPot.class, user);
+                Navegation.goToView(context, AddFlowerPot.class);
             }
         });
     }
 
-    private void inicializarMenu() {
+    private void inicializar() {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.menu);
 
@@ -54,11 +56,5 @@ public class FailReport extends AppCompatActivity {
         tvTitulo.setText(R.string.reportar_fallo);
         ivMenuIconLeft.setImageResource(R.drawable.back);
         ivMenuIconRight.setImageResource(R.drawable.icon_add);
-    }
-
-    private void goToNewView(View view, Class goToView, User user) {
-        Intent in = new Intent(this, goToView);
-        in.putExtra("user", user);
-        startActivity(in);
     }
 }

@@ -111,60 +111,6 @@ public class AddFlowerPotWebView extends AppCompatActivity {
         return (User) in.getSerializableExtra("user");
     }
 
-    private void userRequest(String macAddress, int userId) {
-
-        final Map<String, String> body = new HashMap<String, String>();
-
-        body.put("macAddress", macAddress.toUpperCase());
-        Log.d("MAC", macAddress.toUpperCase());
-
-        RequestQueue queue = Volley.newRequestQueue(context);
-
-        String url = Constants.URL_USER + "/" + userId + Constants.URL_FLOWERPOT_ROOT;
-        Log.d("URL", url);
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT,
-                url, new JSONObject(body),
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Gson gson = new Gson();
-                        Log.d("Success", response.toString());
-                        user = gson.fromJson(response.toString(), User.class);
-                        Log.d("Añadir maceta", "Maceta añadida con exito");
-                        goToView(Home.class, user);
-                    }
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast toast = Toast.makeText(context,
-                        R.string.addflowerpotview_toast_maceta_no_anadida, Toast.LENGTH_LONG);
-                toast.show();
-                VolleyLog.d("Error: " + error.getMessage());
-                Log.d("Error", "Ha habido un error");
-            }
-        }) {
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json; charset=utf-8");
-                headers.put("Api-Key", user.getApiKey());
-                return headers;
-            }
-
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = body;
-                return params;
-            }
-
-        };
-        queue.add(request);
-
-
-    }
 
     @Override
     public void onBackPressed() {
