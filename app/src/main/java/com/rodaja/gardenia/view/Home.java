@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.adapter.HomeAdapter;
+import com.rodaja.gardenia.model.configuration.Configuration;
 import com.rodaja.gardenia.model.entity.FlowerPot;
 import com.rodaja.gardenia.model.entity.User;
 
@@ -34,8 +35,15 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Configuration.verificarTemaDark(this);
+
         setContentView(R.layout.activity_home);
         inicializarMenu();
+
+        //Cambiamos algunos aspectos de color para el tema oscuro
+        temaOscuroActivadoColores();
+
         context = this;
 
         Intent in = getIntent();
@@ -69,6 +77,14 @@ public class Home extends AppCompatActivity {
 
 
     }
+
+    private void temaOscuroActivadoColores() {
+        //Coloreamos las imagenes a blanco solo en tema DARK
+        if (Configuration.strTema.equalsIgnoreCase("dark")) {
+            ivMenuIconLeft.setColorFilter(getResources().getColor(R.color.colorWhite));
+        }
+    }
+
 
     private void inicializarMenu() {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);

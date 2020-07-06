@@ -19,9 +19,10 @@
             android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
+                android:id="@+id/constLTitulo"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
+                android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -61,6 +62,7 @@
                     android:layout_marginBottom="24dp"
                     android:fontFamily="@font/montserrat"
                     android:text="johndoemurphy@email.com"
+                    android:textColor="@color/colorFontSoft"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
@@ -74,7 +76,7 @@
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+                app:layout_constraintTop_toBottomOf="@+id/constLTitulo">
 
                 <ImageView
                     android:id="@+id/ivEmail"

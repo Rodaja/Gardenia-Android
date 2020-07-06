@@ -28,8 +28,9 @@
             @android:color/background_dark
         </item>
         <item name="android:textColor">@android:color/background_light</item>
+        <item name="android:textColorHint">@color/colorFontSoft</item>
 
-        <item name="materialAlertDialogTheme">@style/Theme.App.MaterialDialog</item>
+        <item name="materialAlertDialogTheme">@style/Theme.App.MaterialDialogDark</item>
         <item name="android:buttonStyle">@style/Theme.App.Button</item>
 
     </style>
@@ -40,6 +41,20 @@
         <item name="colorSecondary">@color/colorAccent</item>
         <item name="colorSurface">#FFFFFF</item> <!--Background color-->
         <item name="colorOnSurface">#000000</item> <!--Letter color-->
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="alertDialogStyle">@style/ThemeOverlay.App.MaterialAlertDialog</item>
+        <item name="materialAlertDialogTitleTextStyle">
+            @style/MaterialAlertDialog.MaterialComponents.Title.Text
+        </item>
+        <item name="buttonBarPositiveButtonStyle">@style/Theme.App.Button.Positive</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Theme.App.Button.Neutral</item>
+    </style>
+    <!-- Dialog Alert Style Dark -->
+    <style name="Theme.App.MaterialDialogDark" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="colorSurface">@color/colorFont</item> <!--Background color-->
+        <item name="colorOnSurface">@color/colorPrimary</item> <!--Letter color-->
         <item name="fontFamily">@font/montserrat</item>
         <item name="alertDialogStyle">@style/ThemeOverlay.App.MaterialAlertDialog</item>
         <item name="materialAlertDialogTitleTextStyle">

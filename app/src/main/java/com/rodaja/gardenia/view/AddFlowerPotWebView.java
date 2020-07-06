@@ -9,6 +9,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
@@ -33,6 +34,7 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.rodaja.gardenia.R;
+import com.rodaja.gardenia.model.configuration.Configuration;
 import com.rodaja.gardenia.model.configuration.Constants;
 import com.rodaja.gardenia.model.configuration.Permissions;
 import com.rodaja.gardenia.model.entity.User;
@@ -46,8 +48,7 @@ public class AddFlowerPotWebView extends AppCompatActivity {
 
     //Atributos Menu
     private TextView tvTitulo;
-    private ImageView ivMenuIconLeft;
-    private ImageView ivMenuIconRight;
+    private ImageView ivMenuIconLeft, ivMenuIconRight;
 
     private Context context;
     private User user;
@@ -60,9 +61,12 @@ public class AddFlowerPotWebView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Configuration.verificarTemaDark(this);
         setContentView(R.layout.activity_add_flower_pot_web_view);
 
         inicializarMenu();
+
         context = this;
 
         user = getUser();
@@ -105,6 +109,7 @@ public class AddFlowerPotWebView extends AppCompatActivity {
 
 
     }
+
 
     private User getUser() {
         Intent in = getIntent();

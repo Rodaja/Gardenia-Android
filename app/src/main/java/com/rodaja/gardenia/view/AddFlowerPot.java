@@ -3,6 +3,7 @@ package com.rodaja.gardenia.view;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -11,6 +12,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -38,6 +43,7 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.adapter.AddMacetaAdapter;
+import com.rodaja.gardenia.model.configuration.Configuration;
 import com.rodaja.gardenia.model.configuration.Permissions;
 import com.rodaja.gardenia.model.entity.User;
 import com.rodaja.gardenia.view.multimedia.Image;
@@ -59,6 +65,7 @@ public class AddFlowerPot extends AppCompatActivity {
     private ImageView ivMenuIconLeft;
     private ImageView ivMenuIconRight;
     private Button btnConfirm;
+    private ConstraintLayout constLAddMaceta;
 
     private WifiManager wifi;
     private AddMacetaAdapter adapter;
@@ -66,7 +73,7 @@ public class AddFlowerPot extends AppCompatActivity {
     private ListView listView;
     private List<ScanResult> results;
 
-    private ImageView ivGifAddFlowerpot;
+    private ImageView ivGifAddFlowerpot, ivWifi;
     private User user;
 
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -88,6 +95,7 @@ public class AddFlowerPot extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         user = getUser();
+        Configuration.verificarTemaDark(this);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
 
@@ -122,7 +130,7 @@ public class AddFlowerPot extends AppCompatActivity {
                 }
             });
         }
-
+        temaOscuroActivadoColores();
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,6 +172,18 @@ public class AddFlowerPot extends AppCompatActivity {
         }
     }
 
+    private void temaOscuroActivadoColores() {
+        Drawable backgroundConstLAddMaceta = constLAddMaceta.getBackground();
+        //Coloreamos las imagenes a blanco solo en tema DARK
+        if (Configuration.strTema.equalsIgnoreCase("dark")) {
+            ivMenuIconLeft.setColorFilter(getResources().getColor(R.color.colorWhite));
+
+            Configuration.cambiarColorShapeDark(backgroundConstLAddMaceta, contexto);
+        } else {
+            Configuration.cambiarColorShapeWhite(backgroundConstLAddMaceta, contexto);
+        }
+    }
+
     private void inicializarMenu() {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.menu);
@@ -174,10 +194,11 @@ public class AddFlowerPot extends AppCompatActivity {
         btnConfirm = findViewById(R.id.btn_confirmar_agregar);
         ivGifAddFlowerpot = findViewById(R.id.ivGifAddFlowerpot);
 
-
+        constLAddMaceta = findViewById(R.id.constLAddMaceta);
         tvTitulo.setText(R.string.conectar_maceta);
         ivMenuIconRight.setImageResource(0);
 
+        ivWifi = findViewById(R.id.ivWifi);
         listView = findViewById(R.id.listView);
         swipeRefreshLayout = findViewById(R.id.swipeAddMaceta);
     }

@@ -7,11 +7,13 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ProgressBar;
 
 import com.rodaja.gardenia.R;
+import com.rodaja.gardenia.model.configuration.Configuration;
 import com.rodaja.gardenia.model.configuration.Permissions;
 
 public class Splash extends AppCompatActivity {
@@ -22,6 +24,7 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        cargarPreferencias();
 
         getSupportActionBar().hide();
         goLogin();
@@ -38,5 +41,12 @@ public class Splash extends AppCompatActivity {
                 finish();
             }
         }, 1000);
+    }
+
+    private void cargarPreferencias() {
+        SharedPreferences preferences = getSharedPreferences("configuracionTema", Context.MODE_PRIVATE);
+
+        Configuration.strTema = preferences.getString("temaApp", "");
+
     }
 }

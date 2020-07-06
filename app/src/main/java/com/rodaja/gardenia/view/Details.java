@@ -2,6 +2,7 @@ package com.rodaja.gardenia.view;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.Manifest;
@@ -9,6 +10,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -54,10 +56,10 @@ public class Details extends AppCompatActivity {
 
     //Atributos Menu
     private TextView tvTitulo;
-    private ImageView ivMenuIconLeft;
-    private ImageView ivMenuIconRight;
+    private ImageView ivMenuIconLeft, ivMenuIconRight, img_gota_agua, img_termometro, img_humedad;
     private TextView tv_titulo_detalle_maceta, tv_humedad_tierra_medida, tv_humedad_ambiental_medida, tv_temperatura_ambiental_medida2;
     private User user;
+    private ConstraintLayout constLDetails;
     private ImageView ivDetails, ivChoosePlant, ivDeleteFlowerpot, ivChangeName;
     private FlowerPot maceta;
     private Context contexto;
@@ -67,11 +69,16 @@ public class Details extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Configuration.verificarTemaDark(this);
         setContentView(R.layout.activity_details);
 
 
         maceta = getExtras();
         inicializarMenu();
+
+        temaOscuroActivadoColores();
+
         contexto = this;
         setearValores();
         checkMacetaImageUrl();
@@ -151,23 +158,23 @@ public class Details extends AppCompatActivity {
 
     private void checkMacetaImageUrl() {
         File img = new File(maceta.getImageUrl());
-        if (img.exists()){
+        if (img.exists()) {
             Image.setUriImageRoundedCorners(this, maceta.getImageUrl(), ivDetails, 25);
-        } else{
+        } else {
             Image.setImageRoundedCorners(this, R.drawable.detalles_principal, ivDetails, 25);
         }
     }
 
     private void selectGalleryImage() {
-       if(Permissions.checkPermission(contexto, Manifest.permission.READ_EXTERNAL_STORAGE)){
-           openGallery();
-       } else{
-           Log.d("Permisos", "Activa los permisos");
-           Permissions.askForPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Permissions.READ_EXTERNAL_STORAGE);
-       }
+        if (Permissions.checkPermission(contexto, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            openGallery();
+        } else {
+            Log.d("Permisos", "Activa los permisos");
+            Permissions.askForPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Permissions.READ_EXTERNAL_STORAGE);
+        }
     }
 
-    private void openGallery(){
+    private void openGallery() {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, 100);
     }
@@ -181,7 +188,7 @@ public class Details extends AppCompatActivity {
             Log.d("Scheme", imageUri.getScheme());
             Log.d("String", imageUri.toString());
 
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
             Cursor cursor = contexto.getContentResolver().query(imageUri, filePathColumn, null, null, null);
             cursor.moveToFirst();
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
@@ -485,6 +492,21 @@ public class Details extends AppCompatActivity {
         startActivity(in);
     }
 
+    private void temaOscuroActivadoColores() {
+        Drawable backgroundConstLAddMaceta = constLDetails.getBackground();
+        //Coloreamos las imagenes a blanco solo en tema DARK
+        if (Configuration.strTema.equalsIgnoreCase("dark")) {
+            ivMenuIconLeft.setColorFilter(getResources().getColor(R.color.colorWhite));
+            img_gota_agua.setColorFilter(getResources().getColor(R.color.colorWhite));
+            img_termometro.setColorFilter(getResources().getColor(R.color.colorWhite));
+            img_humedad.setColorFilter(getResources().getColor(R.color.colorWhite));
+
+            Configuration.cambiarColorShapeDark(backgroundConstLAddMaceta, contexto);
+        } else {
+            Configuration.cambiarColorShapeWhite(backgroundConstLAddMaceta, contexto);
+        }
+    }
+
     private void inicializarMenu() {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.menu);
@@ -492,6 +514,11 @@ public class Details extends AppCompatActivity {
         ivDetails = findViewById(R.id.img_planta_1);
         ivChoosePlant = findViewById(R.id.img_elegir_imagen);
 
+        img_humedad = findViewById(R.id.img_humedad);
+        img_termometro = findViewById(R.id.img_termometro);
+        img_gota_agua = findViewById(R.id.img_gota_agua);
+
+        constLDetails = findViewById(R.id.constLDetails);
         tv_humedad_tierra_medida = findViewById(R.id.tv_humedad_tierra_medida);
         tv_temperatura_ambiental_medida2 = findViewById(R.id.tv_temperatura_ambiental_medida2);
         tv_humedad_ambiental_medida = findViewById(R.id.tv_humedad_ambiental_medida);

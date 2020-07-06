@@ -48,12 +48,12 @@ public class Profile extends AppCompatActivity {
     //Atributos Menu
     private TextView tvTitulo, tituloCorreo, tituloNombreCompleto, tvPaisEt,
             tvApellidosEt, tvCorreoElectronicoEt, tvNombreUsuarioEt, tvNombreEt;
-    private ImageView ivMenuIconLeft, ivMenuIconRight;
+    private ImageView ivMenuIconLeft, ivMenuIconRight, imagenPerfil, ivEmail, ivNombreUsuario, ivNombre, ivCambiarContrasena, ivConfiguracion, ivCerrarSesion, ivBorrarCuenta, ivApellidos, ivPais;
 
     private SQLiteDatabase sqLiteDatabase;
     private SQLiteOpenHelper sqLiteOpenHelper;
 
-    private ConstraintLayout constLCerrarSesionEditable, constLApellidosEditable, constLNombreEditable, constLNombreUsuarioEditable, constLCorreoElectronicoEditable, constLBorrarCuentaEditable, constLCambiarContrasenaEditable, constLPaises, constLConfiuracion;
+    private ConstraintLayout constLTitulo, constLCerrarSesionEditable, constLApellidosEditable, constLNombreEditable, constLNombreUsuarioEditable, constLCorreoElectronicoEditable, constLBorrarCuentaEditable, constLCambiarContrasenaEditable, constLPaises, constLConfiuracion;
     private Context context;
     private User user;
     private boolean cambiosGuardar;
@@ -63,20 +63,14 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (Configuration.valorTema()) {
-            setTheme(R.style.Theme_App_Dark);
-        }
-
+        Configuration.verificarTemaDark(this);
 
         setContentView(R.layout.activity_profile);
 
-
         inicializarMenu();
-        //Coloreamos las imagenes a blanco solo en tema DARK
-        if (Configuration.valorTema()) {
-            ivMenuIconLeft.setColorFilter(getResources().getColor(R.color.colorWhite));
-            ivMenuIconRight.setColorFilter(getResources().getColor(R.color.colorWhite));
-        }
+
+        //Cambiamos algunos aspectos de color para el tema oscuro
+        temaOscuroActivadoColores();
 
 
         cambiosGuardar = false;
@@ -558,7 +552,7 @@ public class Profile extends AppCompatActivity {
         if (cambiosGuardar == true) {
             ivMenuIconRight.setColorFilter(getResources().getColor(R.color.colorAccent));
         } else {
-            if (Configuration.valorTema()) {
+            if (Configuration.strTema.equalsIgnoreCase("dark")) {
                 ivMenuIconRight.setColorFilter(getResources().getColor(R.color.colorWhite));
             } else {
                 ivMenuIconRight.setColorFilter(getResources().getColor(R.color.colorFont));
@@ -567,6 +561,35 @@ public class Profile extends AppCompatActivity {
         }
     }
 
+    private void temaOscuroActivadoColores() {
+        //Coloreamos las imagenes a blanco solo en tema DARK
+        if (Configuration.strTema.equalsIgnoreCase("dark")) {
+            ivMenuIconLeft.setColorFilter(getResources().getColor(R.color.colorWhite));
+            ivMenuIconRight.setColorFilter(getResources().getColor(R.color.colorWhite));
+            imagenPerfil.setColorFilter(getResources().getColor(R.color.colorWhite));
+            ivEmail.setColorFilter(getResources().getColor(R.color.colorWhite));
+            ivNombreUsuario.setColorFilter(getResources().getColor(R.color.colorWhite));
+            ivNombre.setColorFilter(getResources().getColor(R.color.colorWhite));
+            ivCambiarContrasena.setColorFilter(getResources().getColor(R.color.colorWhite));
+            ivConfiguracion.setColorFilter(getResources().getColor(R.color.colorWhite));
+            ivCerrarSesion.setColorFilter(getResources().getColor(R.color.colorWhite));
+            ivBorrarCuenta.setColorFilter(getResources().getColor(R.color.colorWhite));
+            ivApellidos.setColorFilter(getResources().getColor(R.color.colorWhite));
+            ivPais.setColorFilter(getResources().getColor(R.color.colorWhite));
+            constLCorreoElectronicoEditable.setBackgroundColor(getResources().getColor(R.color.colorConstraintDark));
+            constLTitulo.setBackgroundColor(getResources().getColor(R.color.colorConstraintDark));
+            constLNombreUsuarioEditable.setBackgroundColor(getResources().getColor(R.color.colorConstraintDark));
+            constLNombreEditable.setBackgroundColor(getResources().getColor(R.color.colorConstraintDark));
+            constLApellidosEditable.setBackgroundColor(getResources().getColor(R.color.colorConstraintDark));
+            constLCambiarContrasenaEditable.setBackgroundColor(getResources().getColor(R.color.colorConstraintDark));
+            constLPaises.setBackgroundColor(getResources().getColor(R.color.colorConstraintDark));
+            constLConfiuracion.setBackgroundColor(getResources().getColor(R.color.colorConstraintDark));
+            constLCerrarSesionEditable.setBackgroundColor(getResources().getColor(R.color.colorConstraintDark));
+            constLBorrarCuentaEditable.setBackgroundColor(getResources().getColor(R.color.colorConstraintDark));
+
+
+        }
+    }
 
     private void inicializarMenu() {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -575,6 +598,16 @@ public class Profile extends AppCompatActivity {
         tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
         ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
+        imagenPerfil = findViewById(R.id.imagenPerfil);
+        ivEmail = findViewById(R.id.ivEmail);
+        ivNombreUsuario = findViewById(R.id.ivNombreUsuario);
+        ivNombre = findViewById(R.id.ivNombre);
+        ivCambiarContrasena = findViewById(R.id.ivCambiarContrasena);
+        ivConfiguracion = findViewById(R.id.ivConfiguracion);
+        ivCerrarSesion = findViewById(R.id.ivCerrarSesion);
+        ivBorrarCuenta = findViewById(R.id.ivBorrarCuenta);
+        ivPais = findViewById(R.id.ivPais);
+        ivApellidos = findViewById(R.id.ivApellidos);
 
         tvTitulo.setText(R.string.perfil);
         ivMenuIconRight.setImageResource(R.drawable.icon_save);
@@ -595,6 +628,7 @@ public class Profile extends AppCompatActivity {
         constLNombreUsuarioEditable = findViewById(R.id.constLNombreUsuarioEditable);
         constLNombreEditable = findViewById(R.id.constLNombreEditable);
         constLApellidosEditable = findViewById(R.id.constLApellidosEditable);
+        constLTitulo = findViewById(R.id.constLTitulo);
     }
 
     @Override

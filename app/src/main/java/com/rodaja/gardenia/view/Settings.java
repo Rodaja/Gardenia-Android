@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -43,9 +44,8 @@ public class Settings extends AppCompatActivity {
 
     //Atributos Menu
     private TextView tvTitulo, tvUnidadTemperaturaSimbolo, tvTemaEjemplo;
-    private ImageView ivMenuIconLeft;
-    private ImageView ivMenuIconRight;
-    private ConstraintLayout constLPreguntasFrecuentes, constLAjustesPorDefectoEditable, constLTemaEditable, contLReportarFallos, constLUnidadTemperaturaEditable;
+    private ImageView ivMenuIconLeft, ivUnidadTemperatura, ivTema, ivPreguntasFrecuentes, ivReportarFallo, ivAjustesPorDefecto, ivMenuIconRight;
+    private ConstraintLayout constLPreguntasFrecuentes, constLNotificacionesEditable, constLPreguntasFrecuentesEditable, constLReportarFalloEditable, constLAjustesPorDefectoEditable, constLTemaEditable, contLReportarFallos, constLUnidadTemperaturaEditable;
     private Context context;
     private int cambiaOpcion = 0;
     private int itemSelectedTema = 0;
@@ -54,15 +54,22 @@ public class Settings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        Configuration.verificarTemaDark(this);
+
         setContentView(R.layout.activity_settings);
 
         inicializarMenu();
+
+        temaOscuroActivadoColores();
+
         context = this;
         Intent in = getIntent();
         user = (User) in.getSerializableExtra("user");
 
         tvUnidadTemperaturaSimbolo.setText(Configuration.getTemperatureUnit(user));
-        tvTemaEjemplo.setText(Configuration.getTema(user));
+        tvTemaEjemplo.setText(getString(Configuration.getTema(user)));
 
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,7 +136,7 @@ public class Settings extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String temperatura = Configuration.getTemperatureString(cambiaOpcion);
                         user.setTemperature(temperatura);
-                        userRequest();
+                        request(null);
                     }
                 });
                 //Mostramos el cuadro de dialogo
@@ -177,7 +184,10 @@ public class Settings extends AppCompatActivity {
                             user.setTheme("dark");
 
                         }
+                        guardarPreferenciasTema(user);
                         tvTemaEjemplo.setText(getString(Configuration.getTema(user)));
+
+                        goToNewView(Settings.class, user);
                     }
                 });
                 //Mostramos el cuadro de dialogo
@@ -211,6 +221,33 @@ public class Settings extends AppCompatActivity {
 
     }
 
+    private void guardarPreferenciasTema(User user) {
+        SharedPreferences preferences = getSharedPreferences("configuracionTema", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("temaApp", user.getTheme());
+        editor.commit();
+        Configuration.strTema = user.getTheme();
+    }
+
+    private void temaOscuroActivadoColores() {
+        //Coloreamos las imagenes a blanco solo en tema DARK
+        if (Configuration.strTema.equalsIgnoreCase("dark")) {
+            ivMenuIconLeft.setColorFilter(getResources().getColor(R.color.colorWhite));
+            ivUnidadTemperatura.setColorFilter(getResources().getColor(R.color.colorWhite));
+            ivTema.setColorFilter(getResources().getColor(R.color.colorWhite));
+            ivPreguntasFrecuentes.setColorFilter(getResources().getColor(R.color.colorWhite));
+            ivReportarFallo.setColorFilter(getResources().getColor(R.color.colorWhite));
+            ivAjustesPorDefecto.setColorFilter(getResources().getColor(R.color.colorWhite));
+            constLUnidadTemperaturaEditable.setBackgroundColor(getResources().getColor(R.color.colorConstraintDark));
+            constLNotificacionesEditable.setBackgroundColor(getResources().getColor(R.color.colorConstraintDark));
+            constLTemaEditable.setBackgroundColor(getResources().getColor(R.color.colorConstraintDark));
+            constLPreguntasFrecuentesEditable.setBackgroundColor(getResources().getColor(R.color.colorConstraintDark));
+            constLReportarFalloEditable.setBackgroundColor(getResources().getColor(R.color.colorConstraintDark));
+            constLAjustesPorDefectoEditable.setBackgroundColor(getResources().getColor(R.color.colorConstraintDark));
+        }
+    }
+
     private void inicializarMenu() {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.menu);
@@ -222,6 +259,15 @@ public class Settings extends AppCompatActivity {
         tvTitulo.setText(R.string.configuracion);
         ivMenuIconRight.setImageResource(R.drawable.icon_add);
 
+        constLNotificacionesEditable = findViewById(R.id.constLNotificacionesEditable);
+        constLPreguntasFrecuentesEditable = findViewById(R.id.constLPreguntasFrecuentesEditable);
+        constLReportarFalloEditable = findViewById(R.id.constLReportarFalloEditable);
+
+        ivUnidadTemperatura = findViewById(R.id.ivUnidadTemperatura);
+        ivTema = findViewById(R.id.ivTema);
+        ivPreguntasFrecuentes = findViewById(R.id.ivPreguntasFrecuentes);
+        ivReportarFallo = findViewById(R.id.ivReportarFallo);
+        ivAjustesPorDefecto = findViewById(R.id.ivAjustesPorDefecto);
 
         constLAjustesPorDefectoEditable = findViewById(R.id.constLAjustesPorDefectoEditable);
         constLTemaEditable = findViewById(R.id.constLTemaEditable);
@@ -245,6 +291,62 @@ public class Settings extends AppCompatActivity {
         startActivity(in);
     }
 
+    private void request(final Class cambiarClase) {
+        String json = Json.crearJson(user);
+        Log.d("json", json);
+        Gson gson = new Gson();
+        final Map body = gson.fromJson(json, Map.class);
+        final RequestQueue queue = Volley.newRequestQueue(context);
+        final String url = Constants.URL_USER + "/" + user.getId();
+        Log.d("URL", url);
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT,
+                url, new JSONObject(body),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Gson gson = new Gson();
+                        Log.d("Success", response.toString());
+                        user = gson.fromJson(response.toString(), User.class);
+                        Toast toast = Toast.makeText(context,
+                                R.string.temperatura_actualizada, Toast.LENGTH_LONG);
+                        toast.show();
+                        tvUnidadTemperaturaSimbolo.setText(Configuration.getTemperatureUnit(user));
+                        if (cambiarClase != null) {
+                            goToNewView(cambiarClase, user);
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast toast = Toast.makeText(context,
+                        R.string.login_error, Toast.LENGTH_LONG);
+                toast.show();
+                VolleyLog.d("Error: " + error.getMessage());
+                Log.d("Error", "Ha habido un error");
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("Api-Key", user.getApiKey());
+                return headers;
+            }
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = body;
+                return params;
+            }
+
+        };
+        queue.add(request);
+
+
+    }
 
     private void userRequest() {
         String json = Json.crearJson(user);

@@ -13,6 +13,7 @@
     tools:context=".view.Details">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constLDetails"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
@@ -101,6 +102,7 @@
                 android:layout_marginBottom="24dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/nombre_maceta_detalle"
+                android:textColor="@color/colorFont"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_planta_1"
                 app:layout_constraintStart_toStartOf="parent" />
