@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "690788137038",
+    "firebase_url": "https://fr-gardenia.firebaseio.com",
+    "project_id": "fr-gardenia",
+    "storage_bucket": "fr-gardenia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:690788137038:android:4e5d676fa9eb11e40ceb1f",
+        "android_client_info": {
+          "package_name": "com.rodaja.gardenia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "690788137038-c5m1ddqipj8gmb66h31q5bc9mbopi40u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf0QShUcMI1BaPpxKbbzzjTUYxrMlQxoc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "690788137038-c5m1ddqipj8gmb66h31q5bc9mbopi40u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
