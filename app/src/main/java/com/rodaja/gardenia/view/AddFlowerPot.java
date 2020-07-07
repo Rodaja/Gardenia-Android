@@ -1,8 +1,11 @@
 package com.rodaja.gardenia.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.Manifest;
@@ -19,7 +22,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -32,6 +37,7 @@ import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.adapter.WifiAdapter;
 import com.rodaja.gardenia.model.configuration.Permissions;
 import com.rodaja.gardenia.model.entity.User;
+import com.rodaja.gardenia.view.menu.gallery.GalleryViewModel;
 import com.rodaja.gardenia.view.multimedia.Image;
 
 import java.util.ArrayList;

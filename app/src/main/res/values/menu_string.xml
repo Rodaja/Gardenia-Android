@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home">Home</string>
+    <string name="details">Detalles</string>
+    <string name="profile">Perfil</string>
+    <string name="configuration">Configuración</string>
+    <string name="connect_flowerpot">Conectar maceta</string>
+    <string name="questions">Preguntas</string>
+    <string name="fail_report">Reportar fallo</string>
+    <string name="close_session">Cerrar sesión</string>
+    <string name="add_device">Añadir dispositivo</string>
+    <string name="store">Tienda</string>
+
+    <string name="escribir_fallo">Escriba aqui su fallo</string>
+</resources>

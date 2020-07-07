@@ -1,15 +1,22 @@
 package com.rodaja.gardenia.view;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +36,7 @@ import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.configuration.Configuration;
 import com.rodaja.gardenia.model.configuration.Constants;
 import com.rodaja.gardenia.model.entity.User;
+import com.rodaja.gardenia.model.navegation.Navegation;
 import com.rodaja.gardenia.model.web.Json;
 
 import org.json.JSONObject;
@@ -45,7 +53,6 @@ public class Settings extends AppCompatActivity {
     private ConstraintLayout constLPreguntasFrecuentes, constLAjustesPorDefectoEditable, constLTemaEditable, contLReportarFallos, constLUnidadTemperaturaEditable;
     private Context context;
     private int cambiaOpcion = 0;
-    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,16 +60,13 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         inicializarMenu();
-        context = this;
-        Intent in = getIntent();
-        user = (User) in.getSerializableExtra("user");
 
         //tvUnidadTemperaturaSimbolo.setText(Configuration.getTemperatureUnit(user));
 
         ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(Profile.class, user);
+                Navegation.goToView(context, Profile.class);
             }
         });
 
@@ -76,14 +80,14 @@ public class Settings extends AppCompatActivity {
         constLPreguntasFrecuentes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(Faq.class, user);
+                Navegation.goToView(context, Faq.class);
             }
         });
 
         contLReportarFallos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewView(FailReport.class, user);
+                Navegation.goToView(context, FailReport.class);
             }
         });
 
@@ -186,7 +190,7 @@ public class Settings extends AppCompatActivity {
                 dialog.setPositiveButton(R.string.perfil_dialog_confirmar, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Configuration.defaultConfiguration(user);
+                        //Configuration.defaultConfiguration(user);
                     }
                 });
                 dialog.show();
@@ -217,14 +221,6 @@ public class Settings extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent in = new Intent(this, Profile.class);
-        in.putExtra("user", user);
-        startActivity(in);
-    }
-
-    private void goToNewView(Class goToView, User user) {
-        Intent in = new Intent(this, goToView);
-        in.putExtra("user", user);
-        startActivity(in);
+        Navegation.goToView(context, Login.class);
     }
 }
