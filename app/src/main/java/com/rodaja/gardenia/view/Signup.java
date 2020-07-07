@@ -2,6 +2,7 @@ package com.rodaja.gardenia.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.google.gson.Gson;
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.configuration.Constants;
 import com.rodaja.gardenia.model.entity.User;
+import com.rodaja.gardenia.model.firebase.Authentication;
 import com.rodaja.gardenia.model.navegation.Navegation;
 import com.rodaja.gardenia.model.validation.Validation;
 import com.rodaja.gardenia.view.multimedia.Image;
@@ -63,7 +65,7 @@ public class Signup extends AppCompatActivity {
                 String password = String.valueOf(etPassword.getText()).trim();
 
                 if (validaciones(email, password)) {
-
+                    Authentication.signUpNewUser((Activity) context, email, password);
                 }
 
             }

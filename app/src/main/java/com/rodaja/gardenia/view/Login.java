@@ -2,6 +2,7 @@ package com.rodaja.gardenia.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -33,7 +34,9 @@ import com.google.gson.Gson;
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.configuration.Constants;
 import com.rodaja.gardenia.model.entity.User;
+import com.rodaja.gardenia.model.firebase.Authentication;
 import com.rodaja.gardenia.model.navegation.Navegation;
+import com.rodaja.gardenia.view.menu.NavegationDrawerActivity;
 import com.rodaja.gardenia.view.multimedia.Image;
 
 import org.json.JSONObject;
@@ -76,13 +79,17 @@ public class Login extends AppCompatActivity {
                 //Obligatorio usar el trim ya que el texto aparece con un espacio al principio
                 email = String.valueOf(etEmail.getText()).trim();
                 password = String.valueOf(etPassword.getText()).trim();
+                if (Authentication.signInNewUser((Activity) context, email, password)) {
+
+                    Navegation.goToView(context, NavegationDrawerActivity.class);
+                }
             }
         });
 
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navegation.goToView(context, Profile.class);
+                Navegation.goToView(context, Signup.class);
             }
         });
 

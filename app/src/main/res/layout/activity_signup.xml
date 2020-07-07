@@ -102,7 +102,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/colorFont"
-            app:startIconDrawable="@drawable/icon_password"
+            app:startIconDrawable="@drawable/icon_email"
             app:startIconTint="@color/colorFont">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -135,7 +135,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/colorFont"
-            app:startIconDrawable="@drawable/icon_password"
+            app:startIconDrawable="@drawable/icon_email"
             app:startIconTint="@color/colorFont">
 
             <com.google.android.material.textfield.TextInputEditText
