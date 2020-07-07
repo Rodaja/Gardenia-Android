@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="email">Email</string>
+    <string name="password">Contraseña</string>
+    <string name="remind_me">Recuerdame</string>
+    <string name="forgot_password">¿Olvidaste la contraseña?</string>
+    <string name="create_account">¿No tienes una cuenta? Crea una aquí</string>
+    <string name="sign_in">Iniciar sesión</string>
+    <string name="login_error">Error, usuario o contraseña incorrectos</string>
+    <string name="repeat_password">Repetir contraseña</string>
+    <string name="sign_up">Crear cuenta</string>
+    <string name="or">o</string>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="perfil_dialog_titulo_username">Cambiar UserName</string>
+    <string name="perfil_dialog_titulo_email">Cambiar Email</string>
+    <string name="perfil_dialog_titulo_cambiar_contrasena">Cambiar Contraseña</string>
+    <string name="perfil_dialog_et_contrasena_actual_hint">Contraseña Actual</string>
+    <string name="perfil_dialog_et_nueva_contrasena_hint">Nueva Contraseña</string>
+    <string name="perfil_dialog_et_repetir_contrasena_hint">Repetir Contraseña</string>
+    <string name="profile_user_name">Nombre de usuario</string>
+    <string name="profile_phone">Teléfono</string>
+
+</resources>

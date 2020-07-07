@@ -170,7 +170,7 @@
             android:layout_marginRight="24dp"
             android:layout_marginBottom="24dp"
             android:fontFamily="@font/montserrat"
-            android:text="@string/reportar_fallo"
+            android:text="@string/fail_report"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

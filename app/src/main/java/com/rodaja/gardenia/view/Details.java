@@ -59,7 +59,6 @@ public class Details extends AppCompatActivity {
     //Atributos Menu
     private TextView tvTitulo;
     private ImageView ivMenuIconLeft;
-    private ImageView ivMenuIconRight;
     private TextView tv_titulo_detalle_maceta, tv_humedad_tierra_medida, tv_humedad_ambiental_medida, tv_temperatura_ambiental_medida2;
     private User user;
     private ImageView ivDetails, ivChoosePlant, ivDeleteFlowerpot, ivChangeName;
@@ -91,44 +90,11 @@ public class Details extends AppCompatActivity {
                 Navegation.goToView(context, Home.class);
             }
         });
-        ivMenuIconRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navegation.goToView(context, AddFlowerPot.class);
-            }
-        });
 
         ivChangeName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showAlertDialog();
-            }
-        });
-
-        ivDeleteFlowerpot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(context);
-                dialog.setTitle(R.string.details_borrar_maceta_titulo);
-                dialog.setMessage(R.string.details_borrar_maceta_mensaje);
-                //Damos funcionalidad al boton neutral (el de la izquierda)
-                dialog.setNeutralButton(R.string.perfil_dialog_cancelar, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Log.d("Cancelar", "Has seleccionado cancelar");
-                    }
-                });
-
-                //Damos funcionalidad al boton positivo (el de la derecha)
-                dialog.setPositiveButton(R.string.perfil_dialog_borrar, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Log.d("Borrar", "Has seleccionado aceptar");
-                    }
-                });
-                //Mostramos el cuadro de dialogo
-                dialog.show();
-
             }
         });
 
@@ -210,9 +176,9 @@ public class Details extends AppCompatActivity {
     private void showAlertDialog() {
         MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(context);
         //Seteamos el titulo
-        dialog.setTitle(R.string.cambiar_nombre_maceta);
+        dialog.setTitle(R.string.alert_dialog_change_name_tittle);
 
-        dialog.setMessage(R.string.cambiar_nombre_maceta_texto);
+        dialog.setMessage(R.string.alert_dialog_change_name_body);
 
         LinearLayout layout = new LinearLayout(context);
         layout.setOrientation(LinearLayout.VERTICAL);
@@ -222,14 +188,14 @@ public class Details extends AppCompatActivity {
         layout.addView(etNombreMaceta);
         dialog.setView(layout);
 
-        dialog.setNeutralButton(R.string.perfil_dialog_cancelar, new DialogInterface.OnClickListener() {
+        dialog.setNeutralButton(R.string.alert_dialog_cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Log.d("Cancelar", "Has seleccionado cancelar");
             }
         });
 
-        dialog.setPositiveButton(R.string.perfil_dialog_confirmar, new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton(R.string.alert_dialog_accept, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String newName = etNombreMaceta.getText().toString();
@@ -266,19 +232,16 @@ public class Details extends AppCompatActivity {
         tv_humedad_tierra_medida = findViewById(R.id.tv_humedad_tierra_medida);
         tv_temperatura_ambiental_medida2 = findViewById(R.id.tv_temperatura_ambiental_medida2);
         tv_humedad_ambiental_medida = findViewById(R.id.tv_humedad_ambiental_medida);
-        tv_titulo_detalle_maceta = findViewById(R.id.tv_titulo_detalle_maceta);
+        //tv_titulo_detalle_maceta = findViewById(R.id.tv_titulo_detalle_maceta);
         ivChangeName = findViewById(R.id.img_Tarjeta_elegir_nombre);
-        ivDeleteFlowerpot = findViewById(R.id.ivDeleteFlowerpot);
         swipeRefreshLayout = findViewById(R.id.swipeDetails);
         btnRegar = findViewById(R.id.btnRegar);
 
         tvTitulo = findViewById(R.id.tvMenuTitulo);
         ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
-        ivMenuIconRight = findViewById(R.id.ivMenuIconRight);
 
-        tvTitulo.setText(R.string.detalles);
+        tvTitulo.setText(R.string.details);
         ivMenuIconLeft.setImageResource(R.drawable.back);
-        ivMenuIconRight.setImageResource(R.drawable.icon_add);
 
         return true;
     }

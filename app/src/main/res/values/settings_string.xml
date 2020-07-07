@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_temperature_unit">Unidad de temperatura</string>
+    <string name="settings_notifications">Notificaciones</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_faq">Preguntas frecuentes</string>
+    <string name="settings_fail_report">Reportar un fallo</string>
+    <string name="settings_privacy">Condiciones y privacidad</string>
+    <string name="settings_contact">Contáctanos</string>
+    <string name="settings_information">Info. de la aplicación</string>
+    <string name="settings_default_values">Ajustes por defecto</string>
+</resources>

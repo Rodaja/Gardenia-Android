@@ -82,7 +82,7 @@ public class Login extends AppCompatActivity {
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navegation.goToView(context, Signup.class);
+                Navegation.goToView(context, Profile.class);
             }
         });
 
