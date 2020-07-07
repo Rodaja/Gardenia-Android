@@ -14,6 +14,7 @@ import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.configuration.Configuration;
 import com.rodaja.gardenia.model.firebase.Authentication;
 import com.rodaja.gardenia.model.navegation.Navegation;
+import com.rodaja.gardenia.model.notification.Notifications;
 import com.rodaja.gardenia.view.AddFlowerPot;
 import com.rodaja.gardenia.view.Home;
 import com.rodaja.gardenia.view.Login;
@@ -29,7 +30,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class NavegationDrawerActivity extends AppCompatActivity{
+public class NavegationDrawerActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private Context context;
@@ -39,6 +40,7 @@ public class NavegationDrawerActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navegation_drawer);
         context = this;
+        Notifications.generateSnackBar(context, R.string.toast_bienvenido, getWindow().getDecorView().getRootView());
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
