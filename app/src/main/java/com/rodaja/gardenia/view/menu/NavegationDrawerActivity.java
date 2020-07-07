@@ -21,6 +21,7 @@ import com.rodaja.gardenia.view.Login;
 import com.rodaja.gardenia.view.Profile;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -34,16 +35,18 @@ public class NavegationDrawerActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private Context context;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navegation_drawer);
         context = this;
-        Notifications.generateSnackBar(context, R.string.toast_bienvenido, getWindow().getDecorView().getRootView());
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        drawerLayout = findViewById(R.id.drawer_layout);
+        Notifications.generateSnackBar(context, R.string.toast_bienvenido, drawerLayout);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each

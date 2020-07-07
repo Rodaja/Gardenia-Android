@@ -1,6 +1,7 @@
 package com.rodaja.gardenia.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -58,11 +59,10 @@ public class Login extends AppCompatActivity {
     private TextView tvSignUp, tvForgotPassword;
     private CheckBox chboxRecordarme;
 
+    private ConstraintLayout constraintLogin;
+
     private String email;
     private String password;
-
-    private SQLiteOpenHelper sqLiteOpenHelper;
-    private SQLiteDatabase sqLiteDatabase;
 
 
     @Override
@@ -82,7 +82,6 @@ public class Login extends AppCompatActivity {
                 email = String.valueOf(etEmail.getText()).trim();
                 password = String.valueOf(etPassword.getText()).trim();
                 if (Authentication.signInNewUser((Activity) context, email, password)) {
-
                     Navegation.goToView(context, NavegationDrawerActivity.class);
                 }
             }
@@ -104,6 +103,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void inicializar() {
+        constraintLogin = findViewById(R.id.constraintLogin);
         ivBackground = findViewById(R.id.ivBackground);
         btnLogin = findViewById(R.id.btnLogin);
         etEmail = findViewById(R.id.etEmail);
