@@ -2,6 +2,7 @@ package com.rodaja.gardenia.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -78,6 +79,9 @@ public class Login extends AppCompatActivity {
                 //Obligatorio usar el trim ya que el texto aparece con un espacio al principio
                 email = String.valueOf(etEmail.getText()).trim();
                 password = String.valueOf(etPassword.getText()).trim();
+                if (Authentication.signInNewUser((Activity) context, email, password)) {
+                    Navegation.goToView(context, NavegationDrawerActivity.class);
+                }
             }
         });
 
@@ -109,8 +113,7 @@ public class Login extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent in = new Intent(this, Login.class);
-        startActivity(in);
+        Navegation.goToView(context, Login.class);
     }
 
 }
