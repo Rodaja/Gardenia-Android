@@ -44,30 +44,31 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Settings extends AppCompatActivity {
+public class Settings extends Fragment {
 
     //Atributos Menu
     private TextView tvTitulo, tvUnidadTemperaturaSimbolo;
     private ImageView ivMenuIconLeft;
     private ConstraintLayout constLPreguntasFrecuentes, constLAjustesPorDefectoEditable, constLTemaEditable, contLReportarFallos, constLUnidadTemperaturaEditable;
     private Context context;
+    private View view;
     private int cambiaOpcion = 0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_settings, container, false);
+    }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        super.onCreate(savedInstanceState);
+        view = getView();
+        context = view.getContext();
         inicializarMenu();
 
         //tvUnidadTemperaturaSimbolo.setText(Configuration.getTemperatureUnit(user));
-
-        ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navegation.goToView(context, Profile.class);
-            }
-        });
 
         constLPreguntasFrecuentes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -188,28 +189,27 @@ public class Settings extends AppCompatActivity {
                 dialog.show();
             }
         });
-
     }
+
 
     private void inicializarMenu() {
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.menu);
 
-        tvTitulo = findViewById(R.id.tvMenuTitulo);
-        ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
+        constLAjustesPorDefectoEditable = view.findViewById(R.id.constLAjustesPorDefectoEditable);
+        constLTemaEditable = view.findViewById(R.id.constLTemaEditable);
+        constLUnidadTemperaturaEditable = view.findViewById(R.id.constLUnidadTemperaturaEditable);
+        constLPreguntasFrecuentes = view.findViewById(R.id.constLPreguntasFrecuentesEditable);
+        contLReportarFallos = view.findViewById(R.id.constLReportarFalloEditable);
+        tvUnidadTemperaturaSimbolo = view.findViewById(R.id.tvUnidadTemperaturaSimbolo);
 
-        tvTitulo.setText(R.string.configuration);
 
-        constLAjustesPorDefectoEditable = findViewById(R.id.constLAjustesPorDefectoEditable);
-        constLTemaEditable = findViewById(R.id.constLTemaEditable);
-        constLUnidadTemperaturaEditable = findViewById(R.id.constLUnidadTemperaturaEditable);
-        constLPreguntasFrecuentes = findViewById(R.id.constLPreguntasFrecuentesEditable);
-        contLReportarFallos = findViewById(R.id.constLReportarFalloEditable);
-        tvUnidadTemperaturaSimbolo = findViewById(R.id.tvUnidadTemperaturaSimbolo);
     }
 
+    /*
     @Override
     public void onBackPressed() {
         Navegation.goToView(context, Login.class);
     }
+
+
+     */
 }

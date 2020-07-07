@@ -27,7 +27,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class NavegationDrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class NavegationDrawerActivity extends AppCompatActivity{
 
     private AppBarConfiguration mAppBarConfiguration;
     private Context context;
@@ -65,33 +65,6 @@ public class NavegationDrawerActivity extends AppCompatActivity implements Navig
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        switch (id){
-            case R.id.nav_home:
-                Navegation.goToView(context, Home.class);
-                break;
-            case R.id.nav_add:
-                Navegation.goToView(context, AddFlowerPot.class);
-                break;
-            case R.id.nav_profile:
-                Navegation.goToView(context, Profile.class);
-                break;
-            case R.id.nav_configuration:
-                Navegation.goToView(context, Configuration.class);
-                break;
-            case R.id.nav_logout:
-                Navegation.goToView(context, Login.class);
-                break;
-        }
-        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
-        drawerLayout.closeDrawer(GravityCompat.START);
-
-        return true;
     }
 
 }

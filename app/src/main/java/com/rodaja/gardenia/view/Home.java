@@ -2,13 +2,16 @@ package com.rodaja.gardenia.view;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,25 +23,31 @@ import com.rodaja.gardenia.model.navegation.Navegation;
 
 import java.util.List;
 
-public class Home extends AppCompatActivity {
+public class Home extends Fragment {
 
-    //Atributos Menu
-    private TextView tvTitulo;
-    private ImageView ivMenuIconLeft;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayout;
     private Context context;
+    private View view;
     private HomeAdapter adapter;
-    private User user;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        inicializar();
-        context = this;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_home, container, false);
+    }
 
-        final List<FlowerPot> listaMacetas = user.getListFlowerPots();
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        super.onCreate(savedInstanceState);
+        view = getView();
+        context = getContext();
+        inicializar();
+
+
+        //final List<FlowerPot> listaMacetas = user.getListFlowerPots();
+        /*
         recyclerView.setLayoutManager(linearLayout);
         adapter = new HomeAdapter(context, listaMacetas);
         recyclerView.setAdapter(adapter);
@@ -52,31 +61,18 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navegation.goToView(context, Profile.class);
-            }
-        });
-
+         */
 
     }
 
     private void inicializar() {
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.menu);
 
-        tvTitulo = findViewById(R.id.tvMenuTitulo);
-        ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
-
-        tvTitulo.setText(R.string.home);
-        ivMenuIconLeft.setImageResource(R.drawable.perfil);
-
-        recyclerView = (RecyclerView) findViewById(R.id.rvHome);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rvHome);
         linearLayout = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayout);
     }
 
+    /*
     @Override
     public void onBackPressed() {
         Intent in = new Intent(this, Home.class);
@@ -84,6 +80,9 @@ public class Home extends AppCompatActivity {
         startActivity(in);
     }
 
+     */
+
+    /*
     //TODO: Revisar
     private void goDetails(View view, Class goToView, int numeroMaceta, User user) {
         Intent in = new Intent(this, goToView);
@@ -91,6 +90,8 @@ public class Home extends AppCompatActivity {
         in.putExtra("user", user);
         startActivity(in);
     }
+
+     */
 
 
 }

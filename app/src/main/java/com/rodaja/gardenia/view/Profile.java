@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -41,34 +44,30 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Profile extends AppCompatActivity {
+public class Profile extends Fragment {
 
     private Context context;
-
-    //Atributos Menu
-    private ImageView ivMenuIconLeft;
+    private View view;
 
     private TextView tvTitulo, tituloCorreo, tituloNombreCompleto, tvPaisEt,
             tvApellidosEt, tvCorreoElectronicoEt, tvNombreUsuarioEt, tvNombreEt;
     private ConstraintLayout constLNombreUsuarioEditable, constLCorreoElectronicoEditable, constLBorrarCuentaEditable, constLCambiarContrasenaEditable;
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_profile, container, false);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        view = getView();
+        context = view.getContext();
         inicializar();
-        context = this;
 
         cargarDatosUsuariosReales();
-
-        ivMenuIconLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navegation.goToView(context, Home.class);
-            }
-        });
-
         constLCorreoElectronicoEditable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,32 +164,24 @@ public class Profile extends AppCompatActivity {
 
 
     private void inicializar() {
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.menu);
-
-        tvTitulo = findViewById(R.id.tvMenuTitulo);
-        ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
-
-        tvTitulo.setText(R.string.profile);
-        tituloCorreo = findViewById(R.id.tituloCorreo);
-        tvCorreoElectronicoEt = findViewById(R.id.tvCorreoElectronicoEt);
-        tvNombreUsuarioEt = findViewById(R.id.tvNombreUsuarioEt);
-        tituloNombreCompleto = findViewById(R.id.tituloNombreCompleto);
-        tvNombreEt = findViewById(R.id.tvNombreEt);
-
-        //constLCerrarSesionEditable = findViewById(R.id.constLCerrarSesionEditable);
-        constLBorrarCuentaEditable = findViewById(R.id.constLBorrarCuentaEditable);
-        //constLPaises = findViewById(R.id.constLPaisEditable);
-        //constLConfiuracion = findViewById(R.id.constLConfiguracionEditable);
-        constLCambiarContrasenaEditable = findViewById(R.id.constLCambiarContrasenaEditable);
-        constLCorreoElectronicoEditable = findViewById(R.id.constLCorreoElectronicoEditable);
-        constLNombreUsuarioEditable = findViewById(R.id.constLNombreUsuarioEditable);
-        //constLNombreEditable = findViewById(R.id.constLNombreEditable);
-        //constLApellidosEditable = findViewById(R.id.constLApellidosEditable);
+        tituloCorreo = view.findViewById(R.id.tituloCorreo);
+        tvCorreoElectronicoEt = view.findViewById(R.id.tvCorreoElectronicoEt);
+        tvNombreUsuarioEt = view.findViewById(R.id.tvNombreUsuarioEt);
+        tituloNombreCompleto = view.findViewById(R.id.tituloNombreCompleto);
+        tvNombreEt = view.findViewById(R.id.tvNombreEt);
+        constLBorrarCuentaEditable = view.findViewById(R.id.constLBorrarCuentaEditable);
+        constLCambiarContrasenaEditable = view.findViewById(R.id.constLCambiarContrasenaEditable);
+        constLCorreoElectronicoEditable = view.findViewById(R.id.constLCorreoElectronicoEditable);
+        constLNombreUsuarioEditable = view.findViewById(R.id.constLNombreUsuarioEditable);
     }
 
+    /*
     @Override
     public void onBackPressed() {
         Navegation.goToView(context, Home.class);
     }
+
+     */
 }
+
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navegation"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_configuration"
+        android:name="com.rodaja.gardenia.view.Settings"
+        android:label="@string/configuration"
+        tools:layout="@layout/activity_settings" />
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.rodaja.gardenia.view.Profile"
+        android:label="@string/profile"
+        tools:layout="@layout/activity_profile" />
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.rodaja.gardenia.view.Home"
+        android:label="@string/home"
+        tools:layout="@layout/activity_home" />
+    <fragment
+        android:id="@+id/nav_add"
+        android:name="com.rodaja.gardenia.view.AddFlowerPot"
+        android:label="@string/add_device"
+        tools:layout="@layout/activity_add_flower_pot" />
+
+</navigation>
