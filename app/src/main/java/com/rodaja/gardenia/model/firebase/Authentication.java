@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class Authentication {
 
     private static FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-    private static boolean response = false;
+    private static boolean response = true;
 
     /**
      * Este metodo sirve para realizar un login en Firebase

@@ -35,6 +35,7 @@ import com.google.gson.Gson;
 import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.configuration.Constants;
 import com.rodaja.gardenia.model.entity.User;
+import com.rodaja.gardenia.model.firebase.Authentication;
 import com.rodaja.gardenia.model.navegation.Navegation;
 import com.rodaja.gardenia.model.validation.Validation;
 import com.rodaja.gardenia.model.web.Json;
@@ -153,13 +154,14 @@ public class Profile extends Fragment {
          *
 
          tituloCorreo.setText(user.getEmail());
-         tvCorreoElectronicoEt.setText(user.getEmail());
          tvNombreUsuarioEt.setText(user.getUserName());
          tituloNombreCompleto.setText(user.getUserName());
          tvNombreEt.setText(user.getName());
          tvApellidosEt.setText(user.getSurname());
          tvPaisEt.setText(user.getCountry());
          */
+        tvCorreoElectronicoEt.setText(Authentication.getUserEmail());
+
     }
 
 
