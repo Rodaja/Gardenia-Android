@@ -48,13 +48,11 @@ import static android.net.wifi.WifiManager.STATUS_NETWORK_SUGGESTIONS_ERROR_APP_
 import static android.net.wifi.WifiManager.STATUS_NETWORK_SUGGESTIONS_ERROR_INTERNAL;
 import static android.net.wifi.WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS;
 
-public class AddFlowerPot extends AppCompatActivity {
+public class AddFlowerPot extends Fragment {
 
-    private Context contexto;
+    private Context context;
+    private View view;
 
-    //Atributos Menu
-    private TextView tvTitulo;
-    private ImageView ivMenuIconLeft;
     private Button btnConfirm;
 
     private WifiManager wifi;
@@ -68,6 +66,7 @@ public class AddFlowerPot extends AppCompatActivity {
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
+    /*
     BroadcastReceiver wifiReciver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -81,21 +80,31 @@ public class AddFlowerPot extends AppCompatActivity {
         }
     };
 
+     */
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_add_flower_pot, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         super.onCreate(savedInstanceState);
+        view = getView();
+        context = getContext();
+        inicializar();
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+        /*
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
-            setContentView(R.layout.activity_add_flower_pot_q_version);
-            inicializarMenu();
             contexto = this;
 
             Image.setGif(contexto, R.drawable.gif_add_flowerpot, ivGifAddFlowerpot);
 
         } else {
 
-            setContentView(R.layout.activity_add_flower_pot);
             inicializarMenu();
             contexto = this;
 
@@ -133,8 +142,10 @@ public class AddFlowerPot extends AppCompatActivity {
             }
         });
 
-    }
+         */
 
+    }
+/*
     private void getWifiList() {
         if (Permissions.checkPermission(contexto, Manifest.permission.ACCESS_FINE_LOCATION) != true) {
             Permissions.askForPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, Permissions.REQUEST_ACCESS_FINE_LOCATION);
@@ -155,28 +166,21 @@ public class AddFlowerPot extends AppCompatActivity {
 
     private void checkWifiEnabled() {
         if (!wifi.isWifiEnabled()) {
-            Toast.makeText(this, R.string.add_flowerpot_no_wifi, Toast.LENGTH_LONG).show();
+            Toast.makeText(contexto, R.string.add_flowerpot_no_wifi, Toast.LENGTH_LONG).show();
             wifi.setWifiEnabled(true);
         }
     }
-
-    private void inicializarMenu() {
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.menu);
-
-        tvTitulo = findViewById(R.id.tvMenuTitulo);
-        ivMenuIconLeft = findViewById(R.id.ivMenuIconLeft);
-        btnConfirm = findViewById(R.id.btn_confirmar_agregar);
-        ivGifAddFlowerpot = findViewById(R.id.ivGifAddFlowerpot);
-
-
-        tvTitulo.setText(R.string.connect_flowerpot);
-
-        listView = findViewById(R.id.listView);
-        swipeRefreshLayout = findViewById(R.id.swipeAddMaceta);
+ */
+    private void inicializar() {
+        btnConfirm = view.findViewById(R.id.btn_confirmar_agregar);
+        ivGifAddFlowerpot = view.findViewById(R.id.ivGifAddFlowerpot);
+        listView = view.findViewById(R.id.listView);
+        swipeRefreshLayout = view.findViewById(R.id.swipeAddMaceta);
     }
 
 
+
+/*
     @Override
     public void onBackPressed() {
         Intent in = new Intent(this, Home.class);
@@ -184,12 +188,9 @@ public class AddFlowerPot extends AppCompatActivity {
         startActivity(in);
     }
 
-    private void goToNewView(Class goToView, User user) {
-        Intent in = new Intent(this, goToView);
-        in.putExtra("user", user);
-        startActivity(in);
-    }
+ */
 
+/*
     private void scanWifi() {
         listWifi.clear();
         registerReceiver(wifiReciver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
@@ -254,4 +255,6 @@ public class AddFlowerPot extends AppCompatActivity {
             wifi.reconnect();
         }
     }
+
+ */
 }

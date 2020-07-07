@@ -34,6 +34,7 @@ import com.rodaja.gardenia.R;
 import com.rodaja.gardenia.model.configuration.Constants;
 import com.rodaja.gardenia.model.entity.User;
 import com.rodaja.gardenia.model.navegation.Navegation;
+import com.rodaja.gardenia.view.menu.NavegationDrawerActivity;
 import com.rodaja.gardenia.view.multimedia.Image;
 
 import org.json.JSONObject;
@@ -82,7 +83,7 @@ public class Login extends AppCompatActivity {
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navegation.goToView(context, Profile.class);
+                Navegation.goToView(context, NavegationDrawerActivity.class);
             }
         });
 
