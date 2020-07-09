@@ -27,6 +27,7 @@ import com.rodaja.gardenia.model.configuration.Constants;
 import com.rodaja.gardenia.model.entity.User;
 import com.rodaja.gardenia.model.firebase.Authentication;
 import com.rodaja.gardenia.model.navegation.Navegation;
+import com.rodaja.gardenia.model.notification.Notifications;
 import com.rodaja.gardenia.model.validation.Validation;
 import com.rodaja.gardenia.view.multimedia.Image;
 
@@ -94,7 +95,7 @@ public class Signup extends AppCompatActivity {
         if (validarEmail(email) && validarPassword(password)) {
             return true;
         } else {
-            Toast.makeText(this, "Email o contraseña no validos", Toast.LENGTH_SHORT).show();
+            Notifications.generateSnackBar(context, R.string.signup_snackbar_validation_error, ivBackground);
             return false;
         }
 

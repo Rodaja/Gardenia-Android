@@ -104,11 +104,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2">
 
-        <Button
-            android:id="@+id/button"
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/btnGoogle"
             style="@style/Theme.App.ButtonGoogle"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="50dp"
             android:layout_marginStart="-8dp"
             android:layout_marginLeft="-8dp"
             android:layout_marginBottom="16dp"
@@ -118,7 +119,9 @@
             app:iconPadding="0dp"
             app:layout_constraintBottom_toTopOf="@+id/tvSignUp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+
+            />
 
         <TextView
             android:id="@+id/textView"
@@ -126,7 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="@string/or"
-            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintBottom_toTopOf="@+id/btnGoogle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -140,7 +143,7 @@
             android:layout_marginRight="48dp"
             android:layout_marginBottom="16dp"
             android:background="@color/colorAccent"
-            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintBottom_toTopOf="@+id/btnGoogle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView">
 
@@ -156,7 +159,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="16dp"
             android:background="@color/colorAccent"
-            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintBottom_toTopOf="@+id/btnGoogle"
             app:layout_constraintEnd_toStartOf="@+id/textView"
             app:layout_constraintStart_toStartOf="parent">
 
