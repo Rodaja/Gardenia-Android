@@ -34,6 +34,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
@@ -41,6 +42,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.internal.GoogleApiAvailabilityCache;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -95,6 +97,7 @@ public class Login extends AppCompatActivity {
 
         //Configuramos Sign In de Google
         Image.setImage(this, R.drawable.background, ivBackground);
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -158,19 +161,12 @@ public class Login extends AppCompatActivity {
         chboxRecordarme = findViewById(R.id.chboxRecordar);
         tvForgotPassword = findViewById(R.id.tvForgotPassword);
         firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    Navegation.goToView(context, NavegationDrawerActivity.class);
-                }
-            }
-        };
 
     }
 
     @Override
+
+
     public void onBackPressed() {
         Navegation.goToView(context, Login.class);
     }
@@ -187,9 +183,11 @@ public class Login extends AppCompatActivity {
         }
     }
 
+
     private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
             firebaseAuthWithGoogle(result.getSignInAccount());
+            Navegation.goToView(context, NavegationDrawerActivity.class);
         } else {
             Log.e("Error", "onComplete: Failed=" + result.getStatus().getStatusMessage());
             Toast.makeText(this, "No se pudo iniciar sesion", Toast.LENGTH_SHORT).show();
@@ -206,6 +204,15 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (firebaseAuthListener != null) {
+            firebaseAuth.removeAuthStateListener(firebaseAuthListener);
+        }
     }
 
 
